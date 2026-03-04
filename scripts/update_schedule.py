@@ -5,22 +5,18 @@ from google import genai
 
 DEFAULT_SOURCE_URL = "https://www.vinow.com/cruise/ship-schedule/"
 SOURCE_URL = os.environ.get("SOURCE_URL", DEFAULT_SOURCE_URL)
-OUTPUT_PATH = "schedule.json"
 
-MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
+OUTPUT_PATH = "schedule.json"
+ENV_MODEL_NAME = (os.environ.get("GEMINI_MODEL") or "").strip() or None
 
 SYSTEM_INSTRUCTIONS = """You extract cruise schedule data and output ONLY valid JSON.
 Return a JSON array of objects with EXACT keys:
-  - date (YYYY-MM-DD)
-  - island
-  - ship
-  - dock
-  - arrival (HH:MM)
-  - departure (HH:MM)
+date (YYYY-MM-DD), island, ship, dock, arrival (HH:MM), departure (HH:MM).
 No extra keys. No markdown. No commentary. Only JSON.
 """
 
 R_JINA_PREFIX = "https://r.jina.ai/"
+
 BROWSER_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -35,6 +31,10 @@ BROWSER_HEADERS = {
     "Cache-Control": "no-cache",
 }
 
+def short_model_name(name: str | None) -> str | None:
+    if not name:
+        return None
+    return name.split("/")[-1]
 
 def fetch_source_text(url: str) -> str:
     sess = requests.Session()
@@ -48,21 +48,41 @@ def fetch_source_text(url: str) -> str:
     resp.raise_for_status()
     return resp.text
 
-
 def json_is_valid_schedule(data) -> bool:
     if not isinstance(data, list):
         return False
-
     required = {"date", "island", "ship", "dock", "arrival", "departure"}
-
     for row in data:
         if not isinstance(row, dict):
             return False
         if set(row.keys()) != required:
             return False
-
     return True
 
+def choose_model(client: genai.Client, desired: str | None) -> str:
+    desired_short = short_model_name(desired)
+    supported: list[str] = []
+
+    for m in client.models.list():
+        name = short_model_name(getattr(m, "name", None))
+        methods = getattr(m, "supported_methods", None) or []
+        if "generateContent" in methods:
+            supported.append(name)
+        if desired_short and name == desired_short:
+            if "generateContent" in methods:
+                return name
+            print(f"GEMINI_MODEL={desired_short} found but does not support generateContent; falling back...")
+
+    if not supported:
+        raise RuntimeError("No models support generateContent.")
+
+    if desired_short and desired_short not in supported:
+        print(
+            "GEMINI_MODEL does not match any available model; "
+            "falling back to first supported model from ListModels."
+        )
+
+    return supported[0]
 
 def main() -> None:
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -72,9 +92,12 @@ def main() -> None:
     source_text = fetch_source_text(SOURCE_URL)
 
     client = genai.Client(api_key=api_key)
-    prompt = f"{SYSTEM_INSTRUCTIONS}\n\nSOURCE:\n{source_text[:180000]}"
-    response = client.models.generate_content(model=MODEL_NAME, contents=prompt)
+    model_name = choose_model(client, ENV_MODEL_NAME)
+    if ENV_MODEL_NAME and model_name != short_model_name(ENV_MODEL_NAME):
+        print(f"Using model: {model_name}")
 
+    prompt = f"{SYSTEM_INSTRUCTIONS}\n\nSOURCE:\n{source_text[:180000]}"
+    response = client.models.generate_content(model=model_name, contents=prompt)
     raw = (getattr(response, "text", None) or "").strip()
 
     try:
@@ -85,15 +108,12 @@ def main() -> None:
         ) from e
 
     if not json_is_valid_schedule(data):
-        raise RuntimeError(
-            "JSON shape invalid. Ensure only date/island/ship/dock/arrival/departure."
-        )
+        raise RuntimeError("JSON shape invalid (wrong keys).")
 
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
     print(f"Wrote {OUTPUT_PATH} with {len(data)} rows.")
-
 
 if __name__ == "__main__":
     main()
