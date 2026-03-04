@@ -2,7 +2,7 @@ name: Update Cruise Schedule
 
 on:
   schedule:
-    - cron: "0 8 * * *"  # daily at 08:00 UTC
+    - cron: "0 8 * * *" # daily at 08:00 UTC
   workflow_dispatch:
 
 permissions:
@@ -28,7 +28,7 @@ jobs:
       - name: Run updater
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          SOURCE_URL: "https://REPLACE_WITH_SOURCE_URL"
+          SOURCE_URL: "https://www.vinow.com/cruise/ship-schedule/"
         run: |
           python scripts/update_schedule.py
 
