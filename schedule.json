@@ -2,14 +2,6 @@
   {
     "date": "2025-09-04",
     "island": "St. Thomas",
-    "ship": "Norwegian Escape",
-    "dock": "WICO",
-    "arrival": "06:30",
-    "departure": "12:30"
-  },
-  {
-    "date": "2025-09-04",
-    "island": "St. Thomas",
     "ship": "Adventure of the Seas",
     "dock": "CB",
     "arrival": "07:00",
@@ -18,26 +10,10 @@
   {
     "date": "2025-09-04",
     "island": "St. Thomas",
-    "ship": "Carnival Celebration",
-    "dock": "WICO",
-    "arrival": "07:00",
-    "departure": "16:00"
-  },
-  {
-    "date": "2025-09-04",
-    "island": "St. Thomas",
     "ship": "Icon of the Seas",
     "dock": "CB",
     "arrival": "07:00",
     "departure": "14:30"
-  },
-  {
-    "date": "2025-09-04",
-    "island": "St. Thomas",
-    "ship": "Disney Treasure",
-    "dock": "WICO",
-    "arrival": "07:30",
-    "departure": "16:00"
   },
   {
     "date": "2025-09-04",
@@ -53,30 +29,6 @@
     "ship": "Rhapsody of the Seas",
     "dock": "CB",
     "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-09-04",
-    "island": "St. Thomas",
-    "ship": "Carnival Mardi Gras",
-    "dock": "WICO",
-    "arrival": "09:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-09-04",
-    "island": "St. Thomas",
-    "ship": "Carnival Venezia",
-    "dock": "WICO",
-    "arrival": "09:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-09-04",
-    "island": "St. Thomas",
-    "ship": "Carnival Vista",
-    "dock": "WICO",
-    "arrival": "09:00",
     "departure": "18:00"
   },
   {
@@ -104,12 +56,124 @@
     "departure": "20:00"
   },
   {
+    "date": "2025-09-04",
+    "island": "St. Thomas",
+    "ship": "Norwegian Escape",
+    "dock": "WICO",
+    "arrival": "06:30",
+    "departure": "12:30"
+  },
+  {
+    "date": "2025-09-04",
+    "island": "St. Thomas",
+    "ship": "Carnival Celebration",
+    "dock": "WICO",
+    "arrival": "07:00",
+    "departure": "16:00"
+  },
+  {
+    "date": "2025-09-04",
+    "island": "St. Thomas",
+    "ship": "Disney Treasure",
+    "dock": "WICO",
+    "arrival": "07:30",
+    "departure": "16:00"
+  },
+  {
+    "date": "2025-09-04",
+    "island": "St. Thomas",
+    "ship": "Carnival Mardi Gras",
+    "dock": "WICO",
+    "arrival": "09:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-09-04",
+    "island": "St. Thomas",
+    "ship": "Carnival Venezia",
+    "dock": "WICO",
+    "arrival": "09:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-09-04",
+    "island": "St. Thomas",
+    "ship": "Carnival Vista",
+    "dock": "WICO",
+    "arrival": "09:00",
+    "departure": "18:00"
+  },
+  {
     "date": "2025-10-04",
     "island": "St. Thomas",
     "ship": "Adventure of the Seas",
     "dock": "CB",
     "arrival": "07:00",
     "departure": "18:00"
+  },
+  {
+    "date": "2025-10-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:00"
+  },
+  {
+    "date": "2025-10-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2025-10-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-10-04",
+    "island": "St. Thomas",
+    "ship": "Rhapsody of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-10-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "10:30",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-10-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "11:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2025-10-04",
+    "island": "St. Thomas",
+    "ship": "Reflection",
+    "dock": "CB",
+    "arrival": "11:30",
+    "departure": "19:00"
+  },
+  {
+    "date": "2025-10-04",
+    "island": "St. Thomas",
+    "ship": "Star of the Seas",
+    "dock": "CB",
+    "arrival": "12:30",
+    "departure": "20:00"
   },
   {
     "date": "2025-10-04",
@@ -150,22 +214,6 @@
     "dock": "WICO",
     "arrival": "07:00",
     "departure": "16:00"
-  },
-  {
-    "date": "2025-10-04",
-    "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:00"
-  },
-  {
-    "date": "2025-10-04",
-    "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
   },
   {
     "date": "2025-10-04",
@@ -234,22 +282,6 @@
   {
     "date": "2025-10-04",
     "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-10-04",
-    "island": "St. Thomas",
-    "ship": "Rhapsody of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-10-04",
-    "island": "St. Thomas",
     "ship": "Zuiderdam",
     "dock": "WICO",
     "arrival": "08:00",
@@ -266,50 +298,10 @@
   {
     "date": "2025-10-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "10:30",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-10-04",
-    "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "11:00",
-    "departure": "19:00"
-  },
-  {
-    "date": "2025-10-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Aqua",
     "dock": "WICO",
     "arrival": "11:00",
     "departure": "19:00"
-  },
-  {
-    "date": "2025-10-04",
-    "island": "St. Thomas",
-    "ship": "Reflection",
-    "dock": "CB",
-    "arrival": "11:30",
-    "departure": "19:00"
-  },
-  {
-    "date": "2025-10-04",
-    "island": "St. Thomas",
-    "ship": "Star of the Seas",
-    "dock": "CB",
-    "arrival": "12:30",
-    "departure": "20:00"
-  },
-  {
-    "date": "2025-11-04",
-    "island": "St. Thomas",
-    "ship": "Silver Shadow",
-    "dock": "WICO",
-    "arrival": "06:00",
-    "departure": "20:00"
   },
   {
     "date": "2025-11-04",
@@ -318,6 +310,94 @@
     "dock": "CB",
     "arrival": "07:00",
     "departure": "18:00"
+  },
+  {
+    "date": "2025-11-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2025-11-04",
+    "island": "St. Thomas",
+    "ship": "Symphony of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "15:00"
+  },
+  {
+    "date": "2025-11-04",
+    "island": "St. Thomas",
+    "ship": "Allure of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-11-04",
+    "island": "St. Thomas",
+    "ship": "Brilliance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-11-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Summit",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "17:00"
+  },
+  {
+    "date": "2025-11-04",
+    "island": "St. Thomas",
+    "ship": "Independence of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-11-04",
+    "island": "St. Thomas",
+    "ship": "Jewel of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-11-04",
+    "island": "St. Thomas",
+    "ship": "Allure of the Seas",
+    "dock": "CB",
+    "arrival": "09:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2025-11-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "11:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2025-11-04",
+    "island": "St. Thomas",
+    "ship": "Star of the Seas",
+    "dock": "CB",
+    "arrival": "13:30",
+    "departure": "21:00"
+  },
+  {
+    "date": "2025-11-04",
+    "island": "St. Thomas",
+    "ship": "Silver Shadow",
+    "dock": "WICO",
+    "arrival": "06:00",
+    "departure": "20:00"
   },
   {
     "date": "2025-11-04",
@@ -338,24 +418,8 @@
   {
     "date": "2025-11-04",
     "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
-  },
-  {
-    "date": "2025-11-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Star",
     "dock": "WICO",
-    "arrival": "07:00",
-    "departure": "15:00"
-  },
-  {
-    "date": "2025-11-04",
-    "island": "St. Thomas",
-    "ship": "Symphony of the Seas",
-    "dock": "CB",
     "arrival": "07:00",
     "departure": "15:00"
   },
@@ -378,26 +442,10 @@
   {
     "date": "2025-11-04",
     "island": "St. Thomas",
-    "ship": "Allure of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-11-04",
-    "island": "St. Thomas",
     "ship": "Azamara Quest",
     "dock": "WICO",
     "arrival": "08:00",
     "departure": "17:00"
-  },
-  {
-    "date": "2025-11-04",
-    "island": "St. Thomas",
-    "ship": "Brilliance of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
   },
   {
     "date": "2025-11-04",
@@ -426,14 +474,6 @@
   {
     "date": "2025-11-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Summit",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "17:00"
-  },
-  {
-    "date": "2025-11-04",
-    "island": "St. Thomas",
     "ship": "Coral Princess",
     "dock": "WICO",
     "arrival": "08:00",
@@ -452,22 +492,6 @@
     "island": "St. Thomas",
     "ship": "Grand Princess",
     "dock": "WICO",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-11-04",
-    "island": "St. Thomas",
-    "ship": "Independence of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-11-04",
-    "island": "St. Thomas",
-    "ship": "Jewel of the Seas",
-    "dock": "CB",
     "arrival": "08:00",
     "departure": "18:00"
   },
@@ -538,14 +562,6 @@
   {
     "date": "2025-11-04",
     "island": "St. Thomas",
-    "ship": "Allure of the Seas",
-    "dock": "CB",
-    "arrival": "09:00",
-    "departure": "19:00"
-  },
-  {
-    "date": "2025-11-04",
-    "island": "St. Thomas",
     "ship": "Explora II",
     "dock": "WICO",
     "arrival": "09:00",
@@ -594,14 +610,6 @@
   {
     "date": "2025-11-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "11:00",
-    "departure": "19:00"
-  },
-  {
-    "date": "2025-11-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Aqua",
     "dock": "WICO",
     "arrival": "11:00",
@@ -624,12 +632,20 @@
     "departure": "20:00"
   },
   {
-    "date": "2025-11-04",
-    "island": "St. Thomas",
-    "ship": "Star of the Seas",
-    "dock": "CB",
-    "arrival": "13:30",
-    "departure": "21:00"
+    "date": "2025-12-04",
+    "island": "St. John",
+    "ship": "Explora II",
+    "dock": "Cruz Bay",
+    "arrival": "08:00",
+    "departure": "17:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. John",
+    "ship": "Silver Ray",
+    "dock": "Cruz Bay",
+    "arrival": "08:00",
+    "departure": "18:00"
   },
   {
     "date": "2025-12-04",
@@ -642,18 +658,106 @@
   {
     "date": "2025-12-04",
     "island": "St. Thomas",
-    "ship": "Eurodam",
-    "dock": "WICO",
-    "arrival": "07:00",
-    "departure": "16:00"
-  },
-  {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
     "ship": "Icon of the Seas",
     "dock": "CB",
     "arrival": "07:00",
     "departure": "14:30"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Symphony of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "15:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Brilliance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Independence of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Jewel of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Allure of the Seas",
+    "dock": "CB",
+    "arrival": "09:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "11:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "11:30",
+    "departure": "19:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Xcel",
+    "dock": "CB",
+    "arrival": "11:30",
+    "departure": "19:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Xcel",
+    "dock": "CB",
+    "arrival": "11:30",
+    "departure": "20:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Star of the Seas",
+    "dock": "CB",
+    "arrival": "13:30",
+    "departure": "21:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Serenade of the Seas",
+    "dock": "CB",
+    "arrival": "15:00",
+    "departure": "23:00"
+  },
+  {
+    "date": "2025-12-04",
+    "island": "St. Thomas",
+    "ship": "Eurodam",
+    "dock": "WICO",
+    "arrival": "07:00",
+    "departure": "16:00"
   },
   {
     "date": "2025-12-04",
@@ -746,14 +850,6 @@
   {
     "date": "2025-12-04",
     "island": "St. Thomas",
-    "ship": "Symphony of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "15:00"
-  },
-  {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
     "ship": "Viking Sea",
     "dock": "WICO",
     "arrival": "07:00",
@@ -796,14 +892,6 @@
     "island": "St. Thomas",
     "ship": "Azamara Quest",
     "dock": "WICO",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
-    "ship": "Brilliance of the Seas",
-    "dock": "CB",
     "arrival": "08:00",
     "departure": "18:00"
   },
@@ -857,33 +945,9 @@
   },
   {
     "date": "2025-12-04",
-    "island": "St. John",
-    "ship": "Explora II",
-    "dock": "Cruz Bay",
-    "arrival": "08:00",
-    "departure": "17:00"
-  },
-  {
-    "date": "2025-12-04",
     "island": "St. Thomas",
     "ship": "Grand Princess",
     "dock": "WICO",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
-    "ship": "Independence of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
-    "ship": "Jewel of the Seas",
-    "dock": "CB",
     "arrival": "08:00",
     "departure": "18:00"
   },
@@ -921,14 +985,6 @@
   },
   {
     "date": "2025-12-04",
-    "island": "St. John",
-    "ship": "Silver Ray",
-    "dock": "Cruz Bay",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2025-12-04",
     "island": "St. Thomas",
     "ship": "Sky Princess",
     "dock": "WICO",
@@ -950,14 +1006,6 @@
     "dock": "WICO",
     "arrival": "08:00",
     "departure": "18:00"
-  },
-  {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
-    "ship": "Allure of the Seas",
-    "dock": "CB",
-    "arrival": "09:00",
-    "departure": "19:00"
   },
   {
     "date": "2025-12-04",
@@ -1002,14 +1050,6 @@
   {
     "date": "2025-12-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "11:00",
-    "departure": "19:00"
-  },
-  {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Aqua",
     "dock": "WICO",
     "arrival": "11:00",
@@ -1034,30 +1074,6 @@
   {
     "date": "2025-12-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "11:30",
-    "departure": "19:00"
-  },
-  {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
-    "ship": "Celebrity Xcel",
-    "dock": "CB",
-    "arrival": "11:30",
-    "departure": "19:00"
-  },
-  {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
-    "ship": "Celebrity Xcel",
-    "dock": "CB",
-    "arrival": "11:30",
-    "departure": "20:00"
-  },
-  {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Getaway",
     "dock": "WICO",
     "arrival": "11:45",
@@ -1072,28 +1088,28 @@
     "departure": "21:00"
   },
   {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
-    "ship": "Star of the Seas",
-    "dock": "CB",
-    "arrival": "13:30",
-    "departure": "21:00"
-  },
-  {
-    "date": "2025-12-04",
-    "island": "St. Thomas",
-    "ship": "Serenade of the Seas",
-    "dock": "CB",
-    "arrival": "15:00",
-    "departure": "23:00"
+    "date": "2026-01-04",
+    "island": "St. John",
+    "ship": "Explora II",
+    "dock": "Cruz Bay",
+    "arrival": "08:00",
+    "departure": "17:00"
   },
   {
     "date": "2026-01-04",
-    "island": "St. Thomas",
-    "ship": "Disney Treasure",
-    "dock": "WICO",
-    "arrival": "06:45",
-    "departure": "16:00"
+    "island": "St. John",
+    "ship": "Silver Ray",
+    "dock": "Cruz Bay",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. John",
+    "ship": "Silver Shadow",
+    "dock": "Cruz Bay",
+    "arrival": "08:00",
+    "departure": "18:00"
   },
   {
     "date": "2026-01-04",
@@ -1102,6 +1118,102 @@
     "dock": "CB",
     "arrival": "07:00",
     "departure": "18:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "15:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Symphony of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "15:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Brilliance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Independence of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Jewel of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Odyssey of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Allure of the Seas",
+    "dock": "CB",
+    "arrival": "09:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "11:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Xcel",
+    "dock": "CB",
+    "arrival": "11:30",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Star of the Seas",
+    "dock": "CB",
+    "arrival": "13:30",
+    "departure": "21:00"
+  },
+  {
+    "date": "2026-01-04",
+    "island": "St. Thomas",
+    "ship": "Disney Treasure",
+    "dock": "WICO",
+    "arrival": "06:45",
+    "departure": "16:00"
   },
   {
     "date": "2026-01-04",
@@ -1130,22 +1242,6 @@
   {
     "date": "2026-01-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "15:00"
-  },
-  {
-    "date": "2026-01-04",
-    "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
-  },
-  {
-    "date": "2026-01-04",
-    "island": "St. Thomas",
     "ship": "Marella Discovery",
     "dock": "WICO",
     "arrival": "07:00",
@@ -1170,14 +1266,6 @@
   {
     "date": "2026-01-04",
     "island": "St. Thomas",
-    "ship": "Symphony of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "15:00"
-  },
-  {
-    "date": "2026-01-04",
-    "island": "St. Thomas",
     "ship": "Zuiderdam",
     "dock": "WICO",
     "arrival": "07:00",
@@ -1196,14 +1284,6 @@
     "island": "St. Thomas",
     "ship": "Azamara Quest",
     "dock": "WICO",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-01-04",
-    "island": "St. Thomas",
-    "ship": "Brilliance of the Seas",
-    "dock": "CB",
     "arrival": "08:00",
     "departure": "18:00"
   },
@@ -1273,14 +1353,6 @@
   },
   {
     "date": "2026-01-04",
-    "island": "St. John",
-    "ship": "Explora II",
-    "dock": "Cruz Bay",
-    "arrival": "08:00",
-    "departure": "17:00"
-  },
-  {
-    "date": "2026-01-04",
     "island": "St. Thomas",
     "ship": "Grand Princess",
     "dock": "WICO",
@@ -1294,22 +1366,6 @@
     "dock": "WICO",
     "arrival": "08:00",
     "departure": "16:00"
-  },
-  {
-    "date": "2026-01-04",
-    "island": "St. Thomas",
-    "ship": "Independence of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-01-04",
-    "island": "St. Thomas",
-    "ship": "Jewel of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
   },
   {
     "date": "2026-01-04",
@@ -1354,14 +1410,6 @@
   {
     "date": "2026-01-04",
     "island": "St. Thomas",
-    "ship": "Odyssey of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-01-04",
-    "island": "St. Thomas",
     "ship": "Queen Elizabeth",
     "dock": "WICO",
     "arrival": "08:00",
@@ -1372,14 +1420,6 @@
     "island": "St. Thomas",
     "ship": "Sea Dreams II",
     "dock": "WICO",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-01-04",
-    "island": "St. John",
-    "ship": "Silver Ray",
-    "dock": "Cruz Bay",
     "arrival": "08:00",
     "departure": "18:00"
   },
@@ -1409,14 +1449,6 @@
   },
   {
     "date": "2026-01-04",
-    "island": "St. John",
-    "ship": "Silver Shadow",
-    "dock": "Cruz Bay",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-01-04",
     "island": "St. Thomas",
     "ship": "Sky Princess",
     "dock": "WICO",
@@ -1430,14 +1462,6 @@
     "dock": "WICO",
     "arrival": "08:00",
     "departure": "17:00"
-  },
-  {
-    "date": "2026-01-04",
-    "island": "St. Thomas",
-    "ship": "Allure of the Seas",
-    "dock": "CB",
-    "arrival": "09:00",
-    "departure": "19:00"
   },
   {
     "date": "2026-01-04",
@@ -1474,14 +1498,6 @@
   {
     "date": "2026-01-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "11:00",
-    "departure": "19:00"
-  },
-  {
-    "date": "2026-01-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Aqua",
     "dock": "WICO",
     "arrival": "11:00",
@@ -1498,26 +1514,50 @@
   {
     "date": "2026-01-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Xcel",
-    "dock": "CB",
-    "arrival": "11:30",
-    "departure": "19:00"
-  },
-  {
-    "date": "2026-01-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Getaway",
     "dock": "WICO",
     "arrival": "11:45",
     "departure": "20:00"
   },
   {
-    "date": "2026-01-04",
-    "island": "St. Thomas",
-    "ship": "Star of the Seas",
-    "dock": "CB",
-    "arrival": "13:30",
-    "departure": "21:00"
+    "date": "2026-02-04",
+    "island": "St. John",
+    "ship": "Explora II",
+    "dock": "Cruz Bay",
+    "arrival": "08:00",
+    "departure": "17:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. John",
+    "ship": "Silver Ray",
+    "dock": "Cruz Bay",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. John",
+    "ship": "Silver Ray",
+    "dock": "Cruz Bay",
+    "arrival": "08:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. John",
+    "ship": "Silver Shadow",
+    "dock": "Cruz Bay",
+    "arrival": "08:00",
+    "departure": "17:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. John",
+    "ship": "Silver Shadow",
+    "dock": "Cruz Bay",
+    "arrival": "08:00",
+    "departure": "18:00"
   },
   {
     "date": "2026-02-04",
@@ -1526,6 +1566,86 @@
     "dock": "CB",
     "arrival": "07:00",
     "departure": "18:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. Thomas",
+    "ship": "Eurodam",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "16:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. Thomas",
+    "ship": "Symphony of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "15:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. Thomas",
+    "ship": "Independence of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. Thomas",
+    "ship": "Jewel of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. Thomas",
+    "ship": "Allure of the Seas",
+    "dock": "CB",
+    "arrival": "09:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "11:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Xcel",
+    "dock": "CB",
+    "arrival": "11:30",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. Thomas",
+    "ship": "Star of the Seas",
+    "dock": "CB",
+    "arrival": "12:30",
+    "departure": "20:00"
+  },
+  {
+    "date": "2026-02-04",
+    "island": "St. Thomas",
+    "ship": "Star of the Seas",
+    "dock": "CB",
+    "arrival": "13:30",
+    "departure": "21:00"
   },
   {
     "date": "2026-02-04",
@@ -1550,22 +1670,6 @@
     "dock": "WICO",
     "arrival": "07:00",
     "departure": "16:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. Thomas",
-    "ship": "Eurodam",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "16:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
   },
   {
     "date": "2026-02-04",
@@ -1606,14 +1710,6 @@
     "dock": "WICO",
     "arrival": "07:00",
     "departure": "17:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. Thomas",
-    "ship": "Symphony of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "15:00"
   },
   {
     "date": "2026-02-04",
@@ -1665,14 +1761,6 @@
   },
   {
     "date": "2026-02-04",
-    "island": "St. John",
-    "ship": "Explora II",
-    "dock": "Cruz Bay",
-    "arrival": "08:00",
-    "departure": "17:00"
-  },
-  {
-    "date": "2026-02-04",
     "island": "St. Thomas",
     "ship": "Explora II",
     "dock": "WICO",
@@ -1692,22 +1780,6 @@
     "island": "St. Thomas",
     "ship": "Grand Princess",
     "dock": "WICO",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. Thomas",
-    "ship": "Independence of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. Thomas",
-    "ship": "Jewel of the Seas",
-    "dock": "CB",
     "arrival": "08:00",
     "departure": "18:00"
   },
@@ -1745,41 +1817,9 @@
   },
   {
     "date": "2026-02-04",
-    "island": "St. John",
-    "ship": "Silver Ray",
-    "dock": "Cruz Bay",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. John",
-    "ship": "Silver Ray",
-    "dock": "Cruz Bay",
-    "arrival": "08:00",
-    "departure": "19:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. John",
-    "ship": "Silver Shadow",
-    "dock": "Cruz Bay",
-    "arrival": "08:00",
-    "departure": "17:00"
-  },
-  {
-    "date": "2026-02-04",
     "island": "St. Thomas",
     "ship": "Silver Shadow",
     "dock": "WICO",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. John",
-    "ship": "Silver Shadow",
-    "dock": "Cruz Bay",
     "arrival": "08:00",
     "departure": "18:00"
   },
@@ -1798,14 +1838,6 @@
     "dock": "WICO",
     "arrival": "08:00",
     "departure": "17:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. Thomas",
-    "ship": "Allure of the Seas",
-    "dock": "CB",
-    "arrival": "09:00",
-    "departure": "19:00"
   },
   {
     "date": "2026-02-04",
@@ -1858,14 +1890,6 @@
   {
     "date": "2026-02-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "11:00",
-    "departure": "19:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Aqua",
     "dock": "WICO",
     "arrival": "11:00",
@@ -1882,34 +1906,106 @@
   {
     "date": "2026-02-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Xcel",
-    "dock": "CB",
-    "arrival": "11:30",
-    "departure": "19:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Getaway",
     "dock": "WICO",
     "arrival": "11:45",
     "departure": "18:00"
   },
   {
-    "date": "2026-02-04",
+    "date": "2026-03-04",
+    "island": "St. John",
+    "ship": "Evrima",
+    "dock": "Cruz Bay",
+    "arrival": "08:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-03-04",
+    "island": "St. Thomas",
+    "ship": "Adventure of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-03-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-03-04",
+    "island": "St. Thomas",
+    "ship": "Symphony of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "15:00"
+  },
+  {
+    "date": "2026-03-04",
+    "island": "St. Thomas",
+    "ship": "Brilliance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-03-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Silhouette",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "23:00"
+  },
+  {
+    "date": "2026-03-04",
+    "island": "St. Thomas",
+    "ship": "Independence of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-03-04",
+    "island": "St. Thomas",
+    "ship": "Jewel of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-03-04",
+    "island": "St. Thomas",
+    "ship": "Allure of the Seas",
+    "dock": "CB",
+    "arrival": "09:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-03-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "11:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-03-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Xcel",
+    "dock": "CB",
+    "arrival": "11:30",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-03-04",
     "island": "St. Thomas",
     "ship": "Star of the Seas",
     "dock": "CB",
     "arrival": "12:30",
     "departure": "20:00"
-  },
-  {
-    "date": "2026-02-04",
-    "island": "St. Thomas",
-    "ship": "Star of the Seas",
-    "dock": "CB",
-    "arrival": "13:30",
-    "departure": "21:00"
   },
   {
     "date": "2026-03-04",
@@ -1926,14 +2022,6 @@
     "dock": "WICO",
     "arrival": "06:30",
     "departure": "16:00"
-  },
-  {
-    "date": "2026-03-04",
-    "island": "St. Thomas",
-    "ship": "Adventure of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "18:00"
   },
   {
     "date": "2026-03-04",
@@ -1958,14 +2046,6 @@
     "dock": "WICO",
     "arrival": "07:00",
     "departure": "16:00"
-  },
-  {
-    "date": "2026-03-04",
-    "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
   },
   {
     "date": "2026-03-04",
@@ -2002,14 +2082,6 @@
   {
     "date": "2026-03-04",
     "island": "St. Thomas",
-    "ship": "Symphony of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "15:00"
-  },
-  {
-    "date": "2026-03-04",
-    "island": "St. Thomas",
     "ship": "Zuiderdam",
     "dock": "WICO",
     "arrival": "07:00",
@@ -2034,34 +2106,10 @@
   {
     "date": "2026-03-04",
     "island": "St. Thomas",
-    "ship": "Brilliance of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-03-04",
-    "island": "St. Thomas",
     "ship": "Carnival Vista",
     "dock": "WICO",
     "arrival": "08:00",
     "departure": "17:00"
-  },
-  {
-    "date": "2026-03-04",
-    "island": "St. Thomas",
-    "ship": "Celebrity Silhouette",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "23:00"
-  },
-  {
-    "date": "2026-03-04",
-    "island": "St. John",
-    "ship": "Evrima",
-    "dock": "Cruz Bay",
-    "arrival": "08:00",
-    "departure": "19:00"
   },
   {
     "date": "2026-03-04",
@@ -2082,24 +2130,8 @@
   {
     "date": "2026-03-04",
     "island": "St. Thomas",
-    "ship": "Independence of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-03-04",
-    "island": "St. Thomas",
     "ship": "Insignia",
     "dock": "WICO",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-03-04",
-    "island": "St. Thomas",
-    "ship": "Jewel of the Seas",
-    "dock": "CB",
     "arrival": "08:00",
     "departure": "18:00"
   },
@@ -2134,14 +2166,6 @@
     "dock": "WICO",
     "arrival": "08:00",
     "departure": "18:00"
-  },
-  {
-    "date": "2026-03-04",
-    "island": "St. Thomas",
-    "ship": "Allure of the Seas",
-    "dock": "CB",
-    "arrival": "09:00",
-    "departure": "19:00"
   },
   {
     "date": "2026-03-04",
@@ -2186,14 +2210,6 @@
   {
     "date": "2026-03-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "11:00",
-    "departure": "19:00"
-  },
-  {
-    "date": "2026-03-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Aqua",
     "dock": "WICO",
     "arrival": "11:00",
@@ -2208,7 +2224,87 @@
     "departure": "19:00"
   },
   {
-    "date": "2026-03-04",
+    "date": "2026-04-04",
+    "island": "St. Thomas",
+    "ship": "Adventure of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-04-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-04-04",
+    "island": "St. Thomas",
+    "ship": "Symphony of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "15:00"
+  },
+  {
+    "date": "2026-04-04",
+    "island": "St. Thomas",
+    "ship": "Brilliance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-04-04",
+    "island": "St. Thomas",
+    "ship": "Brilliance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "17:00"
+  },
+  {
+    "date": "2026-04-04",
+    "island": "St. Thomas",
+    "ship": "Independence of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-04-04",
+    "island": "St. Thomas",
+    "ship": "Jewel of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-04-04",
+    "island": "St. Thomas",
+    "ship": "Radiance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-04-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "11:00",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-04-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "11:30",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-04-04",
     "island": "St. Thomas",
     "ship": "Celebrity Xcel",
     "dock": "CB",
@@ -2216,7 +2312,7 @@
     "departure": "19:00"
   },
   {
-    "date": "2026-03-04",
+    "date": "2026-04-04",
     "island": "St. Thomas",
     "ship": "Star of the Seas",
     "dock": "CB",
@@ -2230,14 +2326,6 @@
     "dock": "WICO",
     "arrival": "06:30",
     "departure": "16:00"
-  },
-  {
-    "date": "2026-04-04",
-    "island": "St. Thomas",
-    "ship": "Adventure of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "18:00"
   },
   {
     "date": "2026-04-04",
@@ -2274,14 +2362,6 @@
   {
     "date": "2026-04-04",
     "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
-  },
-  {
-    "date": "2026-04-04",
-    "island": "St. Thomas",
     "ship": "Marella Discovery",
     "dock": "WICO",
     "arrival": "07:00",
@@ -2294,14 +2374,6 @@
     "dock": "WICO",
     "arrival": "07:00",
     "departure": "16:00"
-  },
-  {
-    "date": "2026-04-04",
-    "island": "St. Thomas",
-    "ship": "Symphony of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "15:00"
   },
   {
     "date": "2026-04-04",
@@ -2322,40 +2394,8 @@
   {
     "date": "2026-04-04",
     "island": "St. Thomas",
-    "ship": "Brilliance of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-04-04",
-    "island": "St. Thomas",
-    "ship": "Brilliance of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "17:00"
-  },
-  {
-    "date": "2026-04-04",
-    "island": "St. Thomas",
     "ship": "Grand Princess",
     "dock": "WICO",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-04-04",
-    "island": "St. Thomas",
-    "ship": "Independence of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-04-04",
-    "island": "St. Thomas",
-    "ship": "Jewel of the Seas",
-    "dock": "CB",
     "arrival": "08:00",
     "departure": "18:00"
   },
@@ -2374,14 +2414,6 @@
     "dock": "WICO",
     "arrival": "08:00",
     "departure": "17:00"
-  },
-  {
-    "date": "2026-04-04",
-    "island": "St. Thomas",
-    "ship": "Radiance of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
   },
   {
     "date": "2026-04-04",
@@ -2434,14 +2466,6 @@
   {
     "date": "2026-04-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "11:00",
-    "departure": "19:00"
-  },
-  {
-    "date": "2026-04-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Aqua",
     "dock": "WICO",
     "arrival": "11:00",
@@ -2474,33 +2498,65 @@
   {
     "date": "2026-04-04",
     "island": "St. Thomas",
+    "ship": "Norwegian Prima",
+    "dock": "WICO",
+    "arrival": "13:30",
+    "departure": "20:00"
+  },
+  {
+    "date": "2026-05-04",
+    "island": "St. Thomas",
+    "ship": "Allure of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "15:30"
+  },
+  {
+    "date": "2026-05-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-05-04",
+    "island": "St. Thomas",
+    "ship": "Star of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "20:00"
+  },
+  {
+    "date": "2026-05-04",
+    "island": "St. Thomas",
+    "ship": "Radiance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-05-04",
+    "island": "St. Thomas",
+    "ship": "Wonder of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-05-04",
+    "island": "St. Thomas",
     "ship": "Celebrity Beyond",
     "dock": "CB",
-    "arrival": "11:30",
-    "departure": "19:00"
+    "arrival": "10:00",
+    "departure": "18:00"
   },
   {
-    "date": "2026-04-04",
-    "island": "St. Thomas",
-    "ship": "Celebrity Xcel",
-    "dock": "CB",
-    "arrival": "11:30",
-    "departure": "19:00"
-  },
-  {
-    "date": "2026-04-04",
+    "date": "2026-05-04",
     "island": "St. Thomas",
     "ship": "Star of the Seas",
     "dock": "CB",
     "arrival": "12:30",
-    "departure": "20:00"
-  },
-  {
-    "date": "2026-04-04",
-    "island": "St. Thomas",
-    "ship": "Norwegian Prima",
-    "dock": "WICO",
-    "arrival": "13:30",
     "departure": "20:00"
   },
   {
@@ -2518,14 +2574,6 @@
     "dock": "WICO",
     "arrival": "06:45",
     "departure": "17:00"
-  },
-  {
-    "date": "2026-05-04",
-    "island": "St. Thomas",
-    "ship": "Allure of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "15:30"
   },
   {
     "date": "2026-05-04",
@@ -2554,14 +2602,6 @@
   {
     "date": "2026-05-04",
     "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
-  },
-  {
-    "date": "2026-05-04",
-    "island": "St. Thomas",
     "ship": "Regal Princess",
     "dock": "WICO",
     "arrival": "07:00",
@@ -2570,34 +2610,10 @@
   {
     "date": "2026-05-04",
     "island": "St. Thomas",
-    "ship": "Star of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "20:00"
-  },
-  {
-    "date": "2026-05-04",
-    "island": "St. Thomas",
     "ship": "Carnival Venezia",
     "dock": "WICO",
     "arrival": "08:00",
     "departure": "17:00"
-  },
-  {
-    "date": "2026-05-04",
-    "island": "St. Thomas",
-    "ship": "Radiance of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-05-04",
-    "island": "St. Thomas",
-    "ship": "Wonder of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
   },
   {
     "date": "2026-05-04",
@@ -2618,14 +2634,6 @@
   {
     "date": "2026-05-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "10:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-05-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Luna",
     "dock": "WICO",
     "arrival": "11:00",
@@ -2634,26 +2642,10 @@
   {
     "date": "2026-05-04",
     "island": "St. Thomas",
-    "ship": "Star of the Seas",
-    "dock": "CB",
-    "arrival": "12:30",
-    "departure": "20:00"
-  },
-  {
-    "date": "2026-05-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Prima",
     "dock": "WICO",
     "arrival": "13:30",
     "departure": "20:00"
-  },
-  {
-    "date": "2026-06-04",
-    "island": "St. Thomas",
-    "ship": "Disney Treasure",
-    "dock": "WICO",
-    "arrival": "06:30",
-    "departure": "16:00"
   },
   {
     "date": "2026-06-04",
@@ -2670,6 +2662,62 @@
     "dock": "CB",
     "arrival": "07:00",
     "departure": "15:30"
+  },
+  {
+    "date": "2026-06-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-06-04",
+    "island": "St. Thomas",
+    "ship": "Adventure of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-06-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-06-04",
+    "island": "St. Thomas",
+    "ship": "Radiance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-06-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "12:30",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-06-04",
+    "island": "St. Thomas",
+    "ship": "Star of the Seas",
+    "dock": "CB",
+    "arrival": "12:30",
+    "departure": "20:00"
+  },
+  {
+    "date": "2026-06-04",
+    "island": "St. Thomas",
+    "ship": "Disney Treasure",
+    "dock": "WICO",
+    "arrival": "06:30",
+    "departure": "16:00"
   },
   {
     "date": "2026-06-04",
@@ -2698,42 +2746,10 @@
   {
     "date": "2026-06-04",
     "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
-  },
-  {
-    "date": "2026-06-04",
-    "island": "St. Thomas",
     "ship": "Regal Princess",
     "dock": "WICO",
     "arrival": "07:00",
     "departure": "17:00"
-  },
-  {
-    "date": "2026-06-04",
-    "island": "St. Thomas",
-    "ship": "Adventure of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-06-04",
-    "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-06-04",
-    "island": "St. Thomas",
-    "ship": "Radiance of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
   },
   {
     "date": "2026-06-04",
@@ -2746,25 +2762,57 @@
   {
     "date": "2026-06-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "12:30",
-    "departure": "19:00"
+    "ship": "Norwegian Prima",
+    "dock": "WICO",
+    "arrival": "13:30",
+    "departure": "20:00"
   },
   {
-    "date": "2026-06-04",
+    "date": "2026-07-04",
+    "island": "St. Thomas",
+    "ship": "Allure of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-07-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-07-04",
+    "island": "St. Thomas",
+    "ship": "Adventure of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-07-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-07-04",
+    "island": "St. Thomas",
+    "ship": "Radiance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-07-04",
     "island": "St. Thomas",
     "ship": "Star of the Seas",
     "dock": "CB",
     "arrival": "12:30",
-    "departure": "20:00"
-  },
-  {
-    "date": "2026-06-04",
-    "island": "St. Thomas",
-    "ship": "Norwegian Prima",
-    "dock": "WICO",
-    "arrival": "13:30",
     "departure": "20:00"
   },
   {
@@ -2774,14 +2822,6 @@
     "dock": "WICO",
     "arrival": "06:30",
     "departure": "16:00"
-  },
-  {
-    "date": "2026-07-04",
-    "island": "St. Thomas",
-    "ship": "Allure of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
   },
   {
     "date": "2026-07-04",
@@ -2802,42 +2842,10 @@
   {
     "date": "2026-07-04",
     "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
-  },
-  {
-    "date": "2026-07-04",
-    "island": "St. Thomas",
     "ship": "Regal Princess",
     "dock": "WICO",
     "arrival": "07:00",
     "departure": "17:00"
-  },
-  {
-    "date": "2026-07-04",
-    "island": "St. Thomas",
-    "ship": "Adventure of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-07-04",
-    "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-07-04",
-    "island": "St. Thomas",
-    "ship": "Radiance of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
   },
   {
     "date": "2026-07-04",
@@ -2858,17 +2866,49 @@
   {
     "date": "2026-07-04",
     "island": "St. Thomas",
-    "ship": "Star of the Seas",
-    "dock": "CB",
-    "arrival": "12:30",
-    "departure": "20:00"
-  },
-  {
-    "date": "2026-07-04",
-    "island": "St. Thomas",
     "ship": "Norwegian Prima",
     "dock": "WICO",
     "arrival": "13:30",
+    "departure": "20:00"
+  },
+  {
+    "date": "2026-08-04",
+    "island": "St. Thomas",
+    "ship": "Harmony of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-08-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-08-04",
+    "island": "St. Thomas",
+    "ship": "Radiance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-08-04",
+    "island": "St. Thomas",
+    "ship": "Celebrity Beyond",
+    "dock": "CB",
+    "arrival": "12:30",
+    "departure": "19:00"
+  },
+  {
+    "date": "2026-08-04",
+    "island": "St. Thomas",
+    "ship": "Star of the Seas",
+    "dock": "CB",
+    "arrival": "12:30",
     "departure": "20:00"
   },
   {
@@ -2886,22 +2926,6 @@
     "dock": "WICO",
     "arrival": "07:00",
     "departure": "16:00"
-  },
-  {
-    "date": "2026-08-04",
-    "island": "St. Thomas",
-    "ship": "Harmony of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
-  },
-  {
-    "date": "2026-08-04",
-    "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
   },
   {
     "date": "2026-08-04",
@@ -2930,14 +2954,6 @@
   {
     "date": "2026-08-04",
     "island": "St. Thomas",
-    "ship": "Radiance of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-08-04",
-    "island": "St. Thomas",
     "ship": "Carnival Celebration",
     "dock": "WICO",
     "arrival": "09:00",
@@ -2962,25 +2978,49 @@
   {
     "date": "2026-08-04",
     "island": "St. Thomas",
-    "ship": "Celebrity Beyond",
-    "dock": "CB",
-    "arrival": "12:30",
-    "departure": "19:00"
+    "ship": "Norwegian Prima",
+    "dock": "WICO",
+    "arrival": "13:30",
+    "departure": "20:00"
   },
   {
-    "date": "2026-08-04",
+    "date": "2026-09-04",
+    "island": "St. Thomas",
+    "ship": "Harmony of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-09-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "07:00",
+    "departure": "14:30"
+  },
+  {
+    "date": "2026-09-04",
+    "island": "St. Thomas",
+    "ship": "Icon of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-09-04",
+    "island": "St. Thomas",
+    "ship": "Radiance of the Seas",
+    "dock": "CB",
+    "arrival": "08:00",
+    "departure": "18:00"
+  },
+  {
+    "date": "2026-09-04",
     "island": "St. Thomas",
     "ship": "Star of the Seas",
     "dock": "CB",
     "arrival": "12:30",
-    "departure": "20:00"
-  },
-  {
-    "date": "2026-08-04",
-    "island": "St. Thomas",
-    "ship": "Norwegian Prima",
-    "dock": "WICO",
-    "arrival": "13:30",
     "departure": "20:00"
   },
   {
@@ -3010,40 +3050,8 @@
   {
     "date": "2026-09-04",
     "island": "St. Thomas",
-    "ship": "Harmony of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
-  },
-  {
-    "date": "2026-09-04",
-    "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "07:00",
-    "departure": "14:30"
-  },
-  {
-    "date": "2026-09-04",
-    "island": "St. Thomas",
     "ship": "Adventure of the Seas",
     "dock": "WICO",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-09-04",
-    "island": "St. Thomas",
-    "ship": "Icon of the Seas",
-    "dock": "CB",
-    "arrival": "08:00",
-    "departure": "18:00"
-  },
-  {
-    "date": "2026-09-04",
-    "island": "St. Thomas",
-    "ship": "Radiance of the Seas",
-    "dock": "CB",
     "arrival": "08:00",
     "departure": "18:00"
   },
@@ -3070,14 +3078,6 @@
     "dock": "WICO",
     "arrival": "11:00",
     "departure": "19:00"
-  },
-  {
-    "date": "2026-09-04",
-    "island": "St. Thomas",
-    "ship": "Star of the Seas",
-    "dock": "CB",
-    "arrival": "12:30",
-    "departure": "20:00"
   },
   {
     "date": "2026-09-04",
