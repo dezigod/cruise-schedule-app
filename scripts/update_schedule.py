@@ -11,13 +11,12 @@ DEFAULT_SOURCE_URL = "https://www.vinow.com/cruise/ship-schedule"
 SOURCE_URL = os.environ.get("SOURCE_URL", DEFAULT_SOURCE_URL).rstrip("/")
 OUTPUT_PATH = "schedule.json"
 
-# How far back and forward to scrape
 MONTHS_PAST = int(os.environ.get("MONTHS_PAST", "6"))
 MONTHS_FUTURE = int(os.environ.get("MONTHS_FUTURE", "12"))
 
 R_JINA_PREFIX = "https://r.jina.ai/"
 
-BROWSER_HEADERS = {
+HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -73,9 +72,11 @@ MONTH_MAP = {
 def month_to_number(token: str) -> int | None:
     return MONTH_MAP.get(token.strip().lower())
 
+
 def to_24h(time_str: str) -> str:
     dt = datetime.strptime(time_str.strip(), "%I:%M %p")
     return dt.strftime("%H:%M")
+
 
 def island_from_dock(dock: str) -> str:
     dl = dock.lower()
@@ -85,9 +86,10 @@ def island_from_dock(dock: str) -> str:
         return "St. Croix"
     return "St. Thomas"
 
+
 def fetch_html(url: str) -> str:
     sess = requests.Session()
-    sess.headers.update(BROWSER_HEADERS)
+    sess.headers.update(HEADERS)
 
     resp = sess.get(url, timeout=60)
     if resp.status_code == 403:
@@ -96,29 +98,27 @@ def fetch_html(url: str) -> str:
     resp.raise_for_status()
     return resp.text
 
+
 def iter_months(start_year: int, start_month: int, count: int):
     year = start_year
     month = start_month
     for _ in range(count):
         yield year, month
-        if month == 12:
-            year += 1
+        month += 1
+        if month == 13:
             month = 1
-        else:
-            month += 1
+            year += 1
+
 
 def scrape_month(year: int, month: int) -> list[dict]:
-    # VINow month pages are like .../3-2026/
     url = f"{SOURCE_URL}/{month}-{year}/"
     html = fetch_html(url)
-
     soup = BeautifulSoup(html, "html.parser")
 
     items: list[dict] = []
 
     for h3 in soup.find_all("h3"):
-        heading = h3.get_text(separator=" ", strip=True)
-
+        heading = h3.get_text(" ", strip=True)
         m = DAY_HEADING_RE.match(heading)
         if not m:
             continue
@@ -132,16 +132,11 @@ def scrape_month(year: int, month: int) -> list[dict]:
 
         # Pull everything until next h2/h3
         block_lines: list[str] = []
-
         for sib in h3.next_siblings:
             if getattr(sib, "name", None) in {"h2", "h3"}:
                 break
 
-            if isinstance(sib, NavigableString):
-                text = str(sib)
-            else:
-                text = sib.get_text("\n", strip=False)
-
+            text = str(sib) if isinstance(sib, NavigableString) else sib.get_text("\n", strip=False)
             if not text:
                 continue
 
@@ -150,7 +145,6 @@ def scrape_month(year: int, month: int) -> list[dict]:
                 if ln:
                     block_lines.append(ln)
 
-        # Parse ship/dock pairs
         i = 0
         while i < len(block_lines):
             ship_line = block_lines[i]
@@ -169,6 +163,7 @@ def scrape_month(year: int, month: int) -> list[dict]:
                     dock = m_time.group("dock").strip()
                     arrival = to_24h(m_time.group("arr"))
                     departure = to_24h(m_time.group("dep"))
+
                     items.append(
                         {
                             "date": date_str,
@@ -181,25 +176,19 @@ def scrape_month(year: int, month: int) -> list[dict]:
                     )
                     found = True
                     break
-
                 j += 1
 
-            # If we found a time block, skip past it
-            # otherwise move to next line
             i = j + 1 if found else j
 
-        return items
+    return items
+
 
 def main():
-    # Use local St. Thomas time for window calculations
-    # St. Thomas is UTC-4 year round.
     now = datetime.utcnow() - timedelta(hours=4)
 
-    # Build a window (past + current + future)
     start_year = now.year
     start_month = now.month
 
-    # Go back MONTHS_PAST months
     for _ in range(MONTHS_PAST):
         if start_month == 1:
             start_month = 12
@@ -213,8 +202,7 @@ def main():
     seen: set[tuple] = set()
 
     for y, m in iter_months(start_year, start_month, total_months):
-        month_items = scrape_month(y, m)
-        for item in month_items:
+        for item in scrape_month(y, m):
             key = (
                 item["date"],
                 item["island"],
@@ -234,6 +222,7 @@ def main():
         json.dump(all_items, f, ensure_ascii=False, indent=2)
 
     print(f"Wrote {OUTPUT_PATH} with {len(all_items)} items")
+
 
 if __name__ == "__main__":
     try:
