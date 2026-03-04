@@ -24,8 +24,7 @@ BROWSER_HEADERS = {
         "Chrome/123.0.0.0 Safari/537.36"
     ),
     "Accept": (
-        "text/html,application/xhtml+xml,application/xml;q=0.9,"
-        "image/avif,image/webp,image/apng,*/*;q=0.8"
+        "text/html,application/xhtml+xml,application/xml;q=0.9," "image/avif,image/webp,image/apng,*/*;q=0.8"
     ),
     "Accept-Language": "en-US,en;q=0.9",
     "Cache-Control": "no-cache",
@@ -34,7 +33,23 @@ BROWSER_HEADERS = {
 def short_model_name(name: str | None) -> str | None:
     if not name:
         return None
+    # Allow passing either "models/gemini-1.5-flash" or "gemini-1.5-flash"
     return name.split("/")[-1]
+
+def get_supported_methods(model) -> list[str]:
+    # SDK field names sometimes differ; check a few options.
+    for attr in (
+        "supportedGenerationMethods",
+        "supported_generation_methods",
+        "generation_methods",
+        "generationMethods",
+        "supported_methods",
+        "supportedMethods",
+    ):
+        methods = getattr(model, attr, None)
+        if methods:
+            return [str(m) for m in methods]
+    return []
 
 def fetch_source_text(url: str) -> str:
     sess = requests.Session()
@@ -51,53 +66,89 @@ def fetch_source_text(url: str) -> str:
 def json_is_valid_schedule(data) -> bool:
     if not isinstance(data, list):
         return False
+
     required = {"date", "island", "ship", "dock", "arrival", "departure"}
+
     for row in data:
         if not isinstance(row, dict):
             return False
         if set(row.keys()) != required:
             return False
+
     return True
 
-def choose_model(client: genai.Client, desired: str | None) -> str:
-    desired_short = short_model_name(desired)
-    supported: list[str] = []
+def list_candidate_model_names(client: genai.Client) -> list[str]:
+    models = list(client.models.list())
 
-    for m in client.models.list():
-        name = short_model_name(getattr(m, "name", None))
-        methods = getattr(m, "supported_methods", None) or []
-        if "generateContent" in methods:
-            supported.append(name)
-        if desired_short and name == desired_short:
-            if "generateContent" in methods:
-                return name
-            print(f"GEMINI_MODEL={desired_short} found but does not support generateContent; falling back...")
+    def candidate(model) -> bool:
+        nm = str(getattr(model, "name", "")).lower()
+        methods = " ".join(get_supported_methods(model)).lower()
 
-    if not supported:
-        raise RuntimeError("No models support generateContent.")
+        if "embed" in nm or "embedding" in nm:
+            return False
+        if "embed" in methods or "embedding" in methods:
+            return False
 
-    if desired_short and desired_short not in supported:
-        print(
-            "GEMINI_MODEL does not match any available model; "
-            "falling back to first supported model from ListModels."
-        )
+        return "gemini" in nm
 
-    return supported[0]
+    candidates: list[str] = []
+
+    # If the user explicitly set a model name, keep it first.
+    if ENV_MODEL_NAME:
+        candidates.append(ENV_MODEL_NAME)
+
+    for model in models:
+        name = short_model_name(getattr(model, "name", None)) or getattr(model, "name", None)
+        if not name:
+            continue
+        if candidate(model):
+            candidates.append(name)
+
+    # De-dupe while preserving order
+    seen: set[str] = set()
+    result: list[str] = []
+    for name in candidates:
+        if name not in seen:
+            seen.add(name)
+            result.append(name)
+
+    return result
 
 def main() -> None:
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         raise RuntimeError("Missing GEMINI_API_KEY secret")
 
-    source_text = fetch_source_text(SOURCE_URL)
-
     client = genai.Client(api_key=api_key)
-    model_name = choose_model(client, ENV_MODEL_NAME)
-    if ENV_MODEL_NAME and model_name != short_model_name(ENV_MODEL_NAME):
-        print(f"Using model: {model_name}")
 
+    model_names = list_candidate_model_names(client)
+    if not model_names:
+        raise RuntimeError(
+            "No candidate Gemini models found for this API key. "
+            "Check API key access in Google AI Studio."
+        )
+
+    source_text = fetch_source_text(SOURCE_URL)
     prompt = f"{SYSTEM_INSTRUCTIONS}\n\nSOURCE:\n{source_text[:180000]}"
-    response = client.models.generate_content(model=model_name, contents=prompt)
+
+    last_error: Exception | None = None
+    response = None
+
+    for model_name in model_names:
+        try:
+            response = client.models.generate_content(model=model_name, contents=prompt)
+            # If we got here, we succeeded.
+            break
+        except Exception as e:
+            last_error = e
+            continue
+
+    if response is None:
+        raise RuntimeError(
+            "Could not generate content with any model name. Last error: %s"
+            % (last_error or "Unknown")
+        )
+
     raw = (getattr(response, "text", None) or "").strip()
 
     try:
