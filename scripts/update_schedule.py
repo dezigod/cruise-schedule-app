@@ -23,7 +23,8 @@ HEADERS = {
         "Chrome/123.0.0.0 Safari/537.36"
     ),
     "Accept": (
-        "text/html,application/xhtml+xml,application/xml;q=0.9," "image/avif,image/webp,image/apng,*/*;q=0.8"
+        "text/html,application/xhtml+xml,application/xml;q=0.9,"
+        "image/avif,image/webp,image/apng,*/*;q=0.8"
     ),
     "Accept-Language": "en-US,en;q=0.9",
     "Cache-Control": "no-cache",
@@ -69,6 +70,18 @@ MONTH_MAP = {
     "dec.": 12,
 }
 
+DOCK_ISLAND = {
+    "WICO": "St. Thomas",
+    "CROWN BAY": "St. Thomas",
+    "CB": "St. Thomas",
+    "HAVENSIGHT": "St. Thomas",
+    "CRUZ BAY": "St. John",
+    "ST. CROIX": "St. Croix",
+    "FREDERIKSTED": "St. Croix",
+    "GALLows": "St. Croix",
+    "CHRISTIANSTED": "St. Croix",
+}
+
 def month_to_number(token: str) -> int | None:
     return MONTH_MAP.get(token.strip().lower())
 
@@ -76,13 +89,19 @@ def to_24h(time_str: str) -> str:
     dt = datetime.strptime(time_str.strip(), "%I:%M %p")
     return dt.strftime("%H:%M")
 
+def _norm(s: str) -> str:
+    # uppercase + remove punctuation/spaces
+    return "".join(ch for ch in s.upper() if ch.isalnum())
+
 def island_from_dock(dock: str) -> str:
-    dl = dock.lower()
-    if "cruz bay" in dl:
-        return "St. John"
-    if "st. croix" in dl:
-        return "St. Croix"
-    return "St. Thomas"
+    norm = _norm(dock)
+
+    for key, island in DOCK_ISLAND.items():
+        norm_key = _norm(key)
+        if norm_key and norm_key in norm:
+            return island
+
+    return "Unknown"
 
 def fetch_html(url: str) -> str:
     sess = requests.Session()
@@ -163,11 +182,13 @@ def scrape_month(year: int, month: int) -> list[dict]:
     return parse_month_text(text, year, month)
 
 def main():
+    # St. Thomas local time is UTC-4
     now = datetime.utcnow() - timedelta(hours=4)
 
     start_year = now.year
     start_month = now.month
 
+    # backfill months
     for _ in range(MONTHS_PAST):
         if start_month == 1:
             start_month = 12
@@ -195,7 +216,7 @@ def main():
             seen.add(key)
             all_items.append(item)
 
-    all_items.sort(key=lambda x: (x["date"], x["arrival"], x["ship"]))
+    all_items.sort(key=lambda x: (x["date"], x["island"], x["dock"], x["arrival"], x["ship"]))
 
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(all_items, f, ensure_ascii=False, indent=2)
