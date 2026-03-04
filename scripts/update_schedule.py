@@ -69,7 +69,7 @@ def main() -> None:
     source_text = fetch_source_text(SOURCE_URL)
 
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-1.5-flash-002")
 
     resp = model.generate_content(
         SYSTEM_INSTRUCTIONS + "\n\nSOURCE:\n" + source_text[:200000]
