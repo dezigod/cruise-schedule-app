@@ -7,7 +7,7 @@ DEFAULT_SOURCE_URL = "https://www.vinow.com/cruise/ship-schedule/"
 SOURCE_URL = os.environ.get("SOURCE_URL", DEFAULT_SOURCE_URL)
 OUTPUT_PATH = "schedule.json"
 
-MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash-002")
+MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
 
 SYSTEM_INSTRUCTIONS = """You extract cruise schedule data and output ONLY valid JSON.
 Return a JSON array of objects with EXACT keys:
@@ -35,6 +35,7 @@ BROWSER_HEADERS = {
     "Cache-Control": "no-cache",
 }
 
+
 def fetch_source_text(url: str) -> str:
     sess = requests.Session()
     sess.headers.update(BROWSER_HEADERS)
@@ -46,6 +47,7 @@ def fetch_source_text(url: str) -> str:
 
     resp.raise_for_status()
     return resp.text
+
 
 def json_is_valid_schedule(data) -> bool:
     if not isinstance(data, list):
@@ -61,6 +63,7 @@ def json_is_valid_schedule(data) -> bool:
 
     return True
 
+
 def main() -> None:
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -70,10 +73,7 @@ def main() -> None:
 
     client = genai.Client(api_key=api_key)
     prompt = f"{SYSTEM_INSTRUCTIONS}\n\nSOURCE:\n{source_text[:180000]}"
-    response = client.models.generate_content(
-        model=MODEL_NAME,
-        contents=prompt,
-    )
+    response = client.models.generate_content(model=MODEL_NAME, contents=prompt)
 
     raw = (getattr(response, "text", None) or "").strip()
 
@@ -85,7 +85,9 @@ def main() -> None:
         ) from e
 
     if not json_is_valid_schedule(data):
-        raise RuntimeError("JSON shape invalid. Ensure only date/island/ship/dock/arrival/departure.")
+        raise RuntimeError(
+            "JSON shape invalid. Ensure only date/island/ship/dock/arrival/departure."
+        )
 
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
