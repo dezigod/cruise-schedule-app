@@ -5,7 +5,7 @@ import requests
 # Google Gemini
 import google.generativeai as genai
 
-SOURCE_URL = os.environ.get("SOURCE_URL")
+SOURCE_URL = os.environ.get("https://www.vinow.com/cruise/ship-schedule/")
 OUTPUT_PATH = "schedule.json"
 
 SYSTEM_INSTRUCTIONS = (
