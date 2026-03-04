@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup, NavigableString
 
 DEFAULT_SOURCE_URL = "https://www.vinow.com/cruise/ship-schedule"
 SOURCE_URL = os.environ.get("SOURCE_URL", DEFAULT_SOURCE_URL).rstrip("/")
-
 OUTPUT_PATH = "schedule.json"
 
 # How far back and forward to scrape
@@ -25,8 +24,7 @@ BROWSER_HEADERS = {
         "Chrome/123.0.0.0 Safari/537.36"
     ),
     "Accept": (
-        "text/html,application/xhtml+xml,application/xml;q=0.9," "+"
-        "image/avif,image/webp,image/apng,*/*;q=0.8"
+        "text/html,application/xhtml+xml,application/xml;q=0.9," "image/avif,image/webp,image/apng,*/*;q=0.8"
     ),
     "Accept-Language": "en-US,en;q=0.9",
     "Cache-Control": "no-cache",
@@ -37,57 +35,56 @@ DAY_HEADING_RE = re.compile(
     re.IGNORECASE,
 )
 
-SHIP_RE = re.compile(r"^(?P<ship>.+?)\s+\d[\d,]*\s+Guests\b", re.IGNORECASE)
+SHIP_RE = re.compile(r"^\s*(?P<ship>.+?)\s+(\d[\d,]*\s+Guests?)?\s*$")
+DOCK_RE = re.compile(r"^\s*(?P<dock>.+?)\s+\((?P<time>.+?)\)\s*$")
+
 TIME_RE = re.compile(
-    r"^(?P<dock>.*?)\s*\((?P<arr>[^-]+?)\s*-\s*(?P<dep>.+?)\)\s*$",
+    r"^\s*(?P<start>\d{1,2}:\d{2}\s*[AP]M)\s*-\s*(?P<end>\d{1,2}:\d{2}\s*[AP]M)\s*$",
     re.IGNORECASE,
 )
 
 MONTH_MAP = {
     "jan": 1,
-    "jan.": 1,
+    "january": 1,
     "feb": 2,
-    "feb.": 2,
+    "february": 2,
     "mar": 3,
-    "mar.": 3,
+    "march": 3,
     "apr": 4,
-    "apr.": 4,
+    "april": 4,
     "may": 5,
     "jun": 6,
-    "jun.": 6,
+    "june": 6,
     "jul": 7,
-    "jul.": 7,
+    "july": 7,
     "aug": 8,
-    "aug.": 8,
+    "august": 8,
     "sep": 9,
-    "sep.": 9,
     "sept": 9,
-    "sept.": 9,
+    "september": 9,
     "oct": 10,
-    "oct.": 10,
+    "october": 10,
     "nov": 11,
-    "nov.": 11,
+    "november": 11,
     "dec": 12,
-    "dec.": 12,
+    "december": 12,
 }
 
-def month_to_number(token: str) -> int | None:
-    return MONTH_MAP.get(token.strip().lower())
-
+def month_to_number(month: str) -> int | None:
+    m = month.lower().strip().rstrip(".")
+    return MONTH_MAP.get(m)
 
 def to_24h(time_str: str) -> str:
     dt = datetime.strptime(time_str.strip(), "%I:%M %p")
     return dt.strftime("%H:%M")
 
-
-def island_from_dock(dock: str) -> str:
-    dl = dock.lower()
-    if "cruz bay" in dl:
+def infer_island(dock: str) -> str:
+    d = dock.lower()
+    if "cruz bay" in d or "st. john" in d:
         return "St. John"
-    if "st. croix" in dl:
+    if "st. croix" in d:
         return "St. Croix"
     return "St. Thomas"
-
 
 def fetch_html(url: str) -> str:
     sess = requests.Session()
@@ -100,28 +97,41 @@ def fetch_html(url: str) -> str:
     resp.raise_for_status()
     return resp.text
 
+def months_to_scrape(now: datetime) -> list[tuple[int, int]]:
+    start_year = now.year
+    start_month = now.month
 
-def iter_months(start_year: int, start_month: int, count: int):
-    year = start_year
-    month = start_month
-    for _ in range(count):
-        yield year, month
-        if month == 12:
-            year += 1
-            month = 1
+    months: list[tuple[int, int]] = [(start_year, start_month)]
+
+    y, m = start_year, start_month
+    for _ in range(MONTHS_PAST):
+        if m == 1:
+            y -= 1
+            m = 12
         else:
-            month += 1
+            m -= 1
+        months.append((y, m))
 
+    y, m = start_year, start_month
+    for _ in range(MONTHS_FUTURE):
+        if m == 12:
+            y += 1
+            m = 1
+        else:
+            m += 1
+        months.append((y, m))
+
+    return months
 
 def scrape_month(year: int, month: int) -> list[dict]:
     url = f"{SOURCE_URL}/{month}-{year}/"
     html = fetch_html(url)
-
     soup = BeautifulSoup(html, "html.parser")
+
     items: list[dict] = []
 
     for h3 in soup.find_all("h3"):
-        heading = h3.get_text(separator=" ", strip=True)
+        heading = h3.get_text(" ", strip=True)
         m = DAY_HEADING_RE.match(heading)
         if not m:
             continue
@@ -133,21 +143,24 @@ def scrape_month(year: int, month: int) -> list[dict]:
         day = int(m.group("day"))
         date_str = f"{year:04d}-{month:02d}-{day:02d}"
 
-        # Pull everything until next h2/h3
         block_lines: list[str] = []
         for sib in h3.next_siblings:
+            text = None
             if isinstance(sib, NavigableString):
+                text = str(sib)
+            else:
+                if getattr(sib, "name", None) in {"h2", "h3"}:
+                    break
+                text = sib.get_text("\n", strip=False)
+
+            if not text:
                 continue
-            if getattr(sib, "name", None) in {"h2", "h3"}:
-                break
 
-            text = sib.get_text("\n", strip=True)
-            if text:
-                block_lines.extend(
-                    ln.strip() for ln in re.split(r"[\r\n]+", text) if ln.strip()
-                )
+            for ln in re.split(r"[\r\n]+", text):
+                ln = ln.strip()
+                if ln:
+                    block_lines.append(ln)
 
-        # Parse ship/dock pairs
         i = 0
         while i < len(block_lines):
             ship_line = block_lines[i]
@@ -158,82 +171,67 @@ def scrape_month(year: int, month: int) -> list[dict]:
 
             ship = m_ship.group("ship").strip()
 
-            j = i + 1
-            found = False
-            while j < len(block_lines):
-                m_time = TIME_RE.match(block_lines[j])
-                if m_time:
-                    dock = m_time.group("dock").strip()
-                    arrival = to_24h(m_time.group("arr"))
-                    departure = to_24h(m_time.group("dep"))
-                    items.append(
-                        {
-                            "date": date_str,
-                            "island": island_from_dock(dock),
-                            "ship": ship,
-                            "dock": dock,
-                            "arrival": arrival,
-                            "departure": departure,
-                        }
-                    )
-                    found = True
-                    break
-                j += 1
+            if i + 1 >= len(block_lines):
+                break
 
-            i = j + 1 if found else j
+            dock_line = block_lines[i + 1]
+            m_dock = DOCK_RE.match(dock_line)
+            if not m_dock:
+                i += 1
+                continue
+
+            dock = m_dock.group("dock").strip()
+            time_range = m_dock.group("time")
+
+            m_time = TIME_RE.match(time_range)
+            if not m_time:
+                i += 2
+                continue
+
+            arrival = to_24h(m_time.group("start"))
+            departure = to_24h(m_time.group("end"))
+            island = infer_island(dock)
+
+            items.append(
+                {
+                    "date": date_str,
+                    "island": island,
+                    "ship": ship,
+                    "dock": dock,
+                    "arrival": arrival,
+                    "departure": departure,
+                }
+            )
+
+            i += 2
 
     return items
 
-
-def main():
-    # Use local St. Thomas time for window calculations
-    # St. Thomas is UTC-4 year round.
+def main() -> None:
+    # America/St_Thomas is UTC-4; approximate for month window
     now = datetime.utcnow() - timedelta(hours=4)
+    month_list = months_to_scrape(now)
 
-    # Build a window (past + current + future)
-    start_year = now.year
-    start_month = now.month
-
-    # Go back MONTHS_PAST months
-    for _ in range(MONTHS_PAST):
-        if start_month == 1:
-            start_month = 12
-            start_year -= 1
-        else:
-            start_month -= 1
-
-    total_months = MONTHS_PAST + 1 + MONTHS_FUTURE
-
+    seen = set()
     all_items: list[dict] = []
-    seen: set[tuple] = set()
 
-    for y, m in iter_months(start_year, start_month, total_months):
-        month_items = scrape_month(y, m)
-        for item in month_items:
-            key = (
-                item["date"],
-                item["island"],
-                item["dock"],
-                item["ship"],
-                item["arrival"],
-                item["departure"],
-            )
-            if key in seen:
-                continue
-            seen.add(key)
-            all_items.append(item)
+    for year, month in month_list:
+        try:
+            for item in scrape_month(year, month):
+                key = (item["date"], item["ship"], item["dock"], item["arrival"], item["departure"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                all_items.append(item)
+        except Exception as e:
+            print(f"Failed to scrape {month}-{year}: {e}", file=sys.stderr)
 
-    all_items.sort(key=lambda x: (x["date"], x["arrival"], x["ship"]))
+    all_items.sort(key=lambda x: x["date"])
 
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(all_items, f, ensure_ascii=False, indent=2)
 
     print(f"Wrote {OUTPUT_PATH} with {len(all_items)} items")
 
-
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception:
-        print("Scraper failed:", file=sys.stderr)
-        raise
+    main()
