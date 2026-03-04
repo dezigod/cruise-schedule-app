@@ -1,4 +1,5 @@
 name: Update Cruise Schedule
+
 on:
   schedule:
     - cron: "0 8 * * *"
@@ -27,7 +28,7 @@ jobs:
       - name: Run updater
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          SOURCE_URL: "https://www.vinow.com/wp-json/wp/v2/pages?slug=ship-schedule"
+          SOURCE_URL: "https://www.vinow.com/cruise/ship-schedule/"
         run: |
           python scripts/update_schedule.py
 
