@@ -5,7 +5,7 @@ import sys
 from datetime import datetime, timedelta
 
 import requests
-from bs4 import BeautifulSoup, NavigableString
+from bs4 import BeautifulSoup
 
 DEFAULT_SOURCE_URL = "https://www.vinow.com/cruise/ship-schedule"
 SOURCE_URL = os.environ.get("SOURCE_URL", DEFAULT_SOURCE_URL).rstrip("/")
@@ -72,11 +72,9 @@ MONTH_MAP = {
 def month_to_number(token: str) -> int | None:
     return MONTH_MAP.get(token.strip().lower())
 
-
 def to_24h(time_str: str) -> str:
     dt = datetime.strptime(time_str.strip(), "%I:%M %p")
     return dt.strftime("%H:%M")
-
 
 def island_from_dock(dock: str) -> str:
     dl = dock.lower()
@@ -85,7 +83,6 @@ def island_from_dock(dock: str) -> str:
     if "st. croix" in dl:
         return "St. Croix"
     return "St. Thomas"
-
 
 def fetch_html(url: str) -> str:
     sess = requests.Session()
@@ -98,7 +95,6 @@ def fetch_html(url: str) -> str:
     resp.raise_for_status()
     return resp.text
 
-
 def iter_months(start_year: int, start_month: int, count: int):
     year = start_year
     month = start_month
@@ -109,79 +105,62 @@ def iter_months(start_year: int, start_month: int, count: int):
             month = 1
             year += 1
 
+def parse_month_text(text: str, year: int, month: int) -> list[dict]:
+    items: list[dict] = []
+
+    current_date: str | None = None
+    current_ship: str | None = None
+
+    for raw in re.split(r"\r?\n", text):
+        line = raw.strip()
+        if not line:
+            continue
+
+        m = DAY_HEADING_RE.match(line)
+        if m:
+            heading_month = month_to_number(m.group("month"))
+            if heading_month and heading_month != month:
+                continue
+
+            day = int(m.group("day"))
+            current_date = f"{year:04d}-{month:02d}-{day:02d}"
+            current_ship = None
+            continue
+
+        m_ship = SHIP_RE.match(line)
+        if m_ship:
+            current_ship = m_ship.group("ship").strip()
+            continue
+
+        m_time = TIME_RE.match(line)
+        if m_time and current_date and current_ship:
+            dock = m_time.group("dock").strip()
+            try:
+                arrival = to_24h(m_time.group("arr"))
+                departure = to_24h(m_time.group("dep"))
+            except ValueError:
+                current_ship = None
+                continue
+
+            items.append(
+                {
+                    "date": current_date,
+                    "island": island_from_dock(dock),
+                    "ship": current_ship,
+                    "dock": dock,
+                    "arrival": arrival,
+                    "departure": departure,
+                }
+            )
+            current_ship = None
+
+    return items
 
 def scrape_month(year: int, month: int) -> list[dict]:
     url = f"{SOURCE_URL}/{month}-{year}/"
     html = fetch_html(url)
-    soup = BeautifulSoup(html, "html.parser")
-
-    items: list[dict] = []
-
-    for h3 in soup.find_all("h3"):
-        heading = h3.get_text(" ", strip=True)
-        m = DAY_HEADING_RE.match(heading)
-        if not m:
-            continue
-
-        heading_month = month_to_number(m.group("month"))
-        if heading_month and heading_month != month:
-            continue
-
-        day = int(m.group("day"))
-        date_str = f"{year:04d}-{month:02d}-{day:02d}"
-
-        # Pull everything until next h2/h3
-        block_lines: list[str] = []
-        for sib in h3.next_siblings:
-            if getattr(sib, "name", None) in {"h2", "h3"}:
-                break
-
-            text = str(sib) if isinstance(sib, NavigableString) else sib.get_text("\n", strip=False)
-            if not text:
-                continue
-
-            for ln in re.split(r"[\r\n]+", text):
-                ln = ln.strip()
-                if ln:
-                    block_lines.append(ln)
-
-        i = 0
-        while i < len(block_lines):
-            ship_line = block_lines[i]
-            m_ship = SHIP_RE.match(ship_line)
-            if not m_ship:
-                i += 1
-                continue
-
-            ship = m_ship.group("ship").strip()
-
-            j = i + 1
-            found = False
-            while j < len(block_lines):
-                m_time = TIME_RE.match(block_lines[j])
-                if m_time:
-                    dock = m_time.group("dock").strip()
-                    arrival = to_24h(m_time.group("arr"))
-                    departure = to_24h(m_time.group("dep"))
-
-                    items.append(
-                        {
-                            "date": date_str,
-                            "island": island_from_dock(dock),
-                            "ship": ship,
-                            "dock": dock,
-                            "arrival": arrival,
-                            "departure": departure,
-                        }
-                    )
-                    found = True
-                    break
-                j += 1
-
-            i = j + 1 if found else j
-
-    return items
-
+    text = BeautifulSoup(html, "html.parser").get_text("\n", strip=False)
+    return parse_month_text(text, year, month)
 
 def main():
     now = datetime.utcnow() - timedelta(hours=4)
