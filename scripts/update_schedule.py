@@ -1,22 +1,23 @@
 import os
-import sys
 import json
 import re
+import sys
+from datetime import datetime, timedelta
+
 import requests
-from google import genai
+from bs4 import BeautifulSoup, NavigableString
 
-DEFAULT_SOURCE_URL = "https://www.vinow.com/cruise/ship-schedule/"
-SOURCE_URL = os.environ.get("SOURCE_URL", DEFAULT_SOURCE_URL)
+DEFAULT_SOURCE_URL = "https://www.vinow.com/cruise/ship-schedule"
+SOURCE_URL = os.environ.get("SOURCE_URL", DEFAULT_SOURCE_URL).rstrip("/")
+
 OUTPUT_PATH = "schedule.json"
-ENV_MODEL_NAME = (os.environ.get("GEMINI_MODEL") or "").strip() or None
 
-SYSTEM_INSTRUCTIONS = """You extract cruise schedule data and output ONLY valid JSON.
-Return a JSON array of objects with EXACT keys:
-date (YYYY-MM-DD), island, ship, dock, arrival (HH:MM), departure (HH:MM).
-No extra keys. No markdown. No commentary. Only JSON.
-"""
+# How far back and forward to scrape
+MONTHS_PAST = int(os.environ.get("MONTHS_PAST", "6"))
+MONTHS_FUTURE = int(os.environ.get("MONTHS_FUTURE", "12"))
 
 R_JINA_PREFIX = "https://r.jina.ai/"
+
 BROWSER_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -24,159 +25,215 @@ BROWSER_HEADERS = {
         "Chrome/123.0.0.0 Safari/537.36"
     ),
     "Accept": (
-        "text/html,application/xhtml+xml,application/xml;q=0.9," +
+        "text/html,application/xhtml+xml,application/xml;q=0.9," "+"
         "image/avif,image/webp,image/apng,*/*;q=0.8"
     ),
     "Accept-Language": "en-US,en;q=0.9",
     "Cache-Control": "no-cache",
 }
 
-def fetch_source_text(url: str) -> str:
+DAY_HEADING_RE = re.compile(
+    r"^\s*(?P<month>[A-Za-z]{3,}\.?)\s+(?P<day>\d+)(?:st|nd|rd|th)\b",
+    re.IGNORECASE,
+)
+
+SHIP_RE = re.compile(r"^(?P<ship>.+?)\s+\d[\d,]*\s+Guests\b", re.IGNORECASE)
+TIME_RE = re.compile(
+    r"^(?P<dock>.*?)\s*\((?P<arr>[^-]+?)\s*-\s*(?P<dep>.+?)\)\s*$",
+    re.IGNORECASE,
+)
+
+MONTH_MAP = {
+    "jan": 1,
+    "jan.": 1,
+    "feb": 2,
+    "feb.": 2,
+    "mar": 3,
+    "mar.": 3,
+    "apr": 4,
+    "apr.": 4,
+    "may": 5,
+    "jun": 6,
+    "jun.": 6,
+    "jul": 7,
+    "jul.": 7,
+    "aug": 8,
+    "aug.": 8,
+    "sep": 9,
+    "sep.": 9,
+    "sept": 9,
+    "sept.": 9,
+    "oct": 10,
+    "oct.": 10,
+    "nov": 11,
+    "nov.": 11,
+    "dec": 12,
+    "dec.": 12,
+}
+
+def month_to_number(token: str) -> int | None:
+    return MONTH_MAP.get(token.strip().lower())
+
+
+def to_24h(time_str: str) -> str:
+    dt = datetime.strptime(time_str.strip(), "%I:%M %p")
+    return dt.strftime("%H:%M")
+
+
+def island_from_dock(dock: str) -> str:
+    dl = dock.lower()
+    if "cruz bay" in dl:
+        return "St. John"
+    if "st. croix" in dl:
+        return "St. Croix"
+    return "St. Thomas"
+
+
+def fetch_html(url: str) -> str:
     sess = requests.Session()
     sess.headers.update(BROWSER_HEADERS)
 
-    resp = sess.get(url, timeout=45)
+    resp = sess.get(url, timeout=60)
     if resp.status_code == 403:
-        resp = sess.get(f"{R_JINA_PREFIX}{url}", timeout=45)
+        resp = sess.get(f"{R_JINA_PREFIX}{url}", timeout=60)
 
     resp.raise_for_status()
     return resp.text
 
 
-def json_is_valid_schedule(data) -> bool:
-    if not isinstance(data, list):
-        return False
-
-    required = {"date", "island", "ship", "dock", "arrival", "departure"}
-    for row in data:
-        if not isinstance(row, dict):
-            return False
-        if set(row.keys()) != required:
-            return False
-
-    return True
+def iter_months(start_year: int, start_month: int, count: int):
+    year = start_year
+    month = start_month
+    for _ in range(count):
+        yield year, month
+        if month == 12:
+            year += 1
+            month = 1
+        else:
+            month += 1
 
 
-def extract_json_text(text: str) -> str:
-    t = (text or "").strip()
-    if not t:
-        return t
+def scrape_month(year: int, month: int) -> list[dict]:
+    url = f"{SOURCE_URL}/{month}-{year}/"
+    html = fetch_html(url)
 
-    # remove markdown code fences
-    t = re.sub(r"```json\s*([\s\S]*?)```", r"\1", t, flags=re.IGNORECASE)
-    t = re.sub(r"```([\s\S]*?)```", r"\1", t)
-    t = t.strip()
+    soup = BeautifulSoup(html, "html.parser")
+    items: list[dict] = []
 
-    # strip json(...) wrapper
-    if t.lower().startswith("json(") and t.endswith(")"):
-        t = t[5:-1].strip()
-    if t.lower().startswith("json="):
-        t = t[5:].strip()
+    for h3 in soup.find_all("h3"):
+        heading = h3.get_text(separator=" ", strip=True)
+        m = DAY_HEADING_RE.match(heading)
+        if not m:
+            continue
 
-    # strip leading junk before first JSON bracket
-    first = None
-    for ch in ["[", "{"]:
-        idx = t.find(ch)
-        if idx != -1:
-            if first is None or idx < first:
-                first = idx
-    if first and first > 0:
-        t = t[first:]
+        heading_month = month_to_number(m.group("month"))
+        if heading_month and heading_month != month:
+            continue
 
-    return t
+        day = int(m.group("day"))
+        date_str = f"{year:04d}-{month:02d}-{day:02d}"
 
+        # Pull everything until next h2/h3
+        block_lines: list[str] = []
+        for sib in h3.next_siblings:
+            if isinstance(sib, NavigableString):
+                continue
+            if getattr(sib, "name", None) in {"h2", "h3"}:
+                break
 
-def short_model_name(name: str) -> str:
-    return name.split("/")[-1] if name else name
+            text = sib.get_text("\n", strip=True)
+            if text:
+                block_lines.extend(
+                    ln.strip() for ln in re.split(r"[\r\n]+", text) if ln.strip()
+                )
 
-
-def build_model_candidates(client) -> list[str]:
-    candidates = []
-    tried: set[str] = set()
-
-    if ENV_MODEL_NAME:
-        candidates.append(ENV_MODEL_NAME)
-        tried.add(ENV_MODEL_NAME)
-
-    try:
-        for model in client.models.list():
-            name = getattr(model, "name", None)
-            if not name:
+        # Parse ship/dock pairs
+        i = 0
+        while i < len(block_lines):
+            ship_line = block_lines[i]
+            m_ship = SHIP_RE.match(ship_line)
+            if not m_ship:
+                i += 1
                 continue
 
-            short = short_model_name(name)
+            ship = m_ship.group("ship").strip()
 
-            for nm in [name, short]:
-                nm = nm.strip()
-                if not nm or nm in tried:
-                    continue
-                # skip embeddings
-                if "embed" in nm.lower():
-                    continue
-                candidates.append(nm)
-                tried.add(nm)
-    except Exception:
-        pass
+            j = i + 1
+            found = False
+            while j < len(block_lines):
+                m_time = TIME_RE.match(block_lines[j])
+                if m_time:
+                    dock = m_time.group("dock").strip()
+                    arrival = to_24h(m_time.group("arr"))
+                    departure = to_24h(m_time.group("dep"))
+                    items.append(
+                        {
+                            "date": date_str,
+                            "island": island_from_dock(dock),
+                            "ship": ship,
+                            "dock": dock,
+                            "arrival": arrival,
+                            "departure": departure,
+                        }
+                    )
+                    found = True
+                    break
+                j += 1
 
-    common = [
-        "gemini-1.5-pro-002",
-        "gemini-1.5-pro",
-        "gemini-1.5-flash-002",
-        "gemini-1.5-flash",
-        "gemini-1.0-pro-001",
-        "gemini-1.0-pro",
-    ]
-    for nm in common:
-        if nm not in tried:
-            candidates.append(nm)
-            tried.add(nm)
+            i = j + 1 if found else j
 
-    # de-dup while preserving order
-    unique: list[str] = []
-    seen: set[str] = set()
-    for nm in candidates:
-        if nm and nm not in seen:
-            unique.append(nm)
-            seen.add(nm)
-
-    return unique
+    return items
 
 
-def main() -> None:
-    api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key:
-        raise RuntimeError("Missing GEMINI_API_KEY secret")
+def main():
+    # Use local St. Thomas time for window calculations
+    # St. Thomas is UTC-4 year round.
+    now = datetime.utcnow() - timedelta(hours=4)
 
-    client = genai.Client(api_key=api_key)
+    # Build a window (past + current + future)
+    start_year = now.year
+    start_month = now.month
 
-    model_names = build_model_candidates(client)
-    if not model_names:
-        raise RuntimeError("No candidate models to try.")
+    # Go back MONTHS_PAST months
+    for _ in range(MONTHS_PAST):
+        if start_month == 1:
+            start_month = 12
+            start_year -= 1
+        else:
+            start_month -= 1
 
-    source_text = fetch_source_text(SOURCE_URL)
-    prompt = f"{SYSTEM_INSTRUCTIONS}\n\nSOURCE:\n{source_text[:180000]}"
+    total_months = MONTHS_PAST + 1 + MONTHS_FUTURE
 
-    last_err: Exception | None = None
-    for model_name in model_names:
-        try:
-            response = client.models.generate_content(model=model_name, contents=prompt)
-            raw = (getattr(response, "text", None) or "").strip()
-            raw = extract_json_text(raw)
-            data = json.loads(raw)
-            if not json_is_valid_schedule(data):
-                raise RuntimeError("JSON shape invalid.")
+    all_items: list[dict] = []
+    seen: set[tuple] = set()
 
-            with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
+    for y, m in iter_months(start_year, start_month, total_months):
+        month_items = scrape_month(y, m)
+        for item in month_items:
+            key = (
+                item["date"],
+                item["island"],
+                item["dock"],
+                item["ship"],
+                item["arrival"],
+                item["departure"],
+            )
+            if key in seen:
+                continue
+            seen.add(key)
+            all_items.append(item)
 
-            print(f"Success with model {model_name}. Wrote {OUTPUT_PATH} with {len(data)} rows.")
-            return
-        except Exception as e:
-            last_err = e
-            print(f"Model {model_name} failed: {e}", file=sys.stderr)
+    all_items.sort(key=lambda x: (x["date"], x["arrival"], x["ship"]))
 
-    raise RuntimeError(f"All models failed. Last error: {last_err}")
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+        json.dump(all_items, f, ensure_ascii=False, indent=2)
+
+    print(f"Wrote {OUTPUT_PATH} with {len(all_items)} items")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception:
+        print("Scraper failed:", file=sys.stderr)
+        raise
