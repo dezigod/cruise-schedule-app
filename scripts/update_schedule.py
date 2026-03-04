@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import re
 import requests
 from google import genai
 
@@ -16,7 +17,6 @@ No extra keys. No markdown. No commentary. Only JSON.
 """
 
 R_JINA_PREFIX = "https://r.jina.ai/"
-
 BROWSER_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -24,7 +24,7 @@ BROWSER_HEADERS = {
         "Chrome/123.0.0.0 Safari/537.36"
     ),
     "Accept": (
-        "text/html,application/xhtml+xml,application/xml;q=0.9,"
+        "text/html,application/xhtml+xml,application/xml;q=0.9," +
         "image/avif,image/webp,image/apng,*/*;q=0.8"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -34,90 +34,113 @@ BROWSER_HEADERS = {
 def fetch_source_text(url: str) -> str:
     sess = requests.Session()
     sess.headers.update(BROWSER_HEADERS)
+
     resp = sess.get(url, timeout=45)
     if resp.status_code == 403:
         resp = sess.get(f"{R_JINA_PREFIX}{url}", timeout=45)
+
     resp.raise_for_status()
     return resp.text
+
 
 def json_is_valid_schedule(data) -> bool:
     if not isinstance(data, list):
         return False
+
     required = {"date", "island", "ship", "dock", "arrival", "departure"}
     for row in data:
         if not isinstance(row, dict):
             return False
         if set(row.keys()) != required:
             return False
+
     return True
 
-def get_supported_methods(model) -> set:
-    for attr in (
-        "supported_generation_methods",
-        "supportedGenerationMethods",
-        "supported_methods",
-        "supportedMethods",
-    ):
-        v = getattr(model, attr, None)
-        if v:
-            try:
-                return set(v)
-            except Exception:
-                return set()
-    return set()
 
-def model_name_from(model) -> str | None:
-    # try multiple attributes
-    name = getattr(model, "name", None) or getattr(model, "model", None) or getattr(model, "id", None)
-    if name:
-        return str(name)
-    return None
+def extract_json_text(text: str) -> str:
+    t = (text or "").strip()
+    if not t:
+        return t
 
-def choose_models(client) -> list[str]:
-    candidates: list[str] = []
+    # remove markdown code fences
+    t = re.sub(r"```json\s*([\s\S]*?)```", r"\1", t, flags=re.IGNORECASE)
+    t = re.sub(r"```([\s\S]*?)```", r"\1", t)
+    t = t.strip()
+
+    # strip json(...) wrapper
+    if t.lower().startswith("json(") and t.endswith(")"):
+        t = t[5:-1].strip()
+    if t.lower().startswith("json="):
+        t = t[5:].strip()
+
+    # strip leading junk before first JSON bracket
+    first = None
+    for ch in ["[", "{"]:
+        idx = t.find(ch)
+        if idx != -1:
+            if first is None or idx < first:
+                first = idx
+    if first and first > 0:
+        t = t[first:]
+
+    return t
+
+
+def short_model_name(name: str) -> str:
+    return name.split("/")[-1] if name else name
+
+
+def build_model_candidates(client) -> list[str]:
+    candidates = []
+    tried: set[str] = set()
+
     if ENV_MODEL_NAME:
         candidates.append(ENV_MODEL_NAME)
-    for m in client.models.list():
-        name = model_name_from(m)
-        if not name:
-            continue
-        methods = get_supported_methods(m)
-        if "generateContent" not in methods:
-            continue
-        lower_name = name.lower()
-        if "embed" in lower_name or "embedding" in lower_name:
-            continue
-        short = name.split("/")[-1]
-        candidates.append(short)
-    out: list[str] = []
-    seen: set[str] = set()
-    for n in candidates:
-        if n and n not in seen:
-            out.append(n)
-            seen.add(n)
-    return out
+        tried.add(ENV_MODEL_NAME)
 
-def extract_json_text(raw: str) -> str:
-    t = (raw or "").strip()
-    # remove code fences ```json ... ```
-    if t.startswith("```"):
-        lines = t.splitlines()
-        # drop any leading fence lines
-        while lines and lines[0].lstrip().startswith("```"):
-            lines.pop(0)
-        # drop any trailing fence lines
-        while lines and lines[-1].strip().startswith("```"):
-            lines.pop()
-        t = "\n".join(lines).strip()
-    # remove json(...) wrapper
-    if t.startswith("json(") and t.endswith(")"):
-        t = t[len("json("):-1].strip()
-    # drop anything before the first JSON bracket
-    if t and t[0] not in "[{":
-        idx = min((i for i in [t.find("{"), t.find("[") if t.find("[") != -1 else None] if i is not None), default=-1)
-        if idx > 0:
-            t = t[idx:]
-    return t
+    try:
+        for model in client.models.list():
+            name = getattr(model, "name", None)
+            if not name:
+                continue
+
+            short = short_model_name(name)
+
+            for nm in [name, short]:
+                nm = nm.strip()
+                if not nm or nm in tried:
+                    continue
+                # skip embeddings
+                if "embed" in nm.lower():
+                    continue
+                candidates.append(nm)
+                tried.add(nm)
+    except Exception:
+        pass
+
+    common = [
+        "gemini-1.5-pro-002",
+        "gemini-1.5-pro",
+        "gemini-1.5-flash-002",
+        "gemini-1.5-flash",
+        "gemini-1.0-pro-001",
+        "gemini-1.0-pro",
+    ]
+    for nm in common:
+        if nm not in tried:
+            candidates.append(nm)
+            tried.add(nm)
+
+    # de-dup while preserving order
+    unique: list[str] = []
+    seen: set[str] = set()
+    for nm in candidates:
+        if nm and nm not in seen:
+            unique.append(nm)
+            seen.add(nm)
+
+    return unique
+
 
 def main() -> None:
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -125,9 +148,10 @@ def main() -> None:
         raise RuntimeError("Missing GEMINI_API_KEY secret")
 
     client = genai.Client(api_key=api_key)
-    model_names = choose_models(client)
+
+    model_names = build_model_candidates(client)
     if not model_names:
-        raise RuntimeError("No models support generateContent.")
+        raise RuntimeError("No candidate models to try.")
 
     source_text = fetch_source_text(SOURCE_URL)
     prompt = f"{SYSTEM_INSTRUCTIONS}\n\nSOURCE:\n{source_text[:180000]}"
@@ -135,27 +159,24 @@ def main() -> None:
     last_err: Exception | None = None
     for model_name in model_names:
         try:
-            resp = client.models.generate_content(model=model_name, contents=prompt)
-            raw = getattr(resp, "text", None)
-            if raw is None and getattr(resp, "candidates", None):
-                try:
-                    raw = resp.candidates[0].content.parts[0].text
-                except Exception:
-                    raw = ""
-            cleaned = extract_json_text(raw or "")
-            data = json.loads(cleaned)
+            response = client.models.generate_content(model=model_name, contents=prompt)
+            raw = (getattr(response, "text", None) or "").strip()
+            raw = extract_json_text(raw)
+            data = json.loads(raw)
             if not json_is_valid_schedule(data):
                 raise RuntimeError("JSON shape invalid.")
+
             with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
-            print(f"Wrote {OUTPUT_PATH} with {len(data)} rows.")
+
+            print(f"Success with model {model_name}. Wrote {OUTPUT_PATH} with {len(data)} rows.")
             return
         except Exception as e:
-            print(f"Model {model_name} failed: {e}", file=sys.stderr)
             last_err = e
-            continue
+            print(f"Model {model_name} failed: {e}", file=sys.stderr)
 
     raise RuntimeError(f"All models failed. Last error: {last_err}")
+
 
 if __name__ == "__main__":
     main()
