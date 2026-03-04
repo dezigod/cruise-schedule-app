@@ -26,24 +26,45 @@ BROWSER_HEADERS = {
         "image/avif,image/webp,image/apng,*/*;q=0.8"
     ),
     "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
     "Referer": "https://www.google.com/",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "Sec-Ch-Ua": '"Chromium";v="124", "Not:A-Brand";v="99"',
+    "Sec-Ch-Ua-Mobile": "?0",
+    "Sec-Ch-Ua-Platform": "Windows",
 }
 
+
 def fetch_source_text(url: str) -> str:
-    r = requests.get(url, headers=BROWSER_HEADERS, timeout=45)
-    r.raise_for_status()
-    return r.text
+    session = requests.Session()
+    session.headers.update(BROWSER_HEADERS)
+
+    resp = session.get(url, timeout=60)
+
+    # some sites treat http differently
+    if resp.status_code != 200 and url.startswith("https://"):
+        resp = session.get("http://" + url[len("https://"):], timeout=60)
+
+    resp.raise_for_status()
+    return resp.text
 
 
 def json_is_valid_schedule(data) -> bool:
     if not isinstance(data, list):
         return False
+
     required = {"date", "island", "ship", "dock", "arrival", "departure"}
     for row in data:
         if not isinstance(row, dict):
             return False
         if set(row.keys()) != required:
             return False
+
     return True
 
 
@@ -59,11 +80,7 @@ def main():
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel("gemini-1.5-flash")
 
-    prompt = (
-        SYSTEM_INSTRUCTIONS
-        + "\n\nSOURCE (raw HTML/text):\n"
-        + source_text[:200000]
-    )
+    prompt = SYSTEM_INSTRUCTIONS + "\n\nSOURCE (raw HTML/text):\n" + source_text[:200000]
 
     resp = model.generate_content(prompt)
     raw = (resp.text or "").strip()
@@ -71,9 +88,7 @@ def main():
     try:
         data = json.loads(raw)
     except Exception:
-        raise RuntimeError(
-            "Gemini did not return valid JSON. First 800 chars:\n" + raw[:800]
-        )
+        raise RuntimeError("Gemini did not return valid JSON. First 800 chars:\n" + raw[:800])
 
     if not json_is_valid_schedule(data):
         raise RuntimeError("JSON shape invalid")
