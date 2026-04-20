@@ -292,7 +292,7 @@ def dedupe_rows(rows: list[dict]) -> list[dict]:
     return out
 
 
-def main() -> None:
+def extract_passenger_count(ship_name: str) -> tuple[str, int]:     m = re.search(r"^(.*?)\s+([\d,]+)\s+Guests?$", ship_name.strip(), re.IGNORECASE)     if m:         clean_name = m.group(1).strip()         passengers = int(m.group(2).replace(",", ""))         return clean_name, passengers     return ship_name.strip(), 0   def normalize_port_name(dock: str) -> str:     dock_key = _norm(dock)     if dock_key in {"wico", "havensight"}:         return "Havensight"     if dock_key in {"cb", "crownbay"}:         return "Crown Bay"     return dock.strip()   def calculate_crowd_score(total_passengers: int) -> int:     if total_passengers <= 2000:         return 1     if total_passengers <= 5000:         return 3     if total_passengers <= 8000:         return 5     if total_passengers <= 12000:         return 7     if total_passengers <= 16000:         return 8     return 10   def transform_rows_to_grouped_schedule(rows: list[dict]) -> dict:     grouped_by_date: dict[str, dict] = {}      for row in rows:         date = row["date"]         port_name = normalize_port_name(row["dock"])         ship_name, passengers = extract_passenger_count(row["ship"])          if date not in grouped_by_date:             grouped_by_date[date] = {                 "date": date,                 "totalShips": 0,                 "totalPassengers": 0,                 "crowdScore": 0,                 "ports": {}             }          day_entry = grouped_by_date[date]          if port_name not in day_entry["ports"]:             day_entry["ports"][port_name] = {                 "name": port_name,                 "ships": []             }          day_entry["ports"][port_name]["ships"].append({             "name": ship_name,             "arrival": row["arrival"],             "departure": row["departure"],             "passengers": passengers,             "island": row["island"],             "rawDock": row["dock"],         })          day_entry["totalShips"] += 1         day_entry["totalPassengers"] += passengers      days: list[dict] = []      for date in sorted(grouped_by_date.keys()):         day_entry = grouped_by_date[date]          day_entry["crowdScore"] = calculate_crowd_score(day_entry["totalPassengers"])          ports = list(day_entry["ports"].values())         ports.sort(key=lambda p: p["name"])          for port in ports:             port["ships"].sort(key=lambda s: (s["arrival"], s["name"]))          days.append({             "date": day_entry["date"],             "totalShips": day_entry["totalShips"],             "totalPassengers": day_entry["totalPassengers"],             "crowdScore": day_entry["crowdScore"],             "ports": ports,         })      return {         "lastUpdated": datetime.utcnow().replace(microsecond=0).isoformat() + "Z",         "days": days,     }   def main() -> None:
     all_rows: list[dict] = []
 
     for year, month in iter_months():
@@ -317,8 +317,8 @@ def main() -> None:
     if not json_is_valid_schedule(all_rows):
         raise RuntimeError("Internal error: extracted JSON shape invalid.")
 
-    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
-        json.dump(all_rows, f, ensure_ascii=False, indent=2)
+    final_schedule = transform_rows_to_grouped_schedule(all_rows)  with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+        json.dump(final_schedule, f, ensure_ascii=False, indent=2)
 
     print(f"Wrote {OUTPUT_PATH} with {len(all_rows)} rows. Updated: {datetime.utcnow().isoformat()}Z", flush=True)
 
