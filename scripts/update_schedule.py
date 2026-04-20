@@ -30,11 +30,11 @@ BROWSER_HEADERS = {
 }
 
 DAY_HEADING_RE = re.compile(
-    r"^\s*(?P<month>[A-Za-z]{3,}\.?)\s+(?P<day>\d+)(?:st|nd|rd|th)\\b",
+    r"^\s*(?P<month>[A-Za-z]{3,}\.?)\s+(?P<day>\d+)(?:st|nd|rd|th)\b",
     re.IGNORECASE,
 )
 SHIP_RE = re.compile(
-    r"^(?P<ship>.+?)\s+(?P<passengers>\d[\d,]*)\s+Guests\\b(?:\s*\((?P<line>.+?)\))?",
+    r"^(?P<ship>.+?)\s+(?P<passengers>\d[\d,]*)\s+Guests\b(?:\s*\((?P<line>.+?)\))?",
     re.IGNORECASE,
 )
 TIME_RE = re.compile(
@@ -104,7 +104,7 @@ def normalize_port_name(dock: str) -> str:
     d = dock.strip().lower()
     if "havensight" in d or "wico" in d:
         return "Havensight"
-    if "crown" in d:
+    if "crown" in d or d == "cb":
         return "Crown Bay"
     return dock.strip()
 
