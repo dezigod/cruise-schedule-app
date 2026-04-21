@@ -2,34 +2,42 @@
 """
 Cruise schedule scraper for St. Thomas, USVI.
 Source: https://www.vinow.com/cruise/ship-schedule/
+Uses Gemini API for reliable structured extraction.
 Output: schedule.json in repo root.
 """
 
-import calendar
 import json
 import logging
 import os
 import re
 import time
 from datetime import datetime, timezone
+import calendar
 from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
+import google.generativeai as genai
 
 # ---------------------------------------------------------------------------
-# Config from environment
+# Config
 # ---------------------------------------------------------------------------
 SOURCE_URL = os.environ.get(
     "SOURCE_URL", "https://www.vinow.com/cruise/ship-schedule"
 ).rstrip("/")
-MONTHS_PAST = int(os.environ.get("MONTHS_PAST", "6"))
+MONTHS_PAST   = int(os.environ.get("MONTHS_PAST", "6"))
 MONTHS_FUTURE = int(os.environ.get("MONTHS_FUTURE", "12"))
-REQUEST_RETRIES = int(os.environ.get("REQUEST_RETRIES", "3"))
+REQUEST_RETRIES     = int(os.environ.get("REQUEST_RETRIES", "3"))
 REQUEST_RETRY_DELAY = float(os.environ.get("REQUEST_RETRY_DELAY_SECONDS", "1.5"))
 USE_ENV_PROXY = os.environ.get("USE_ENV_PROXY", "false").lower() == "true"
 
-OUTPUT_PATH = Path(__file__).parent.parent / "schedule.json"
+# ⚠️  If your GitHub secret has a different name, change "GEMINI_API_KEY" below.
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+
+# ⚠️  Change this if you want a different model (e.g. "gemini-1.5-pro").
+GEMINI_MODEL = "gemini-2.0-flash"
+
+OUTPUT_PATH    = Path(__file__).parent.parent / "schedule.json"
 SCHEMA_VERSION = "1.1.0"
 
 logging.basicConfig(
@@ -42,297 +50,217 @@ log = logging.getLogger(__name__)
 # Dock normalization
 # ---------------------------------------------------------------------------
 DOCK_KEYWORDS = {
-    "CB": ["crown bay", "crown bay terminal", "crowne bay"],
-    "WICO": ["havensight", "wico", "west india company", "west india co dock"],
-    "Harbor": ["harbor", "harbour", "charlotte amalie harbor", "charlotte amalie"],
+    "CB":      ["crown bay", "crowne bay"],
+    "WICO":    ["havensight", "wico", "west india company", "west india co"],
+    "Harbor":  ["harbor", "harbour", "charlotte amalie"],
 }
-
 
 def normalize_dock(raw: str) -> str:
     if not raw:
         return "Unknown"
     lower = raw.strip().lower()
-    for normalized, keywords in DOCK_KEYWORDS.items():
+    for code, keywords in DOCK_KEYWORDS.items():
         for kw in keywords:
             if kw in lower:
-                return normalized
+                return code
     return "Unknown"
-
 
 # ---------------------------------------------------------------------------
 # Month arithmetic (no dateutil)
 # ---------------------------------------------------------------------------
 def add_months(dt: datetime, n: int) -> datetime:
-    total_months = dt.month - 1 + n
-    year = dt.year + total_months // 12
-    month = total_months % 12 + 1
-    day = min(dt.day, calendar.monthrange(year, month)[1])
+    total = dt.month - 1 + n
+    year  = dt.year + total // 12
+    month = total % 12 + 1
+    day   = min(dt.day, calendar.monthrange(year, month)[1])
     return dt.replace(year=year, month=month, day=day)
 
-
 def months_to_scrape() -> list[datetime]:
-    now = datetime.now(timezone.utc)
+    now   = datetime.now(timezone.utc)
     start = add_months(now, -MONTHS_PAST)
     total = MONTHS_PAST + MONTHS_FUTURE + 1
     return [add_months(start, i) for i in range(total)]
 
-
 # ---------------------------------------------------------------------------
-# HTTP helpers
+# HTTP
 # ---------------------------------------------------------------------------
 SESSION = requests.Session()
-SESSION.headers.update(
-    {
-        "User-Agent": (
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/124.0 Safari/537.36"
-        ),
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
-    }
-)
-
+SESSION.headers.update({
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0 Safari/537.36"
+    ),
+    "Accept":          "text/html,application/xhtml+xml",
+    "Accept-Language": "en-US,en;q=0.9",
+})
 
 def fetch_html(url: str) -> str | None:
     proxies = None
     if USE_ENV_PROXY:
         proxies = {
-            "http": os.environ.get("HTTP_PROXY"),
+            "http":  os.environ.get("HTTP_PROXY"),
             "https": os.environ.get("HTTPS_PROXY"),
         }
     for attempt in range(1, REQUEST_RETRIES + 1):
         try:
-            resp = SESSION.get(url, timeout=25, proxies=proxies, allow_redirects=True)
-            log.info("  GET %s → HTTP %d", url, resp.status_code)
-            if resp.status_code == 200:
-                return resp.text
-            log.warning("  Non-200 on attempt %d: %d", attempt, resp.status_code)
+            r = SESSION.get(url, timeout=25, proxies=proxies, allow_redirects=True)
+            log.info("  GET %s → HTTP %d", url, r.status_code)
+            if r.status_code == 200:
+                return r.text
+            log.warning("  Non-200 on attempt %d: %d", attempt, r.status_code)
         except requests.RequestException as exc:
             log.warning("  Request error attempt %d: %s", attempt, exc)
         if attempt < REQUEST_RETRIES:
             time.sleep(REQUEST_RETRY_DELAY)
     return None
 
+def build_month_url(dt: datetime) -> str:
+    return f"{SOURCE_URL}/{dt.year}/{dt.month:02d}/"
 
 # ---------------------------------------------------------------------------
-# URL construction — ViNow supports /YYYY/MM/ paths
+# Extract readable text from HTML (what we send to Gemini)
 # ---------------------------------------------------------------------------
-def build_month_url(base: str, dt: datetime) -> str:
-    return f"{base}/{dt.year}/{dt.month:02d}/"
+def html_to_text(html: str) -> str:
+    soup = BeautifulSoup(html, "lxml")
 
+    # Remove noise
+    for tag in soup(["script", "style", "nav", "footer", "header",
+                     "noscript", "iframe", "svg", "img"]):
+        tag.decompose()
 
-# ---------------------------------------------------------------------------
-# Time normalization
-# ---------------------------------------------------------------------------
-def normalize_time(raw: str) -> str:
-    raw = raw.strip()
-    m = re.match(r"(\d{1,2}):(\d{2})\s*(am|pm)?", raw, re.IGNORECASE)
-    if not m:
-        return raw
-    h, mn = int(m.group(1)), m.group(2)
-    meridiem = (m.group(3) or "").lower()
-    if meridiem == "pm" and h != 12:
-        h += 12
-    elif meridiem == "am" and h == 12:
-        h = 0
-    return f"{h:02d}:{mn}"
+    # Preserve table structure as plain text
+    for table in soup.find_all("table"):
+        rows = []
+        for tr in table.find_all("tr"):
+            cells = [td.get_text(" ", strip=True) for td in tr.find_all(["td", "th"])]
+            rows.append(" | ".join(cells))
+        table.replace_with("\n".join(rows) + "\n")
 
+    text = soup.get_text("\n", strip=True)
 
-def extract_passengers(text: str) -> int:
-    digits = re.sub(r"[^\d]", "", text)
-    if not digits:
-        return 0
-    val = int(digits)
-    return val if 50 < val < 25000 else 0
-
+    # Collapse blank lines
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip()
 
 # ---------------------------------------------------------------------------
-# Page parser
+# Gemini extraction
 # ---------------------------------------------------------------------------
-MONTH_NAMES = (
-    "january february march april may june "
-    "july august september october november december"
-).split()
+EXTRACTION_PROMPT = """\
+You are a data extraction assistant. Below is the text content of a cruise ship schedule
+page for St. Thomas, US Virgin Islands (from vinow.com).
 
-DATE_PATTERN = re.compile(
-    r"\b(January|February|March|April|May|June|July|August|"
-    r"September|October|November|December)\s+(\d{1,2}),?\s*(\d{4})?\b",
-    re.IGNORECASE,
-)
+Extract every cruise ship arrival listed and return ONLY a JSON array.
+Do NOT include any explanation, markdown, or code fences — only the raw JSON array.
 
+Each element in the array must be an object with these exact keys:
+  "date"       — string, format YYYY-MM-DD (e.g. "2026-04-21")
+  "name"       — string, the ship's name (e.g. "Norwegian Escape")
+  "line"       — string, the cruise line name (e.g. "Norwegian Cruise Line"), or "" if unknown
+  "passengers" — integer, the passenger count, or 0 if not listed
+  "rawDock"    — string, the dock name exactly as it appears on the page, or "" if not listed
+  "arrival"    — string, arrival time in HH:MM 24-hour format (e.g. "07:00"), or "" if not listed
+  "departure"  — string, departure time in HH:MM 24-hour format (e.g. "17:00"), or "" if not listed
 
-def parse_date_text(text: str, fallback_year: int) -> str | None:
-    m = DATE_PATTERN.search(text)
-    if not m:
-        return None
-    month_name = m.group(1).capitalize()
-    day = int(m.group(2))
-    year = int(m.group(3)) if m.group(3) else fallback_year
-    try:
-        return datetime.strptime(f"{month_name} {day} {year}", "%B %d %Y").strftime(
-            "%Y-%m-%d"
-        )
-    except ValueError:
-        return None
+Rules:
+- If the page lists no ships, return an empty array: []
+- Do not invent data. If a field is missing, use "" or 0.
+- Convert all times to 24-hour HH:MM format.
+- Include every ship entry you can find, even if some fields are missing.
+- The date must always be in YYYY-MM-DD format.
 
+PAGE CONTENT:
+{page_text}
+"""
 
-def is_dock_text(text: str) -> bool:
-    lower = text.lower()
-    return any(
-        kw in lower
-        for kw in ["crown bay", "havensight", "wico", "harbor", "harbour", "dock", "pier", "terminal"]
-    )
+def extract_with_gemini(page_text: str, month_label: str) -> list[dict]:
+    if not GEMINI_API_KEY:
+        log.error("GEMINI_API_KEY is not set. Cannot use AI extraction.")
+        return []
 
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel(GEMINI_MODEL)
 
-def is_time_text(text: str) -> bool:
-    return bool(re.match(r"^\d{1,2}:\d{2}", text.strip()))
+    # Trim to avoid token limits — ViNow pages are not huge, but be safe
+    max_chars = 60_000
+    if len(page_text) > max_chars:
+        page_text = page_text[:max_chars]
+        log.warning("  Page text trimmed to %d chars for Gemini", max_chars)
 
+    prompt = EXTRACTION_PROMPT.format(page_text=page_text)
 
-def is_passenger_count(text: str) -> bool:
-    cleaned = re.sub(r"[,\s]", "", text)
-    return bool(re.match(r"^\d{3,5}$", cleaned))
+    log.info("  Sending %s to Gemini (%s)...", month_label, GEMINI_MODEL)
 
+    for attempt in range(1, 4):
+        try:
+            response = model.generate_content(prompt)
+            raw = response.text.strip()
 
-def parse_ship_row(cells: list[str]) -> dict | None:
-    """
-    Given a list of cell text values from a table row,
-    try to extract a ship record. Returns None if the row
-    does not look like ship data.
-    """
-    if not cells or not cells[0]:
-        return None
+            # Strip markdown fences if Gemini added them despite instructions
+            raw = re.sub(r"^```(?:json)?\s*", "", raw, flags=re.MULTILINE)
+            raw = re.sub(r"\s*```$",          "", raw, flags=re.MULTILINE)
+            raw = raw.strip()
 
-    name = cells[0].strip()
+            ships = json.loads(raw)
+            if not isinstance(ships, list):
+                raise ValueError(f"Expected list, got {type(ships)}")
 
-    # Skip header rows and obviously non-ship rows
-    skip = {
-        "ship", "vessel", "cruise ship", "line", "cruise line",
-        "dock", "pier", "passengers", "pax", "arrival", "departure",
-        "date", "", "n/a", "none",
-    }
-    if name.lower() in skip:
-        return None
+            log.info("  Gemini returned %d ship records for %s", len(ships), month_label)
+            return ships
 
-    # Name must look like a real ship name (has letters, not just digits)
-    if not re.search(r"[a-zA-Z]{3,}", name):
-        return None
+        except json.JSONDecodeError as exc:
+            log.warning("  JSON parse error attempt %d: %s", attempt, exc)
+            log.debug("  Raw response: %s", raw[:500])
+        except Exception as exc:
+            log.warning("  Gemini error attempt %d: %s", attempt, exc)
 
-    ship = {
-        "name": name,
-        "line": "",
-        "passengers": 0,
-        "dock": "Unknown",
-        "rawDock": "",
-        "arrival": "",
-        "departure": "",
-    }
+        time.sleep(2)
 
-    for cell in cells[1:]:
-        cell = cell.strip()
-        if not cell:
+    log.error("  All Gemini attempts failed for %s", month_label)
+    return []
+
+# ---------------------------------------------------------------------------
+# Build day structure from flat ship list
+# ---------------------------------------------------------------------------
+def group_by_date(ships: list[dict]) -> list[dict]:
+    days: dict[str, list[dict]] = {}
+
+    for ship in ships:
+        date = ship.get("date", "").strip()
+        if not date:
             continue
 
-        if is_time_text(cell):
-            t = normalize_time(cell)
-            if not ship["arrival"]:
-                ship["arrival"] = t
-            elif not ship["departure"]:
-                ship["departure"] = t
+        # Validate date format
+        try:
+            datetime.strptime(date, "%Y-%m-%d")
+        except ValueError:
+            log.warning("  Skipping invalid date: %s", date)
+            continue
 
-        elif is_passenger_count(cell):
-            pax = extract_passengers(cell)
-            if pax:
-                ship["passengers"] = pax
+        name = ship.get("name", "").strip()
+        if not name:
+            continue
 
-        elif is_dock_text(cell):
-            ship["rawDock"] = cell
-            ship["dock"] = normalize_dock(cell)
+        raw_dock = ship.get("rawDock", "") or ""
+        record = {
+            "name":       name,
+            "line":       ship.get("line", "") or "",
+            "passengers": int(ship.get("passengers", 0) or 0),
+            "dock":       normalize_dock(raw_dock),
+            "rawDock":    raw_dock,
+            "arrival":    ship.get("arrival", "") or "",
+            "departure":  ship.get("departure", "") or "",
+        }
 
-        elif not ship["line"] and re.search(r"[a-zA-Z]{4,}", cell):
-            # Second text column is likely the cruise line
-            ship["line"] = cell
+        days.setdefault(date, []).append(record)
 
-    return ship
-
-
-def parse_month_page(html: str, year: int, month: int) -> list[dict]:
-    """
-    Parse one month's HTML from ViNow.
-    Returns a list of day dicts: [{date, ships: [...]}, ...]
-    """
-    soup = BeautifulSoup(html, "lxml")
-    days: dict[str, list[dict]] = {}
-    current_date: str | None = None
-
-    # --- Primary strategy: walk all table rows ---
-    for table in soup.find_all("table"):
-        for row in table.find_all("tr"):
-            cells = row.find_all(["td", "th"])
-            cell_texts = [c.get_text(" ", strip=True) for c in cells]
-
-            # Skip completely empty rows
-            if not any(cell_texts):
-                continue
-
-            full_text = " ".join(cell_texts)
-
-            # Is this a date header row?
-            candidate_date = parse_date_text(full_text, year)
-            if candidate_date:
-                # Only accept dates in the target month/year
-                parsed = datetime.strptime(candidate_date, "%Y-%m-%d")
-                if parsed.year == year and parsed.month == month:
-                    current_date = candidate_date
-                continue
-
-            if current_date is None:
-                continue
-
-            # Is this a ship row?
-            ship = parse_ship_row(cell_texts)
-            if ship:
-                days.setdefault(current_date, []).append(ship)
-
-    # --- Fallback strategy: headings + lists ---
-    if not days:
-        current_date = None
-        for tag in soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "div"]):
-            text = tag.get_text(" ", strip=True)
-            if not text:
-                continue
-
-            candidate_date = parse_date_text(text, year)
-            if candidate_date:
-                parsed = datetime.strptime(candidate_date, "%Y-%m-%d")
-                if parsed.year == year and parsed.month == month:
-                    current_date = candidate_date
-                continue
-
-            if current_date is None:
-                continue
-
-            # Look for ship-like lines within this element
-            for line in text.split("\n"):
-                parts = [p.strip() for p in re.split(r"\s{2,}|\t+|,", line) if p.strip()]
-                if len(parts) >= 2:
-                    ship = parse_ship_row(parts)
-                    if ship:
-                        days.setdefault(current_date, []).append(ship)
-
-    result = []
-    for d in sorted(days.keys()):
-        if days[d]:
-            result.append({"date": d, "ships": days[d]})
-
-    return result
-
+    return [{"date": d, "ships": days[d]} for d in sorted(days)]
 
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 def main() -> None:
-    now = datetime.now(timezone.utc)
+    now    = datetime.now(timezone.utc)
     months = months_to_scrape()
 
     log.info(
@@ -342,66 +270,72 @@ def main() -> None:
         months[-1].strftime("%Y-%m"),
     )
 
-    all_days: list[dict] = []
+    if not GEMINI_API_KEY:
+        log.error(
+            "GEMINI_API_KEY environment variable is not set.\n"
+            "Add it to your GitHub repository secrets and reference it\n"
+            "in the workflow env block as:\n"
+            "  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}"
+        )
+
+    all_ships: list[dict] = []
 
     for month_dt in months:
-        url = build_month_url(SOURCE_URL, month_dt)
-        log.info("Fetching month %s", month_dt.strftime("%Y-%m"))
+        url        = build_month_url(month_dt)
+        month_label = month_dt.strftime("%Y-%m")
+
+        log.info("Fetching %s", url)
         html = fetch_html(url)
 
         if html is None:
-            log.warning("Skipping %s — all fetch attempts failed", url)
+            log.warning("  Skipping %s — fetch failed after %d attempts", url, REQUEST_RETRIES)
             continue
 
-        days = parse_month_page(html, month_dt.year, month_dt.month)
-        ship_count = sum(len(d["ships"]) for d in days)
-        log.info(
-            "  Parsed %d days, %d ship calls for %s",
-            len(days),
-            ship_count,
-            month_dt.strftime("%Y-%m"),
-        )
-        all_days.extend(days)
+        page_text = html_to_text(html)
+        log.info("  Extracted %d chars of readable text", len(page_text))
 
-        # Polite crawl delay
-        time.sleep(0.75)
+        if len(page_text) < 100:
+            log.warning("  Very short page text for %s — page may be JS-rendered or empty", month_label)
 
-    # Deduplicate by date (merge ships if same date appears from overlapping months)
+        ships = extract_with_gemini(page_text, month_label)
+        all_ships.extend(ships)
+
+        # Polite delay between months
+        time.sleep(1.0)
+
+    # Group into days, deduplicate
     merged: dict[str, dict] = {}
-    for day in all_days:
+    for day in group_by_date(all_ships):
         date_key = day["date"]
         if date_key not in merged:
             merged[date_key] = {"date": date_key, "ships": []}
-        # Avoid duplicate ships on the same date
-        existing_names = {s["name"] for s in merged[date_key]["ships"]}
+        existing = {s["name"] for s in merged[date_key]["ships"]}
         for ship in day["ships"]:
-            if ship["name"] not in existing_names:
+            if ship["name"] not in existing:
                 merged[date_key]["ships"].append(ship)
-                existing_names.add(ship["name"])
+                existing.add(ship["name"])
 
     sorted_days = [merged[k] for k in sorted(merged)]
 
-    # Build counts
+    # Counts
     total_ships = sum(len(d["ships"]) for d in sorted_days)
-    total_pax = sum(s["passengers"] for d in sorted_days for s in d["ships"])
-    unknown_dock_ships = sorted(
-        {
-            s["name"]
-            for d in sorted_days
-            for s in d["ships"]
-            if s["dock"] == "Unknown"
-        }
-    )
+    total_pax   = sum(s["passengers"] for d in sorted_days for s in d["ships"])
+    unknown_dock = sorted({
+        s["name"]
+        for d in sorted_days
+        for s in d["ships"]
+        if s["dock"] == "Unknown"
+    })
 
     output = {
         "schemaVersion": SCHEMA_VERSION,
-        "lastUpdated": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "sources": ["vinow"],
+        "lastUpdated":   now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "sources":       ["vinow"],
         "counts": {
-            "totalDays": len(sorted_days),
-            "totalShipCalls": total_ships,
-            "totalPassengers": total_pax,
-            "shipsWithUnknownDock": unknown_dock_ships,
+            "totalDays":             len(sorted_days),
+            "totalShipCalls":        total_ships,
+            "totalPassengers":       total_pax,
+            "shipsWithUnknownDock":  unknown_dock,
         },
         "days": sorted_days,
     }
@@ -418,13 +352,12 @@ def main() -> None:
 
     if len(sorted_days) == 0:
         log.warning(
-            "No data was scraped. Possible causes:\n"
-            "  1. ViNow changed their HTML structure\n"
-            "  2. The URL pattern /<year>/<month>/ is wrong for this site\n"
-            "  3. Network issue in the runner\n"
-            "Check the HTML by running locally and inspecting the soup output."
+            "\nNo data was scraped. Check:\n"
+            "  1. GEMINI_API_KEY is correctly set in GitHub Secrets\n"
+            "  2. The secret name in the workflow matches the secret name in Settings\n"
+            "  3. ViNow is returning HTML (check the GET lines above for HTTP 200)\n"
+            "  4. The workflow log for Gemini error messages above\n"
         )
-
 
 if __name__ == "__main__":
     main()
