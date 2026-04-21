@@ -29,7 +29,7 @@ from google.genai import types
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 
 # ⚠️ Change this if you want a different model.
-GEMINI_MODEL = "gemini-2.0-flash"
+GEMINI_MODEL = "gemini-2.5-flash"
 
 MONTHS_PAST   = int(os.environ.get("MONTHS_PAST",   "6"))
 MONTHS_FUTURE = int(os.environ.get("MONTHS_FUTURE", "12"))
