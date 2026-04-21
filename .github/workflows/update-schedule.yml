@@ -2,7 +2,7 @@ name: Update Cruise Schedule
 
 on:
   schedule:
-    - cron: "15 9 * * *"
+    - cron: "0 8 * * *"
   workflow_dispatch:
 
 permissions:
