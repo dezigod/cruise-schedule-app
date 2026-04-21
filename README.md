@@ -24,6 +24,7 @@ python scripts/update_schedule.py
 - `MONTHS_FUTURE` (default `12`)
 - `REQUEST_RETRIES` (default `3`)
 - `REQUEST_RETRY_DELAY_SECONDS` (default `1.5`)
+- `USE_ENV_PROXY` (default `false`; set to `true` only if your proxy permits ViNow)
 
 ## JSON schema
 

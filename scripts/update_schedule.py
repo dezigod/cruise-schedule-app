@@ -17,6 +17,7 @@ MONTHS_PAST = int(os.environ.get("MONTHS_PAST", "6"))
 MONTHS_FUTURE = int(os.environ.get("MONTHS_FUTURE", "12"))
 REQUEST_RETRIES = int(os.environ.get("REQUEST_RETRIES", "3"))
 REQUEST_RETRY_DELAY_SECONDS = float(os.environ.get("REQUEST_RETRY_DELAY_SECONDS", "1.5"))
+USE_ENV_PROXY = os.environ.get("USE_ENV_PROXY", "false").strip().lower() in {"1", "true", "yes"}
 R_JINA_PREFIX = "https://r.jina.ai/http://"
 
 BROWSER_HEADERS = {
@@ -154,6 +155,19 @@ def fetch_html(session: requests.Session, url: str) -> str:
             return response.text
         except requests.RequestException as exc:
             errors.append(str(exc))
+            if not session.trust_env:
+                try:
+                    proxy_session = requests.Session()
+                    proxy_session.trust_env = True
+                    proxy_session.headers.update(BROWSER_HEADERS)
+                    response = proxy_session.get(url, timeout=60)
+                    if response.status_code == 403:
+                        jurl = f"{R_JINA_PREFIX}{url.replace('https://', '').replace('http://', '')}"
+                        response = proxy_session.get(jurl, timeout=60)
+                    response.raise_for_status()
+                    return response.text
+                except requests.RequestException as proxy_exc:
+                    errors.append(f"proxy-attempt: {proxy_exc}")
             if attempt < REQUEST_RETRIES:
                 log(f"request error retry {attempt}/{REQUEST_RETRIES} for {url}: {exc}")
                 sleep(REQUEST_RETRY_DELAY_SECONDS)
@@ -324,6 +338,7 @@ def main() -> None:
     total_months = MONTHS_PAST + 1 + MONTHS_FUTURE
 
     session = requests.Session()
+    session.trust_env = USE_ENV_PROXY
     session.headers.update(BROWSER_HEADERS)
 
     all_items: list[dict[str, Any]] = []
@@ -331,7 +346,11 @@ def main() -> None:
 
     for y, m in iter_months(start_year, start_month, total_months):
         log(f"Fetching {m}-{y} from ViNow...")
-        month_items = scrape_month(session, y, m)
+        try:
+            month_items = scrape_month(session, y, m)
+        except requests.RequestException as exc:
+            log(f"  {m}-{y}: fetch failed ({exc})")
+            continue
         added = 0
         for item in month_items:
             key = (item["date"], item["ship"], item["arrival"], item["departure"], item["rawDock"])
@@ -341,6 +360,12 @@ def main() -> None:
             all_items.append(item)
             added += 1
         log(f"  {m}-{y}: parsed {len(month_items)} items, {added} new")
+
+    if not all_items:
+        if OUTPUT_PATH.exists():
+            log("No fresh items fetched; keeping existing schedule.json unchanged")
+            return
+        raise RuntimeError("No schedule items fetched and no existing schedule.json to keep")
 
     all_items.sort(key=lambda x: (x["date"], x["port"], x["arrival"], x["ship"]))
 
