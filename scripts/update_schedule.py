@@ -35,41 +35,30 @@ DAY_HEADING_RE = re.compile(
     r"^\s*(?P<month>[A-Za-z]{3,}\.?)+\s+(?P<day>\d+)(?:st|nd|rd|th)\b",
     re.IGNORECASE,
 )
+
 SHIP_RE = re.compile(
     r"^(?P<ship>.+?)\s+(?P<passengers>\d[\d,]*)\s+Guests\b(?:\s*\((?P<line>.+?)\))?",
     re.IGNORECASE,
 )
+
 TIME_RE = re.compile(
     r"^\s*(?P<dock>.*?)\s*\((?P<arr>[^-]+?)\s*-\s*(?P<dep>.+?)\)\s*$",
     re.IGNORECASE,
 )
 
 MONTH_MAP = {
-    "jan": 1,
-    "jan.": 1,
-    "feb": 2,
-    "feb.": 2,
-    "mar": 3,
-    "mar.": 3,
-    "apr": 4,
-    "apr.": 4,
+    "jan": 1, "jan.": 1,
+    "feb": 2, "feb.": 2,
+    "mar": 3, "mar.": 3,
+    "apr": 4, "apr.": 4,
     "may": 5,
-    "jun": 6,
-    "jun.": 6,
-    "jul": 7,
-    "jul.": 7,
-    "aug": 8,
-    "aug.": 8,
-    "sep": 9,
-    "sep.": 9,
-    "sept": 9,
-    "sept.": 9,
-    "oct": 10,
-    "oct.": 10,
-    "nov": 11,
-    "nov.": 11,
-    "dec": 12,
-    "dec.": 12,
+    "jun": 6, "jun.": 6,
+    "jul": 7, "jul.": 7,
+    "aug": 8, "aug.": 8,
+    "sep": 9, "sep.": 9, "sept": 9, "sept.": 9,
+    "oct": 10, "oct.": 10,
+    "nov": 11, "nov.": 11,
+    "dec": 12, "dec.": 12,
 }
 
 
@@ -82,8 +71,7 @@ def month_to_number(token: str) -> int | None:
 
 
 def to_24h(time_str: str) -> str:
-    dt = datetime.strptime(time_str.strip(), "%I:%M %p")
-    return dt.strftime("%H:%M")
+    return datetime.strptime(time_str.strip(), "%I:%M %p").strftime("%H:%M")
 
 
 def normalize_port_name(dock: str) -> str:
@@ -130,8 +118,7 @@ def calculate_crowd_score(total_passengers: int) -> int:
 
 
 def iter_months(start_year: int, start_month: int, count: int):
-    year = start_year
-    month = start_month
+    year, month = start_year, start_month
     for _ in range(count):
         yield year, month
         if month == 12:
@@ -144,244 +131,177 @@ def iter_months(start_year: int, start_month: int, count: int):
 def fetch_html(session: requests.Session, url: str) -> str:
     from time import sleep
 
-    errors: list[str] = []
-    for attempt in range(1, REQUEST_RETRIES + 1):
+    for attempt in range(REQUEST_RETRIES):
         try:
-            response = session.get(url, timeout=60)
-            if response.status_code == 403:
-                jurl = f"{R_JINA_PREFIX}{url.replace('https://', '').replace('http://', '')}"
-                response = session.get(jurl, timeout=60)
-            response.raise_for_status()
-            return response.text
-        except requests.RequestException as exc:
-            errors.append(str(exc))
-            if not session.trust_env:
-                try:
-                    proxy_session = requests.Session()
-                    proxy_session.trust_env = True
-                    proxy_session.headers.update(BROWSER_HEADERS)
-                    response = proxy_session.get(url, timeout=60)
-                    if response.status_code == 403:
-                        jurl = f"{R_JINA_PREFIX}{url.replace('https://', '').replace('http://', '')}"
-                        response = proxy_session.get(jurl, timeout=60)
-                    response.raise_for_status()
-                    return response.text
-                except requests.RequestException as proxy_exc:
-                    errors.append(f"proxy-attempt: {proxy_exc}")
-            if attempt < REQUEST_RETRIES:
-                log(f"request error retry {attempt}/{REQUEST_RETRIES} for {url}: {exc}")
+            r = session.get(url, timeout=60)
+            if r.status_code == 403:
+                r = session.get(f"{R_JINA_PREFIX}{url.replace('https://','').replace('http://','')}", timeout=60)
+            r.raise_for_status()
+            return r.text
+        except requests.RequestException as e:
+            if attempt < REQUEST_RETRIES - 1:
+                log(f"retry {attempt+1}: {e}")
                 sleep(REQUEST_RETRY_DELAY_SECONDS)
-
-    raise requests.RequestException(
-        f"Unable to fetch {url} after {REQUEST_RETRIES} attempts. Last error: {errors[-1] if errors else 'unknown'}"
-    )
+            else:
+                raise
 
 
-def scrape_month(session: requests.Session, year: int, month: int) -> list[dict[str, Any]]:
+def scrape_month(session, year, month):
     url = f"{SOURCE_URL}/{month}-{year}/"
-    html = fetch_html(session, url)
-    soup = BeautifulSoup(html, "html.parser")
+    soup = BeautifulSoup(fetch_html(session, url), "html.parser")
 
-    items: list[dict[str, Any]] = []
+    items = []
 
     for h3 in soup.find_all("h3"):
-        heading = h3.get_text(separator=" ", strip=True)
-        m = DAY_HEADING_RE.match(heading)
+        m = DAY_HEADING_RE.match(h3.get_text(" ", strip=True))
         if not m:
-            continue
-
-        heading_month = month_to_number(m.group("month"))
-        if heading_month and heading_month != month:
             continue
 
         day = int(m.group("day"))
         date_str = f"{year:04d}-{month:02d}-{day:02d}"
 
-        block_lines: list[str] = []
+        lines = []
         for sib in h3.next_siblings:
             if isinstance(sib, NavigableString):
                 continue
             if getattr(sib, "name", None) in {"h2", "h3"}:
                 break
-            text = sib.get_text("\n", strip=True)
-            if text:
-                block_lines.extend([ln.strip() for ln in re.split(r"[\r\n]+", text) if ln.strip()])
+            txt = sib.get_text("\n", strip=True)
+            if txt:
+                lines += [l.strip() for l in re.split(r"[\r\n]+", txt) if l.strip()]
 
         i = 0
-        while i < len(block_lines):
-            ship_line = block_lines[i]
-            m_ship = SHIP_RE.match(ship_line)
+        while i < len(lines):
+            m_ship = SHIP_RE.match(lines[i])
             if not m_ship:
                 i += 1
                 continue
 
             ship = m_ship.group("ship").strip()
             passengers = int(m_ship.group("passengers").replace(",", "")) if m_ship.group("passengers") else 0
-            cruise_line = m_ship.group("line").strip() if m_ship.group("line") else ""
+            line = m_ship.group("line") or ""
 
             j = i + 1
-            found_time = False
-            while j < len(block_lines):
-                m_time = TIME_RE.match(block_lines[j])
+            while j < len(lines):
+                m_time = TIME_RE.match(lines[j])
                 if m_time:
-                    raw_dock = m_time.group("dock").strip()
-                    arrival = to_24h(m_time.group("arr"))
-                    departure = to_24h(m_time.group("dep"))
-                    dock = normalize_dock_code(raw_dock)
-
-                    items.append(
-                        {
-                            "date": date_str,
-                            "ship": ship,
-                            "line": cruise_line,
-                            "arrival": arrival,
-                            "departure": departure,
-                            "passengers": passengers,
-                            "island": island_from_dock(raw_dock),
-                            "port": normalize_port_name(raw_dock),
-                            "dock": dock,
-                            "rawDock": raw_dock or "Unknown",
-                        }
-                    )
-                    found_time = True
+                    raw = m_time.group("dock")
+                    items.append({
+                        "date": date_str,
+                        "ship": ship,
+                        "line": line,
+                        "arrival": to_24h(m_time.group("arr")),
+                        "departure": to_24h(m_time.group("dep")),
+                        "passengers": passengers,
+                        "island": island_from_dock(raw),
+                        "port": normalize_port_name(raw),
+                        "dock": normalize_dock_code(raw),
+                        "rawDock": raw,
+                    })
                     break
                 j += 1
 
-            i = j + 1 if found_time else i + 1
+            i = j + 1
 
     return items
 
 
-def build_schedule(items: list[dict[str, Any]]) -> dict[str, Any]:
-    grouped_by_date: dict[str, dict[str, Any]] = {}
-    unknown_docks: set[str] = set()
+def build_schedule(items):
+    grouped = {}
+    unknown = set()
 
-    for item in items:
-        date = item["date"]
-        if date not in grouped_by_date:
-            grouped_by_date[date] = {
-                "date": date,
-                "totalShips": 0,
-                "totalPassengers": 0,
-                "ports": defaultdict(list),
-            }
+    for i in items:
+        d = grouped.setdefault(i["date"], {"totalShips": 0, "totalPassengers": 0, "ports": defaultdict(list)})
+        if i["dock"] == "Unknown":
+            unknown.add(i["ship"])
 
-        if item["dock"] == "Unknown":
-            unknown_docks.add(item["ship"])
+        d["ports"][i["port"]].append({
+            "name": i["ship"],
+            "line": i["line"],
+            "arrival": i["arrival"],
+            "departure": i["departure"],
+            "passengers": i["passengers"],
+            "island": i["island"],
+            "dock": i["dock"],
+            "rawDock": i["rawDock"],
+        })
 
-        day = grouped_by_date[date]
-        ship_obj = {
-            "name": item["ship"],
-            "line": item["line"],
-            "arrival": item["arrival"],
-            "departure": item["departure"],
-            "passengers": item["passengers"],
-            "island": item["island"],
-            "dock": item["dock"],
-            "rawDock": item["rawDock"],
-        }
+        d["totalShips"] += 1
+        d["totalPassengers"] += i["passengers"]
 
-        day["ports"][item["port"]].append(ship_obj)
-        day["totalShips"] += 1
-        day["totalPassengers"] += item["passengers"]
+    days = []
+    total_calls = total_pax = 0
 
-    days: list[dict[str, Any]] = []
-    total_calls = 0
-    total_pax = 0
+    for date in sorted(grouped):
+        d = grouped[date]
 
-    for date in sorted(grouped_by_date.keys()):
-        day = grouped_by_date[date]
         ports = []
-        for port_name, ships in sorted(day["ports"].items()):
+        for p, ships in sorted(d["ports"].items()):
             ships.sort(key=lambda s: (s["arrival"], s["name"]))
-            ports.append({"name": port_name, "ships": ships})
+            ports.append({"name": p, "ships": ships})
 
-        total_calls += day["totalShips"]
-        total_pax += day["totalPassengers"]
+        total_calls += d["totalShips"]
+        total_pax += d["totalPassengers"]
 
-        days.append(
-            {
-                "date": day["date"],
-                "totalShips": day["totalShips"],
-                "totalPassengers": day["totalPassengers"],
-                "crowdScore": calculate_crowd_score(day["totalPassengers"]),
-                "ports": ports,
-            }
-        )
+        days.append({
+            "date": date,
+            "totalShips": d["totalShips"],
+            "totalPassengers": d["totalPassengers"],
+            "crowdScore": calculate_crowd_score(d["totalPassengers"]),
+            "ports": ports,
+        })
 
     return {
         "schemaVersion": "1.1.0",
-        "lastUpdated": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "lastUpdated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "sources": ["vinow"],
         "counts": {
             "totalDays": len(days),
             "totalShipCalls": total_calls,
             "totalPassengers": total_pax,
-            "shipsWithUnknownDock": sorted(unknown_docks),
+            "shipsWithUnknownDock": sorted(unknown),
         },
         "days": days,
     }
 
 
-def main() -> None:
+def main():
     now = datetime.now(timezone.utc) - timedelta(hours=4)
 
-    start_year = now.year
-    start_month = now.month
+    start_year, start_month = now.year, now.month
     for _ in range(MONTHS_PAST):
-        if start_month == 1:
+        start_month -= 1
+        if start_month == 0:
             start_month = 12
             start_year -= 1
-        else:
-            start_month -= 1
-
-    total_months = MONTHS_PAST + 1 + MONTHS_FUTURE
 
     session = requests.Session()
-    session.trust_env = USE_ENV_PROXY
     session.headers.update(BROWSER_HEADERS)
 
-    all_items: list[dict[str, Any]] = []
-    seen: set[tuple[str, str, str, str, str]] = set()
+    items = []
+    seen = set()
 
-    for y, m in iter_months(start_year, start_month, total_months):
-        log(f"Fetching {m}-{y} from ViNow...")
+    for y, m in iter_months(start_year, start_month, MONTHS_PAST + 1 + MONTHS_FUTURE):
+        log(f"{m}-{y}")
         try:
-            month_items = scrape_month(session, y, m)
-        except requests.RequestException as exc:
-            log(f"  {m}-{y}: fetch failed ({exc})")
-            continue
-        added = 0
-        for item in month_items:
-            key = (item["date"], item["ship"], item["arrival"], item["departure"], item["rawDock"])
-            if key in seen:
-                continue
-            seen.add(key)
-            all_items.append(item)
-            added += 1
-        log(f"  {m}-{y}: parsed {len(month_items)} items, {added} new")
+            for i in scrape_month(session, y, m):
+                key = (i["date"], i["ship"], i["arrival"], i["departure"], i["rawDock"])
+                if key not in seen:
+                    seen.add(key)
+                    items.append(i)
+        except Exception as e:
+            log(f"fail {m}-{y}: {e}")
 
-    if not all_items:
-        if OUTPUT_PATH.exists():
-            log("No fresh items fetched; keeping existing schedule.json unchanged")
-            return
-        raise RuntimeError("No schedule items fetched and no existing schedule.json to keep")
+    if not items:
+        raise RuntimeError("No data fetched")
 
-    all_items.sort(key=lambda x: (x["date"], x["port"], x["arrival"], x["ship"]))
+    items.sort(key=lambda x: (x["date"], x["port"], x["arrival"], x["ship"]))
 
-    schedule = build_schedule(all_items)
-    OUTPUT_PATH.write_text(json.dumps(schedule, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    schedule = build_schedule(items)
+    OUTPUT_PATH.write_text(json.dumps(schedule, indent=2), encoding="utf-8")
 
-    c = schedule["counts"]
-    log(
-        f"Wrote schedule.json: {c['totalDays']} days, {c['totalShipCalls']} ship calls, "
-        f"{c['totalPassengers']:,} passengers, sources={schedule['sources']}"
-    )
+    log("Done")
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception as exc:  # noqa: BLE001
-        print(f"[scraper] FAILED: {exc}", file=sys.stderr)
-        raise
+    main()
