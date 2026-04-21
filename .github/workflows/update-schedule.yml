@@ -30,7 +30,7 @@ jobs:
           SOURCE_URL: https://www.vinow.com/cruise/ship-schedule
           MONTHS_PAST: "2"
           MONTHS_FUTURE: "12"
-          USE_ENV_PROXY: "false"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/update_schedule.py
 
       - name: Commit and push
