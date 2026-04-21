@@ -13,9 +13,12 @@ import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 import requests
 from bs4 import BeautifulSoup, NavigableString
+from google import genai
+from google.genai import types
 
 # ---------------------------------------------------------------------------
 # Config
@@ -27,6 +30,8 @@ MONTHS_FUTURE = int(os.environ.get("MONTHS_FUTURE", "12"))
 REQUEST_RETRIES = int(os.environ.get("REQUEST_RETRIES", "4"))
 REQUEST_BACKOFF_BASE_SECONDS = float(os.environ.get("REQUEST_BACKOFF_BASE_SECONDS", "1.5"))
 REQUEST_TIMEOUT_SECONDS = int(os.environ.get("REQUEST_TIMEOUT_SECONDS", "60"))
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 
 OUTPUT_PATH = Path(__file__).parent.parent / "schedule.json"
 SCHEMA_VERSION = "1.1.0"
@@ -175,12 +180,53 @@ def build_session() -> requests.Session:
     return session
 
 
+GEMINI_FALLBACK_PROMPT = """\
+You are extracting a cruise ship schedule from raw HTML for the U.S. Virgin Islands cruise schedule page.
+
+Return ONLY a raw JSON array. No explanation. No markdown. No code fences.
+
+Each array element must be an object with exactly these keys:
+  "date"       - "YYYY-MM-DD" format
+  "name"       - ship name as a string
+  "line"       - cruise line name, or "" if not found
+  "passengers" - integer passenger count, or 0 if not found
+  "rawDock"    - dock name exactly as listed, or ""
+  "arrival"    - arrival time as "HH:MM" 24-hour, or ""
+  "departure"  - departure time as "HH:MM" 24-hour, or ""
+
+Target month: {month_label}
+Only include ships for that target month.
+Do not invent data. If no valid schedule can be extracted, return [].
+
+Raw HTML follows:
+{html}
+"""
+
+
+def parse_gemini_json_array(raw: str) -> list[dict[str, Any]]:
+    cleaned = raw.strip()
+    cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned, flags=re.MULTILINE)
+    cleaned = re.sub(r"\s*```$", "", cleaned, flags=re.MULTILINE)
+    match = re.search(r"\[.*\]", cleaned, re.DOTALL)
+    if match:
+        cleaned = match.group(0)
+    parsed = json.loads(cleaned)
+    if not isinstance(parsed, list):
+        raise ValueError(f"Expected JSON array, got {type(parsed).__name__}")
+    return parsed
+
+
+def sanitize_html_for_prompt(html: str) -> str:
+    return html[:1_500_000]
+
+
 # ---------------------------------------------------------------------------
 # Fetch one month
 # ---------------------------------------------------------------------------
 
-def fetch_html(session: requests.Session, url: str) -> str:
+def fetch_html(session: requests.Session, url: str) -> tuple[str, bool]:
     errors: list[str] = []
+    last_html = ""
     proxy_url = build_proxy_url(url)
 
     for attempt in range(1, REQUEST_RETRIES + 1):
@@ -188,12 +234,12 @@ def fetch_html(session: requests.Session, url: str) -> str:
         try:
             response = session.get(url, timeout=REQUEST_TIMEOUT_SECONDS)
             response.raise_for_status()
-            html = response.text
+            last_html = response.text
 
-            if is_cloudflare_page(html) or not has_expected_structure(html):
+            if is_cloudflare_page(last_html) or not has_expected_structure(last_html):
                 raise ValueError("direct request returned Cloudflare or unexpected HTML")
 
-            return html
+            return last_html, True
         except Exception as exc:
             errors.append(f"direct attempt {attempt}: {exc}")
             log.warning("Direct fetch failed for %s on attempt %d: %s", url, attempt, exc)
@@ -201,13 +247,13 @@ def fetch_html(session: requests.Session, url: str) -> str:
         try:
             proxy_response = session.get(proxy_url, timeout=REQUEST_TIMEOUT_SECONDS)
             proxy_response.raise_for_status()
-            proxy_html = proxy_response.text
+            last_html = proxy_response.text
 
-            if is_cloudflare_page(proxy_html) or not has_expected_structure(proxy_html):
+            if is_cloudflare_page(last_html) or not has_expected_structure(last_html):
                 raise ValueError("proxy request returned Cloudflare or unexpected HTML")
 
             log.info("Using r.jina.ai fallback for %s", url)
-            return proxy_html
+            return last_html, True
         except Exception as exc:
             errors.append(f"proxy attempt {attempt}: {exc}")
             log.warning("Proxy fetch failed for %s on attempt %d: %s", url, attempt, exc)
@@ -215,22 +261,65 @@ def fetch_html(session: requests.Session, url: str) -> str:
         if attempt < REQUEST_RETRIES:
             time.sleep(delay_seconds)
 
-    raise RuntimeError(
-        f"Unable to fetch usable HTML for {url} after {REQUEST_RETRIES} attempts. "
-        f"Last errors: {' | '.join(errors[-2:])}"
+    log.warning(
+        "Unable to fetch usable HTML for %s after %d attempts. Falling back with last HTML. Last errors: %s",
+        url,
+        REQUEST_RETRIES,
+        " | ".join(errors[-2:]),
+    )
+    return last_html, False
+
+
+def extract_with_gemini_fallback(
+    client: genai.Client | None,
+    month_label: str,
+    html: str,
+) -> list[dict]:
+    if not client:
+        log.warning("Gemini fallback unavailable: GEMINI_API_KEY is not set")
+        return []
+    if not html.strip():
+        log.warning("Gemini fallback skipped for %s: no HTML captured", month_label)
+        return []
+
+    prompt = GEMINI_FALLBACK_PROMPT.format(
+        month_label=month_label,
+        html=sanitize_html_for_prompt(html),
     )
 
+    for attempt in range(1, 4):
+        try:
+            response = client.models.generate_content(
+                model=GEMINI_MODEL,
+                contents=prompt,
+                config=types.GenerateContentConfig(temperature=0.1),
+            )
+            raw = response.text or "[]"
+            items = parse_gemini_json_array(raw)
+            log.info("Gemini fallback extracted %d ships for %s", len(items), month_label)
+            return items
+        except Exception as exc:
+            log.warning("Gemini fallback failed for %s on attempt %d: %s", month_label, attempt, exc)
+            if attempt < 3:
+                time.sleep(2 * attempt)
 
-def scrape_month(session: requests.Session, month_dt: datetime) -> list[dict]:
+    return []
+
+
+def scrape_month(session: requests.Session, month_dt: datetime, client: genai.Client | None) -> list[dict]:
     year = month_dt.year
     month = month_dt.month
     month_label = month_dt.strftime("%Y-%m")
     url = build_month_url(year, month)
 
     log.info("Fetching %s from %s", month_label, url)
-    html = fetch_html(session, url)
+    html, fetch_ok = fetch_html(session, url)
+    if not fetch_ok:
+        return extract_with_gemini_fallback(client, month_label, html)
+
     soup = BeautifulSoup(html, "html.parser")
     items: list[dict] = []
+    fallback_html = html
 
     for h3 in soup.find_all("h3"):
         heading = h3.get_text(separator=" ", strip=True)
@@ -290,6 +379,10 @@ def scrape_month(session: requests.Session, month_dt: datetime) -> list[dict]:
 
             i = j + 1 if found_time else i + 1
 
+    if len(items) == 0:
+        log.warning("Parsed zero ships for %s, invoking Gemini fallback", month_label)
+        return extract_with_gemini_fallback(client, month_label, fallback_html)
+
     log.info("Found %d ships for %s", len(items), month_label)
     return items
 
@@ -347,10 +440,11 @@ def main() -> None:
     )
 
     session = build_session()
+    client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None
     all_ships: list[dict] = []
 
     for month_dt in months:
-        ships = scrape_month(session, month_dt)
+        ships = scrape_month(session, month_dt, client)
         all_ships.extend(ships)
         time.sleep(2)
 
@@ -390,11 +484,7 @@ def main() -> None:
     }
 
     if len(sorted_days) == 0:
-        log.warning(
-            "\nNo data returned by scraper. Preserving existing schedule.json.\n"
-            "The existing file will not be overwritten with empty data.\n"
-        )
-        raise SystemExit(1)
+        log.warning("No data returned by scraper or Gemini fallback. Writing empty schedule.json.")
 
     OUTPUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n")
 
