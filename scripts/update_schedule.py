@@ -273,6 +273,17 @@ def main() -> None:
         "days": sorted_days,
     }
 
+    if len(sorted_days) == 0:
+        log.warning(
+            "\nNo data returned by Gemini. Preserving existing schedule.json.\n"
+            "The existing file will not be overwritten with empty data.\n"
+            "Likely causes:\n"
+            "  1. Gemini 503 high demand — retry job will attempt again later\n"
+            "  2. GEMINI_API_KEY missing or invalid\n"
+            "  3. Google Search grounding quota exhausted for today\n"
+        )
+        raise SystemExit(1)
+
     OUTPUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n")
 
     log.info(
@@ -282,15 +293,6 @@ def main() -> None:
         total_ships,
         total_pax,
     )
-
-    if len(sorted_days) == 0:
-        log.warning(
-            "\nNo data returned by Gemini Search. Likely causes:\n"
-            "  1. Google Search grounding is not enabled for your Gemini API key\n"
-            "     → Check console.cloud.google.com or aistudio.google.com\n"
-            "  2. The API key is invalid or has no quota remaining\n"
-            "  3. Rate limiting — try reducing MONTHS_PAST/MONTHS_FUTURE in the workflow\n"
-        )
 
 
 if __name__ == "__main__":
