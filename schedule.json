@@ -1,4 +1,14 @@
 {
-  "lastUpdated": "2026-04-20T23:19:57Z",
+  "schemaVersion": "1.1.0",
+  "lastUpdated": "2026-04-21T04:13:22Z",
+  "sources": [
+    "vinow"
+  ],
+  "counts": {
+    "totalDays": 0,
+    "totalShipCalls": 0,
+    "totalPassengers": 0,
+    "shipsWithUnknownDock": []
+  },
   "days": []
 }

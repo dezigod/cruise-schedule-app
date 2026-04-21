@@ -1,7 +1,8 @@
 name: Update Cruise Schedule
+
 on:
   schedule:
-    - cron: "0 9 * * *"
+    - cron: "15 9 * * *"
   workflow_dispatch:
 
 permissions:
@@ -11,28 +12,35 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install deps
+
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Run updater
+
+      - name: Build schedule.json
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          SOURCE_URL: "https://www.vinow.com/cruise/ship-schedule/"
-          GEMINI_MODEL: "gemini-1.0-pro"
-        run: |
-          python scripts/update_schedule.py
-      - name: Commit & push if changed
+          SOURCE_URL: https://www.vinow.com/cruise/ship-schedule
+          MONTHS_PAST: "2"
+          MONTHS_FUTURE: "12"
+          USE_ENV_PROXY: "false"
+        run: python scripts/update_schedule.py
+
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add schedule.json
-          git diff --staged --quiet && echo "No changes" && exit 0
-          git commit -m "Auto-update schedule.json"
+          if git diff --staged --quiet; then
+            echo "No schedule changes"
+            exit 0
+          fi
+          git commit -m "chore: update schedule.json"
           git push
