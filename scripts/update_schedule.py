@@ -31,7 +31,7 @@ REQUEST_RETRIES = int(os.environ.get("REQUEST_RETRIES", "4"))
 REQUEST_BACKOFF_BASE_SECONDS = float(os.environ.get("REQUEST_BACKOFF_BASE_SECONDS", "1.5"))
 REQUEST_TIMEOUT_SECONDS = int(os.environ.get("REQUEST_TIMEOUT_SECONDS", "60"))
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash-lite")
 
 OUTPUT_PATH = Path(__file__).parent.parent / "schedule.json"
 SCHEMA_VERSION = "1.1.0"
