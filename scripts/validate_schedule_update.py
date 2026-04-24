@@ -2,16 +2,17 @@
 """
 Validate a freshly generated schedule.json before GitHub Actions commits it.
 
-The validator is intentionally conservative: if the candidate looks broken and
-the previous schedule had real ship data, restore the previous file and exit 0.
-That keeps the workflow green while preventing a known-good schedule from being
-replaced by an empty or malformed one.
+The validator is intentionally conservative: if the candidate looks broken,
+restore the previous file and exit 0. That keeps the workflow green while
+preventing a known-good schedule from being replaced by an empty or malformed
+one.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 from datetime import datetime
 from pathlib import Path
@@ -174,6 +175,14 @@ def validate_candidate(previous_path: Path, candidate_path: Path) -> tuple[bool,
     )
 
     previous_had_ships = previous_summary["ship_calls"] > 0
+    allow_empty_schedule = os.environ.get("ALLOW_EMPTY_SCHEDULE", "").lower() == "true"
+
+    if candidate_summary["days"] == 0 or candidate_summary["ship_calls"] == 0:
+        if allow_empty_schedule:
+            print("ALLOW_EMPTY_SCHEDULE=true is set; allowing empty candidate schedule.")
+        else:
+            print("Rejected: candidate schedule has no ship data.")
+            reasons.append("candidate schedule has no ship data")
 
     if previous_had_ships and candidate_summary["ship_calls"] == 0:
         reasons.append("candidate has zero ship calls while previous schedule had ship data")
