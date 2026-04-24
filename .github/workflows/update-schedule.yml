@@ -27,13 +27,30 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Preserve previous schedule.json
+        run: cp schedule.json "$RUNNER_TEMP/schedule.previous.json"
+
       - name: Build schedule.json
         env:
           SOURCE_URL: https://www.vinow.com/cruise/ship-schedule
           MONTHS_PAST: "1"
           MONTHS_FUTURE: "3"
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/update_schedule.py
+        run: |
+          set +e
+          python scripts/update_schedule.py
+          status=$?
+          if [ "$status" -ne 0 ]; then
+            echo "::warning::Schedule build exited with status $status; validating and restoring previous schedule if needed."
+          fi
+          exit 0
+
+      - name: Validate schedule.json
+        run: |
+          python scripts/validate_schedule_update.py \
+            --previous "$RUNNER_TEMP/schedule.previous.json" \
+            --candidate schedule.json \
+            --restore-on-reject
 
       - name: Commit and push
         run: |
