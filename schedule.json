@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "lastUpdated": "2026-04-29T12:18:18Z",
+  "lastUpdated": "2026-04-29T16:45:10Z",
   "sources": [
     "vinow"
   ],
@@ -788,7 +788,7 @@
       "ships": [
         {
           "name": "Nieuw Statendam",
-          "line": "Holland America Line",
+          "line": "",
           "passengers": 2650,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -797,7 +797,7 @@
         },
         {
           "name": "Carnival Celebration",
-          "line": "Carnival Cruise Line",
+          "line": "",
           "passengers": 5282,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -806,7 +806,7 @@
         },
         {
           "name": "Celebrity Beyond",
-          "line": "Celebrity Cruises",
+          "line": "",
           "passengers": 3260,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -815,7 +815,7 @@
         },
         {
           "name": "Icon of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 7600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -824,7 +824,7 @@
         },
         {
           "name": "Norwegian Aqua",
-          "line": "Norwegian Cruise Line",
+          "line": "",
           "passengers": 3571,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -838,7 +838,7 @@
       "ships": [
         {
           "name": "Symphony of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 5518,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -847,7 +847,7 @@
         },
         {
           "name": "Carnival Venezia",
-          "line": "Carnival Cruise Line",
+          "line": "",
           "passengers": 4090,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -861,7 +861,7 @@
       "ships": [
         {
           "name": "Norwegian Epic",
-          "line": "Norwegian Cruise Line",
+          "line": "",
           "passengers": 4228,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -870,7 +870,7 @@
         },
         {
           "name": "Koningsdam",
-          "line": "Holland America Line",
+          "line": "",
           "passengers": 2650,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -884,7 +884,7 @@
       "ships": [
         {
           "name": "Jewel of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 2501,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -898,7 +898,7 @@
       "ships": [
         {
           "name": "Brilliance of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 2112,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -907,7 +907,7 @@
         },
         {
           "name": "Grand Princess",
-          "line": "Princess Cruises",
+          "line": "",
           "passengers": 2602,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -916,7 +916,7 @@
         },
         {
           "name": "Norwegian Joy",
-          "line": "Norwegian Cruise Line",
+          "line": "",
           "passengers": 3883,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -930,7 +930,7 @@
       "ships": [
         {
           "name": "Adventure of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 3114,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -944,7 +944,7 @@
       "ships": [
         {
           "name": "Star Princess",
-          "line": "Princess Cruises",
+          "line": "",
           "passengers": 2596,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -953,7 +953,7 @@
         },
         {
           "name": "Norwegian Aqua",
-          "line": "Norwegian Cruise Line",
+          "line": "",
           "passengers": 3571,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -962,7 +962,7 @@
         },
         {
           "name": "Star of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 5600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -971,7 +971,7 @@
         },
         {
           "name": "Celebrity Xcel",
-          "line": "Celebrity Cruises",
+          "line": "",
           "passengers": 3260,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -985,7 +985,7 @@
       "ships": [
         {
           "name": "Independence of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 3634,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -994,7 +994,7 @@
         },
         {
           "name": "Carnival Vista",
-          "line": "Carnival Cruise Line",
+          "line": "",
           "passengers": 3936,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1008,7 +1008,7 @@
       "ships": [
         {
           "name": "Allure of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 5408,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1017,7 +1017,7 @@
         },
         {
           "name": "Caribbean Princess",
-          "line": "Princess Cruises",
+          "line": "",
           "passengers": 3128,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1026,7 +1026,7 @@
         },
         {
           "name": "Norwegian Epic",
-          "line": "Norwegian Cruise Line",
+          "line": "",
           "passengers": 4228,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1040,7 +1040,7 @@
       "ships": [
         {
           "name": "Jewel of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 2501,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1049,7 +1049,7 @@
         },
         {
           "name": "Marella Discovery",
-          "line": "Marella Cruises",
+          "line": "",
           "passengers": 1830,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1063,7 +1063,7 @@
       "ships": [
         {
           "name": "Carnival Pride",
-          "line": "Carnival Cruise Line",
+          "line": "",
           "passengers": 2102,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1077,7 +1077,7 @@
       "ships": [
         {
           "name": "Norwegian Luna",
-          "line": "Norwegian Cruise Line",
+          "line": "",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1091,7 +1091,7 @@
       "ships": [
         {
           "name": "Zuiderdam",
-          "line": "Holland America Line",
+          "line": "",
           "passengers": 1916,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1100,7 +1100,7 @@
         },
         {
           "name": "Celebrity Beyond",
-          "line": "Celebrity Cruises",
+          "line": "",
           "passengers": 3260,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1109,7 +1109,7 @@
         },
         {
           "name": "Icon of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 7600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1118,7 +1118,7 @@
         },
         {
           "name": "Disney Treasure",
-          "line": "Disney Cruise Line",
+          "line": "",
           "passengers": 4000,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1132,7 +1132,7 @@
       "ships": [
         {
           "name": "Symphony of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 5518,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1141,7 +1141,7 @@
         },
         {
           "name": "Carnival Venezia",
-          "line": "Carnival Cruise Line",
+          "line": "",
           "passengers": 4090,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1155,7 +1155,7 @@
       "ships": [
         {
           "name": "Norwegian Star",
-          "line": "Norwegian Cruise Line",
+          "line": "",
           "passengers": 2346,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1169,7 +1169,7 @@
       "ships": [
         {
           "name": "Jewel of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 2501,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1183,7 +1183,7 @@
       "ships": [
         {
           "name": "Adventure of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 3114,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1192,7 +1192,7 @@
         },
         {
           "name": "Brilliance of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 2112,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1201,7 +1201,7 @@
         },
         {
           "name": "Caribbean Princess",
-          "line": "Princess Cruises",
+          "line": "",
           "passengers": 3128,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1210,7 +1210,7 @@
         },
         {
           "name": "Norwegian Luna",
-          "line": "Norwegian Cruise Line",
+          "line": "",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1224,7 +1224,7 @@
       "ships": [
         {
           "name": "Norwegian Prima",
-          "line": "Norwegian Cruise Line",
+          "line": "",
           "passengers": 3215,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1233,7 +1233,7 @@
         },
         {
           "name": "Star of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 5600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1242,7 +1242,7 @@
         },
         {
           "name": "Celebrity Xcel",
-          "line": "Celebrity Cruises",
+          "line": "",
           "passengers": 3260,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1256,7 +1256,7 @@
       "ships": [
         {
           "name": "Carnival Magic",
-          "line": "Carnival Cruise Line",
+          "line": "",
           "passengers": 3690,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1265,7 +1265,7 @@
         },
         {
           "name": "Carnival Celebration",
-          "line": "Carnival Cruise Line",
+          "line": "",
           "passengers": 5282,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1279,7 +1279,7 @@
       "ships": [
         {
           "name": "Radiance of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 2142,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1293,7 +1293,7 @@
       "ships": [
         {
           "name": "Disney Treasure",
-          "line": "Disney Cruise Line",
+          "line": "",
           "passengers": 4000,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1302,7 +1302,7 @@
         },
         {
           "name": "Norwegian Luna",
-          "line": "Norwegian Cruise Line",
+          "line": "",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1316,7 +1316,7 @@
       "ships": [
         {
           "name": "Regal Princess",
-          "line": "Princess Cruises",
+          "line": "",
           "passengers": 3560,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -1325,7 +1325,7 @@
         },
         {
           "name": "Celebrity Beyond",
-          "line": "Celebrity Cruises",
+          "line": "",
           "passengers": 3260,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1334,7 +1334,7 @@
         },
         {
           "name": "Icon of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "",
           "passengers": 7600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -1348,7 +1348,7 @@
       "ships": [
         {
           "name": "Carnival Venezia",
-          "line": "Carnival Cruise Line",
+          "line": "",
           "passengers": 4090,
           "dock": "WICO",
           "rawDock": "WICO",
