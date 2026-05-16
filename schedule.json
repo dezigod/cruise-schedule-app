@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "lastUpdated": "2026-05-16T09:46:38Z",
+  "lastUpdated": "2026-05-16T11:52:54Z",
   "sources": [
     "vinow"
   ],
@@ -56,7 +56,7 @@
         },
         {
           "name": "Icon of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 7600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -79,7 +79,7 @@
       "ships": [
         {
           "name": "Symphony of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 5518,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -125,7 +125,7 @@
       "ships": [
         {
           "name": "Jewel of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 2501,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -139,7 +139,7 @@
       "ships": [
         {
           "name": "Brilliance of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 2112,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -171,7 +171,7 @@
       "ships": [
         {
           "name": "Adventure of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 3114,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -203,7 +203,7 @@
         },
         {
           "name": "Star of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 5600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -226,7 +226,7 @@
       "ships": [
         {
           "name": "Independence of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 3634,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -249,7 +249,7 @@
       "ships": [
         {
           "name": "Allure of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 5408,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -281,7 +281,7 @@
       "ships": [
         {
           "name": "Jewel of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 2501,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -350,7 +350,7 @@
         },
         {
           "name": "Icon of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 7600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -373,7 +373,7 @@
       "ships": [
         {
           "name": "Symphony of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 5518,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -410,7 +410,7 @@
       "ships": [
         {
           "name": "Jewel of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 2501,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -424,7 +424,7 @@
       "ships": [
         {
           "name": "Adventure of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 3114,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -433,7 +433,7 @@
         },
         {
           "name": "Brilliance of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 2112,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -474,7 +474,7 @@
         },
         {
           "name": "Star of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 5600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -520,7 +520,7 @@
       "ships": [
         {
           "name": "Radiance of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 2142,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -575,7 +575,7 @@
         },
         {
           "name": "Icon of the Seas",
-          "line": "Royal Caribbean International",
+          "line": "Royal Caribbean",
           "passengers": 7600,
           "dock": "Unknown",
           "rawDock": "CB",
