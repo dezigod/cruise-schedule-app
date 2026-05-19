@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "lastUpdated": "2026-05-19T11:26:39Z",
+  "lastUpdated": "2026-05-19T13:56:15Z",
   "sources": [
     "vinow"
   ],
@@ -144,7 +144,7 @@
           "dock": "Unknown",
           "rawDock": "CB",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
         },
         {
           "name": "Grand Princess",
