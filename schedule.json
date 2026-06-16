@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "lastUpdated": "2026-06-16T15:55:50Z",
+  "lastUpdated": "2026-06-16T18:55:51Z",
   "sources": [
     "vinow"
   ],
@@ -56,7 +56,7 @@
         },
         {
           "name": "Norwegian Luna",
-          "line": "Norwegian",
+          "line": "Norwegian Cruise Line",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -70,7 +70,7 @@
       "ships": [
         {
           "name": "Norwegian Prima",
-          "line": "Norwegian",
+          "line": "Norwegian Cruise Line",
           "passengers": 3215,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -116,7 +116,7 @@
       "ships": [
         {
           "name": "Norwegian Luna",
-          "line": "Norwegian",
+          "line": "Norwegian Cruise Line",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -139,7 +139,7 @@
         },
         {
           "name": "Disney Treasure",
-          "line": "Disney",
+          "line": "Disney Cruise Line",
           "passengers": 4000,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -181,7 +181,7 @@
       "ships": [
         {
           "name": "Norwegian Luna",
-          "line": "Norwegian",
+          "line": "Norwegian Cruise Line",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -195,7 +195,7 @@
       "ships": [
         {
           "name": "Norwegian Prima",
-          "line": "Norwegian",
+          "line": "Norwegian Cruise Line",
           "passengers": 3215,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -246,7 +246,7 @@
       "ships": [
         {
           "name": "Disney Treasure",
-          "line": "Disney",
+          "line": "Disney Cruise Line",
           "passengers": 4000,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -255,7 +255,7 @@
         },
         {
           "name": "Norwegian Luna",
-          "line": "Norwegian",
+          "line": "Norwegian Cruise Line",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -269,7 +269,7 @@
       "ships": [
         {
           "name": "Regal Princess",
-          "line": "Princess",
+          "line": "Princess Cruises",
           "passengers": 3560,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -287,7 +287,7 @@
         },
         {
           "name": "Celebrity Beyond",
-          "line": "Celebrity",
+          "line": "Celebrity Cruises",
           "passengers": 3260,
           "dock": "Unknown",
           "rawDock": "CB",
