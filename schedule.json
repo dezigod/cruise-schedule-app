@@ -1,18 +1,17 @@
 {
   "schemaVersion": "1.1.0",
-  "lastUpdated": "2026-06-23T13:43:23Z",
+  "lastUpdated": "2026-06-23T17:19:47Z",
   "sources": [
     "vinow"
   ],
   "counts": {
-    "totalDays": 55,
-    "totalShipCalls": 94,
-    "totalPassengers": 395065,
+    "totalDays": 42,
+    "totalShipCalls": 71,
+    "totalPassengers": 292517,
     "shipsWithUnknownDock": [
       "Adventure of the Seas",
       "Allure of the Seas",
       "Celebrity Beyond",
-      "Harmony of the Seas",
       "Icon of the Seas",
       "Radiance of the Seas",
       "Star of the Seas",
@@ -25,7 +24,7 @@
       "ships": [
         {
           "name": "Radiance of the Seas",
-          "line": "",
+          "line": "Royal Caribbean",
           "passengers": 2142,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -39,7 +38,7 @@
       "ships": [
         {
           "name": "Carnival Vista",
-          "line": "",
+          "line": "Carnival",
           "passengers": 3936,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -48,7 +47,7 @@
         },
         {
           "name": "Wonder of the Seas",
-          "line": "",
+          "line": "Royal Caribbean",
           "passengers": 6988,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -57,7 +56,7 @@
         },
         {
           "name": "Norwegian Luna",
-          "line": "",
+          "line": "Norwegian Cruise Line",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -71,7 +70,7 @@
       "ships": [
         {
           "name": "Norwegian Prima",
-          "line": "",
+          "line": "Norwegian Cruise Line",
           "passengers": 3215,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -80,7 +79,7 @@
         },
         {
           "name": "Star of the Seas",
-          "line": "",
+          "line": "Royal Caribbean",
           "passengers": 5600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -94,7 +93,7 @@
       "ships": [
         {
           "name": "Allure of the Seas",
-          "line": "",
+          "line": "Royal Caribbean",
           "passengers": 5408,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -103,7 +102,7 @@
         },
         {
           "name": "Carnival Venezia",
-          "line": "",
+          "line": "Carnival",
           "passengers": 4090,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -117,7 +116,7 @@
       "ships": [
         {
           "name": "Norwegian Luna",
-          "line": "",
+          "line": "Norwegian Cruise Line",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -131,7 +130,7 @@
       "ships": [
         {
           "name": "Carnival Celebration",
-          "line": "",
+          "line": "Carnival",
           "passengers": 5282,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -140,7 +139,7 @@
         },
         {
           "name": "Disney Treasure",
-          "line": "",
+          "line": "Disney Cruise Line",
           "passengers": 4000,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -154,7 +153,7 @@
       "ships": [
         {
           "name": "Carnival Venezia",
-          "line": "",
+          "line": "Carnival",
           "passengers": 4090,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -168,7 +167,7 @@
       "ships": [
         {
           "name": "Radiance of the Seas",
-          "line": "",
+          "line": "Royal Caribbean",
           "passengers": 2142,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -182,7 +181,7 @@
       "ships": [
         {
           "name": "Norwegian Luna",
-          "line": "",
+          "line": "Norwegian Cruise Line",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -196,7 +195,7 @@
       "ships": [
         {
           "name": "Norwegian Prima",
-          "line": "",
+          "line": "Norwegian Cruise Line",
           "passengers": 3215,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -205,7 +204,7 @@
         },
         {
           "name": "Icon of the Seas",
-          "line": "",
+          "line": "Royal Caribbean",
           "passengers": 7600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -219,7 +218,7 @@
       "ships": [
         {
           "name": "Carnival Magic",
-          "line": "",
+          "line": "Carnival",
           "passengers": 3690,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -233,7 +232,7 @@
       "ships": [
         {
           "name": "Carnival Venezia",
-          "line": "",
+          "line": "Carnival",
           "passengers": 4090,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -247,7 +246,7 @@
       "ships": [
         {
           "name": "Disney Treasure",
-          "line": "",
+          "line": "Disney Cruise Line",
           "passengers": 4000,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -256,7 +255,7 @@
         },
         {
           "name": "Norwegian Luna",
-          "line": "",
+          "line": "Norwegian Cruise Line",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -270,7 +269,7 @@
       "ships": [
         {
           "name": "Regal Princess",
-          "line": "",
+          "line": "Princess Cruises",
           "passengers": 3560,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -279,7 +278,7 @@
         },
         {
           "name": "Carnival Celebration",
-          "line": "",
+          "line": "Carnival",
           "passengers": 5282,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -288,7 +287,7 @@
         },
         {
           "name": "Celebrity Beyond",
-          "line": "",
+          "line": "Celebrity Cruises",
           "passengers": 3260,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -297,7 +296,7 @@
         },
         {
           "name": "Star of the Seas",
-          "line": "",
+          "line": "Royal Caribbean",
           "passengers": 5600,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -311,7 +310,7 @@
       "ships": [
         {
           "name": "Radiance of the Seas",
-          "line": "",
+          "line": "Royal Caribbean",
           "passengers": 2142,
           "dock": "Unknown",
           "rawDock": "CB",
@@ -866,278 +865,6 @@
           "rawDock": "CB",
           "arrival": "07:00",
           "departure": "14:30"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-01",
-      "ships": [
-        {
-          "name": "Icon of the Seas",
-          "line": "",
-          "passengers": 7600,
-          "dock": "Unknown",
-          "rawDock": "CB",
-          "arrival": "08:00",
-          "departure": "18:00"
-        },
-        {
-          "name": "Norwegian Luna",
-          "line": "Norwegian",
-          "passengers": 3550,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "11:00",
-          "departure": "19:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-02",
-      "ships": [
-        {
-          "name": "Disney Treasure",
-          "line": "Disney",
-          "passengers": 4000,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "06:30",
-          "departure": "16:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-06",
-      "ships": [
-        {
-          "name": "Radiance of the Seas",
-          "line": "",
-          "passengers": 2142,
-          "dock": "Unknown",
-          "rawDock": "CB",
-          "arrival": "08:00",
-          "departure": "18:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-08",
-      "ships": [
-        {
-          "name": "Norwegian Luna",
-          "line": "Norwegian",
-          "passengers": 3550,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "11:00",
-          "departure": "19:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-09",
-      "ships": [
-        {
-          "name": "Norwegian Prima",
-          "line": "Norwegian",
-          "passengers": 3215,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "13:30",
-          "departure": "20:00"
-        },
-        {
-          "name": "Star of the Seas",
-          "line": "",
-          "passengers": 5600,
-          "dock": "Unknown",
-          "rawDock": "CB",
-          "arrival": "12:30",
-          "departure": "20:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-10",
-      "ships": [
-        {
-          "name": "Carnival Magic",
-          "line": "Carnival",
-          "passengers": 3690,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "07:00",
-          "departure": "16:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-15",
-      "ships": [
-        {
-          "name": "Norwegian Luna",
-          "line": "Norwegian",
-          "passengers": 3550,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "11:00",
-          "departure": "19:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-16",
-      "ships": [
-        {
-          "name": "Carnival Celebration",
-          "line": "Carnival",
-          "passengers": 5282,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "07:00",
-          "departure": "16:00"
-        },
-        {
-          "name": "Icon of the Seas",
-          "line": "",
-          "passengers": 7600,
-          "dock": "Unknown",
-          "rawDock": "CB",
-          "arrival": "07:00",
-          "departure": "14:30"
-        },
-        {
-          "name": "Disney Treasure",
-          "line": "Disney",
-          "passengers": 4000,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "06:30",
-          "departure": "16:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-20",
-      "ships": [
-        {
-          "name": "Radiance of the Seas",
-          "line": "",
-          "passengers": 2142,
-          "dock": "Unknown",
-          "rawDock": "CB",
-          "arrival": "08:00",
-          "departure": "18:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-22",
-      "ships": [
-        {
-          "name": "Adventure of the Seas",
-          "line": "",
-          "passengers": 3114,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "08:00",
-          "departure": "18:00"
-        },
-        {
-          "name": "Harmony of the Seas",
-          "line": "",
-          "passengers": 6780,
-          "dock": "Unknown",
-          "rawDock": "CB",
-          "arrival": "07:00",
-          "departure": "14:30"
-        },
-        {
-          "name": "Carnival Vista",
-          "line": "Carnival",
-          "passengers": 3936,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "09:00",
-          "departure": "18:00"
-        },
-        {
-          "name": "Norwegian Luna",
-          "line": "Norwegian",
-          "passengers": 3550,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "11:00",
-          "departure": "19:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-23",
-      "ships": [
-        {
-          "name": "Norwegian Prima",
-          "line": "Norwegian",
-          "passengers": 3215,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "13:30",
-          "departure": "20:00"
-        },
-        {
-          "name": "Icon of the Seas",
-          "line": "",
-          "passengers": 7600,
-          "dock": "Unknown",
-          "rawDock": "CB",
-          "arrival": "07:00",
-          "departure": "14:30"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-29",
-      "ships": [
-        {
-          "name": "Norwegian Luna",
-          "line": "Norwegian",
-          "passengers": 3550,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "11:00",
-          "departure": "19:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-09-30",
-      "ships": [
-        {
-          "name": "Carnival Celebration",
-          "line": "Carnival",
-          "passengers": 5282,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "09:00",
-          "departure": "18:00"
-        },
-        {
-          "name": "Disney Treasure",
-          "line": "Disney",
-          "passengers": 4000,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "06:30",
-          "departure": "16:00"
-        },
-        {
-          "name": "Star of the Seas",
-          "line": "",
-          "passengers": 5600,
-          "dock": "Unknown",
-          "rawDock": "CB",
-          "arrival": "12:30",
-          "departure": "20:00"
         }
       ]
     }
