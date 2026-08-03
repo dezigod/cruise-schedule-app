@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "lastUpdated": "2026-08-02T16:03:13Z",
+  "lastUpdated": "2026-08-03T11:32:10Z",
   "sources": [
     "vinow"
   ],
@@ -554,7 +554,7 @@
         },
         {
           "name": "Norwegian Luna",
-          "line": "",
+          "line": "Norwegian",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -568,7 +568,7 @@
       "ships": [
         {
           "name": "Disney Treasure",
-          "line": "",
+          "line": "Disney",
           "passengers": 4000,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -596,7 +596,7 @@
       "ships": [
         {
           "name": "Norwegian Luna",
-          "line": "",
+          "line": "Norwegian",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -610,7 +610,7 @@
       "ships": [
         {
           "name": "Norwegian Prima",
-          "line": "",
+          "line": "Norwegian",
           "passengers": 3215,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -633,7 +633,7 @@
       "ships": [
         {
           "name": "Carnival Magic",
-          "line": "",
+          "line": "Carnival",
           "passengers": 3690,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -647,7 +647,7 @@
       "ships": [
         {
           "name": "Norwegian Luna",
-          "line": "",
+          "line": "Norwegian",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -661,7 +661,7 @@
       "ships": [
         {
           "name": "Carnival Celebration",
-          "line": "",
+          "line": "Carnival",
           "passengers": 5282,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -679,7 +679,7 @@
         },
         {
           "name": "Disney Treasure",
-          "line": "",
+          "line": "Disney",
           "passengers": 4000,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -725,7 +725,7 @@
         },
         {
           "name": "Carnival Vista",
-          "line": "",
+          "line": "Carnival",
           "passengers": 3936,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -734,7 +734,7 @@
         },
         {
           "name": "Norwegian Luna",
-          "line": "",
+          "line": "Norwegian",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -748,7 +748,7 @@
       "ships": [
         {
           "name": "Norwegian Prima",
-          "line": "",
+          "line": "Norwegian",
           "passengers": 3215,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -771,7 +771,7 @@
       "ships": [
         {
           "name": "Norwegian Luna",
-          "line": "",
+          "line": "Norwegian",
           "passengers": 3550,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -785,7 +785,7 @@
       "ships": [
         {
           "name": "Carnival Celebration",
-          "line": "",
+          "line": "Carnival",
           "passengers": 5282,
           "dock": "WICO",
           "rawDock": "WICO",
@@ -794,7 +794,7 @@
         },
         {
           "name": "Disney Treasure",
-          "line": "",
+          "line": "Disney",
           "passengers": 4000,
           "dock": "WICO",
           "rawDock": "WICO",
