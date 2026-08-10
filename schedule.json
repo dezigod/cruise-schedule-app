@@ -1,20 +1,25 @@
 {
   "schemaVersion": "1.1.0",
-  "lastUpdated": "2026-08-10T11:47:23Z",
+  "lastUpdated": "2026-08-10T16:02:34Z",
   "sources": [
     "vinow"
   ],
   "counts": {
-    "totalDays": 38,
-    "totalShipCalls": 67,
+    "totalDays": 68,
+    "totalShipCalls": 142,
     "totalPassengers": 291505,
     "shipsWithUnknownDock": [
       "Adventure of the Seas",
       "Allure of the Seas",
+      "Carnival Conquest",
       "Celebrity Beyond",
+      "Celebrity Equinox",
       "Harmony of the Seas",
       "Icon of the Seas",
+      "MSC Seaside",
+      "Norwegian Getaway",
       "Radiance of the Seas",
+      "Royal Caribbean Oasis of the Seas",
       "Star of the Seas"
     ]
   },
@@ -809,6 +814,831 @@
           "rawDock": "CB",
           "arrival": "12:30",
           "departure": "20:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-01",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-02",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-03",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-04",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-05",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-07",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-10",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-11",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-12",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-14",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-15",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-18",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-19",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-23",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-25",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-26",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-27",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-28",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-29",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-11-30",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
+        },
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "",
+          "arrival": "",
+          "departure": ""
         }
       ]
     }
