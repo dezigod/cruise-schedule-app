@@ -1,25 +1,22 @@
 {
   "schemaVersion": "1.1.0",
-  "lastUpdated": "2026-08-10T16:02:34Z",
+  "lastUpdated": "2026-08-11T09:04:22Z",
   "sources": [
     "vinow"
   ],
   "counts": {
     "totalDays": 68,
-    "totalShipCalls": 142,
+    "totalShipCalls": 126,
     "totalPassengers": 291505,
     "shipsWithUnknownDock": [
       "Adventure of the Seas",
       "Allure of the Seas",
-      "Carnival Conquest",
+      "Carnival Valor",
       "Celebrity Beyond",
       "Celebrity Equinox",
       "Harmony of the Seas",
       "Icon of the Seas",
-      "MSC Seaside",
-      "Norwegian Getaway",
       "Radiance of the Seas",
-      "Royal Caribbean Oasis of the Seas",
       "Star of the Seas"
     ]
   },
@@ -821,31 +818,13 @@
       "date": "2026-11-01",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -853,22 +832,22 @@
       "date": "2026-11-02",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -876,31 +855,22 @@
       "date": "2026-11-03",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -908,22 +878,22 @@
       "date": "2026-11-04",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -931,31 +901,22 @@
       "date": "2026-11-05",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -963,22 +924,22 @@
       "date": "2026-11-06",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -986,31 +947,22 @@
       "date": "2026-11-07",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1018,22 +970,22 @@
       "date": "2026-11-08",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1041,31 +993,22 @@
       "date": "2026-11-09",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1073,22 +1016,22 @@
       "date": "2026-11-10",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1096,31 +1039,22 @@
       "date": "2026-11-11",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1128,22 +1062,22 @@
       "date": "2026-11-12",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1151,31 +1085,22 @@
       "date": "2026-11-13",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1183,22 +1108,22 @@
       "date": "2026-11-14",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1206,31 +1131,22 @@
       "date": "2026-11-15",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1238,22 +1154,22 @@
       "date": "2026-11-16",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1261,31 +1177,22 @@
       "date": "2026-11-17",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1293,22 +1200,22 @@
       "date": "2026-11-18",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1316,31 +1223,22 @@
       "date": "2026-11-19",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1348,22 +1246,22 @@
       "date": "2026-11-20",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1371,31 +1269,22 @@
       "date": "2026-11-21",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1403,22 +1292,22 @@
       "date": "2026-11-22",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1426,31 +1315,22 @@
       "date": "2026-11-23",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1458,22 +1338,22 @@
       "date": "2026-11-24",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1481,31 +1361,22 @@
       "date": "2026-11-25",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1513,22 +1384,22 @@
       "date": "2026-11-26",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1536,31 +1407,22 @@
       "date": "2026-11-27",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1568,22 +1430,22 @@
       "date": "2026-11-28",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1591,31 +1453,22 @@
       "date": "2026-11-29",
       "ships": [
         {
-          "name": "Celebrity Equinox",
-          "line": "Celebrity Cruises",
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "09:00",
+          "departure": "17:00"
         },
         {
-          "name": "Norwegian Getaway",
+          "name": "Norwegian Jade",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
-        },
-        {
-          "name": "Royal Caribbean Oasis of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     },
@@ -1623,22 +1476,22 @@
       "date": "2026-11-30",
       "ships": [
         {
-          "name": "Carnival Conquest",
-          "line": "Carnival Cruise Line",
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
           "passengers": 0,
           "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "07:00",
+          "departure": "16:00"
         },
         {
-          "name": "MSC Seaside",
-          "line": "MSC Cruises",
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "",
-          "arrival": "",
-          "departure": ""
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
         }
       ]
     }
