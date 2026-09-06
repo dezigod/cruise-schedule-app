@@ -1,37 +1,54 @@
 {
   "schemaVersion": "1.1.0",
-  "lastUpdated": "2026-09-05T11:45:14Z",
+  "lastUpdated": "2026-09-06T12:03:02Z",
   "sources": [
     "vinow"
   ],
   "counts": {
-    "totalDays": 56,
-    "totalShipCalls": 107,
+    "totalDays": 86,
+    "totalShipCalls": 165,
     "totalPassengers": 197732,
     "shipsWithUnknownDock": [
-      "Carnival Celebration",
+      "Carnival Breeze",
       "Carnival Conquest",
+      "Carnival Dream",
+      "Carnival Elation",
+      "Carnival Fascination",
+      "Carnival Freedom",
+      "Carnival Glory",
       "Carnival Horizon",
+      "Carnival Imagination",
+      "Carnival Inspiration",
+      "Carnival Legend",
       "Carnival Liberty",
-      "Carnival Mardi Gras",
+      "Carnival Magic",
+      "Carnival Paradise",
+      "Carnival Pride",
+      "Carnival Radiance",
+      "Carnival Sensation",
+      "Carnival Spirit",
       "Carnival Sunrise",
       "Carnival Sunshine",
       "Carnival Valor",
       "Carnival Vista",
       "Celebrity Beyond",
+      "Celebrity Constellation",
+      "Celebrity Equinox",
+      "Celebrity Infinity",
+      "Celebrity Reflection",
+      "Celebrity Silhouette",
+      "Celebrity Summit",
       "Harmony of the Seas",
       "Icon of the Seas",
+      "MSC Divina",
       "MSC Meraviglia",
+      "MSC Seascape",
+      "MSC Seaside",
+      "MSC Seaview",
+      "MSC Virtuosa",
       "Norwegian Encore",
-      "Norwegian Escape",
-      "Norwegian Gem",
       "Norwegian Getaway",
-      "Norwegian Joy",
-      "Norwegian Pearl",
-      "Norwegian Sky",
       "Radiance of the Seas",
-      "Royal Caribbean Icon of the Seas",
-      "Royal Caribbean Symphony of the Seas",
       "Star of the Seas"
     ]
   },
@@ -567,6 +584,678 @@
       ]
     },
     {
+      "date": "2026-11-01",
+      "ships": [
+        {
+          "name": "Celebrity Equinox",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-02",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-03",
+      "ships": [
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-04",
+      "ships": [
+        {
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Disney Fantasy",
+          "line": "Disney Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-05",
+      "ships": [
+        {
+          "name": "Carnival Horizon",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Royal Caribbean Harmony of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "ships": [
+        {
+          "name": "Carnival Sunrise",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-07",
+      "ships": [
+        {
+          "name": "Carnival Pride",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Royal Caribbean Allure of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "ships": [
+        {
+          "name": "Carnival Legend",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Celebrity Reflection",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "ships": [
+        {
+          "name": "Carnival Fascination",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Norwegian Encore",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-10",
+      "ships": [
+        {
+          "name": "Carnival Glory",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Royal Caribbean Symphony of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-11",
+      "ships": [
+        {
+          "name": "Carnival Liberty",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "MSC Meraviglia",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-12",
+      "ships": [
+        {
+          "name": "Carnival Sunshine",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Disney Wonder",
+          "line": "Disney Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "ships": [
+        {
+          "name": "Carnival Vista",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Royal Caribbean Wonder of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-14",
+      "ships": [
+        {
+          "name": "Carnival Breeze",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Norwegian Joy",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-15",
+      "ships": [
+        {
+          "name": "Carnival Dream",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Celebrity Apex",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "ships": [
+        {
+          "name": "Carnival Elation",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Royal Caribbean Icon of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "ships": [
+        {
+          "name": "Carnival Freedom",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "MSC Seascape",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-18",
+      "ships": [
+        {
+          "name": "Carnival Imagination",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Norwegian Gem",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-19",
+      "ships": [
+        {
+          "name": "Carnival Inspiration",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Royal Caribbean Independence of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "ships": [
+        {
+          "name": "Carnival Legend",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Celebrity Silhouette",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "ships": [
+        {
+          "name": "Carnival Liberty",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Norwegian Sky",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "ships": [
+        {
+          "name": "Carnival Magic",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Royal Caribbean Navigator of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-23",
+      "ships": [
+        {
+          "name": "Carnival Paradise",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "MSC Seaview",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "ships": [
+        {
+          "name": "Carnival Radiance",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Norwegian Jade",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-25",
+      "ships": [
+        {
+          "name": "Carnival Sensation",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Royal Caribbean Mariner of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-26",
+      "ships": [
+        {
+          "name": "Carnival Spirit",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Celebrity Summit",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-27",
+      "ships": [
+        {
+          "name": "Carnival Sunrise",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Norwegian Pearl",
+          "line": "Norwegian Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-28",
+      "ships": [
+        {
+          "name": "Carnival Valor",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Royal Caribbean Voyager of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-29",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Disney Wonder",
+          "line": "Disney Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-30",
+      "ships": [
+        {
+          "name": "Carnival Dream",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co. Dock",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "MSC Divina",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
       "date": "2026-12-01",
       "ships": [
         {
@@ -585,7 +1274,7 @@
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
         }
       ]
     },
@@ -593,12 +1282,12 @@
       "date": "2026-12-02",
       "ships": [
         {
-          "name": "Carnival Conquest",
+          "name": "Carnival Valor",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
@@ -607,8 +1296,8 @@
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "08:00",
+          "departure": "18:00"
         }
       ]
     },
@@ -619,19 +1308,19 @@
           "name": "MSC Seaside",
           "line": "MSC Cruises",
           "passengers": 0,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
-          "departure": "17:00"
-        },
-        {
-          "name": "Royal Caribbean Symphony of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
+        },
+        {
+          "name": "Disney Fantasy",
+          "line": "Disney Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "09:00",
+          "departure": "19:00"
         }
       ]
     },
@@ -639,22 +1328,22 @@
       "date": "2026-12-04",
       "ships": [
         {
-          "name": "Carnival Vista",
+          "name": "Carnival Conquest",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Celebrity Summit",
-          "line": "Celebrity Cruises",
+          "name": "Royal Caribbean Allure of the Seas",
+          "line": "Royal Caribbean",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "08:00",
+          "departure": "18:00"
         }
       ]
     },
@@ -662,22 +1351,22 @@
       "date": "2026-12-05",
       "ships": [
         {
-          "name": "Disney Fantasy",
-          "line": "Disney Cruise Line",
+          "name": "Celebrity Summit",
+          "line": "Celebrity Cruises",
           "passengers": 0,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
+          "dock": "Unknown",
+          "rawDock": "West Indian Co.",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
           "name": "Norwegian Getaway",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "West Indian Co.",
+          "dock": "CB",
+          "rawDock": "Crown Bay",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
         }
       ]
     },
@@ -690,17 +1379,17 @@
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Royal Caribbean Wonder of the Seas",
+          "name": "Royal Caribbean Symphony of the Seas",
           "line": "Royal Caribbean",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "08:00",
+          "departure": "18:00"
         }
       ]
     },
@@ -708,22 +1397,22 @@
       "date": "2026-12-07",
       "ships": [
         {
-          "name": "Celebrity Beyond",
-          "line": "Celebrity Cruises",
-          "passengers": 0,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
-          "departure": "17:00"
-        },
-        {
-          "name": "Norwegian Escape",
-          "line": "Norwegian Cruise Line",
+          "name": "MSC Meraviglia",
+          "line": "MSC Cruises",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
+        },
+        {
+          "name": "Disney Wonder",
+          "line": "Disney Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "09:00",
+          "departure": "19:00"
         }
       ]
     },
@@ -736,17 +1425,17 @@
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Royal Caribbean Allure of the Seas",
+          "name": "Royal Caribbean Wonder of the Seas",
           "line": "Royal Caribbean",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "08:00",
+          "departure": "18:00"
         }
       ]
     },
@@ -754,22 +1443,22 @@
       "date": "2026-12-09",
       "ships": [
         {
-          "name": "MSC Meraviglia",
-          "line": "MSC Cruises",
+          "name": "Celebrity Reflection",
+          "line": "Celebrity Cruises",
           "passengers": 0,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
+          "dock": "Unknown",
+          "rawDock": "West Indian Co.",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
           "name": "Norwegian Joy",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "West Indian Co.",
+          "dock": "CB",
+          "rawDock": "Crown Bay",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
         }
       ]
     },
@@ -777,12 +1466,12 @@
       "date": "2026-12-10",
       "ships": [
         {
-          "name": "Carnival Sunrise",
+          "name": "Carnival Sunshine",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
@@ -791,8 +1480,8 @@
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "08:00",
+          "departure": "18:00"
         }
       ]
     },
@@ -800,22 +1489,22 @@
       "date": "2026-12-11",
       "ships": [
         {
-          "name": "Celebrity Apex",
-          "line": "Celebrity Cruises",
-          "passengers": 0,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
-          "departure": "17:00"
-        },
-        {
-          "name": "Norwegian Gem",
-          "line": "Norwegian Cruise Line",
+          "name": "MSC Divina",
+          "line": "MSC Cruises",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
+        },
+        {
+          "name": "Disney Magic",
+          "line": "Disney Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "09:00",
+          "departure": "19:00"
         }
       ]
     },
@@ -823,22 +1512,22 @@
       "date": "2026-12-12",
       "ships": [
         {
-          "name": "Carnival Celebration",
+          "name": "Carnival Sunrise",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Disney Wish",
-          "line": "Disney Cruise Line",
+          "name": "Royal Caribbean Independence of the Seas",
+          "line": "Royal Caribbean",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
         }
       ]
     },
@@ -846,22 +1535,22 @@
       "date": "2026-12-13",
       "ships": [
         {
-          "name": "MSC Seascape",
-          "line": "MSC Cruises",
+          "name": "Celebrity Silhouette",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co.",
+          "arrival": "07:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Norwegian Escape",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
           "arrival": "08:00",
-          "departure": "17:00"
-        },
-        {
-          "name": "Norwegian Sky",
-          "line": "Norwegian Cruise Line",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "West Indian Co.",
-          "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
         }
       ]
     },
@@ -869,22 +1558,22 @@
       "date": "2026-12-14",
       "ships": [
         {
-          "name": "Carnival Mardi Gras",
+          "name": "Carnival Vista",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Royal Caribbean Icon of the Seas",
+          "name": "Royal Caribbean Navigator of the Seas",
           "line": "Royal Caribbean",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "08:00",
+          "departure": "18:00"
         }
       ]
     },
@@ -892,22 +1581,22 @@
       "date": "2026-12-15",
       "ships": [
         {
-          "name": "Celebrity Constellation",
-          "line": "Celebrity Cruises",
-          "passengers": 0,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
-          "departure": "17:00"
-        },
-        {
-          "name": "Norwegian Pearl",
-          "line": "Norwegian Cruise Line",
+          "name": "MSC Seascape",
+          "line": "MSC Cruises",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
+        },
+        {
+          "name": "Disney Wish",
+          "line": "Disney Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "09:00",
+          "departure": "19:00"
         }
       ]
     },
@@ -915,22 +1604,22 @@
       "date": "2026-12-16",
       "ships": [
         {
-          "name": "Carnival Valor",
+          "name": "Carnival Dream",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Royal Caribbean Odyssey of the Seas",
+          "name": "Royal Caribbean Mariner of the Seas",
           "line": "Royal Caribbean",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "08:00",
+          "departure": "18:00"
         }
       ]
     },
@@ -938,22 +1627,22 @@
       "date": "2026-12-17",
       "ships": [
         {
-          "name": "MSC Seaview",
-          "line": "MSC Cruises",
+          "name": "Celebrity Constellation",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co.",
+          "arrival": "07:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Norwegian Gem",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
           "arrival": "08:00",
-          "departure": "17:00"
-        },
-        {
-          "name": "Norwegian Encore",
-          "line": "Norwegian Cruise Line",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "West Indian Co.",
-          "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
         }
       ]
     },
@@ -961,22 +1650,22 @@
       "date": "2026-12-18",
       "ships": [
         {
-          "name": "Carnival Sunshine",
+          "name": "Carnival Glory",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Celebrity Reflection",
-          "line": "Celebrity Cruises",
+          "name": "Royal Caribbean Voyager of the Seas",
+          "line": "Royal Caribbean",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "08:00",
+          "departure": "18:00"
         }
       ]
     },
@@ -984,22 +1673,22 @@
       "date": "2026-12-19",
       "ships": [
         {
-          "name": "Disney Dream",
-          "line": "Disney Cruise Line",
-          "passengers": 0,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
-          "departure": "17:00"
-        },
-        {
-          "name": "Norwegian Getaway",
-          "line": "Norwegian Cruise Line",
+          "name": "MSC Seaview",
+          "line": "MSC Cruises",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
+        },
+        {
+          "name": "Disney Wonder",
+          "line": "Disney Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "09:00",
+          "departure": "19:00"
         }
       ]
     },
@@ -1007,22 +1696,22 @@
       "date": "2026-12-20",
       "ships": [
         {
-          "name": "Carnival Vista",
+          "name": "Carnival Fascination",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Royal Caribbean Oasis of the Seas",
+          "name": "Royal Caribbean Adventure of the Seas",
           "line": "Royal Caribbean",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "08:00",
+          "departure": "18:00"
         }
       ]
     },
@@ -1033,19 +1722,19 @@
           "name": "Celebrity Equinox",
           "line": "Celebrity Cruises",
           "passengers": 0,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
+          "dock": "Unknown",
+          "rawDock": "West Indian Co.",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Norwegian Escape",
+          "name": "Norwegian Breakaway",
           "line": "Norwegian Cruise Line",
           "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "West Indian Co.",
+          "dock": "CB",
+          "rawDock": "Crown Bay",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
         }
       ]
     },
@@ -1053,22 +1742,22 @@
       "date": "2026-12-22",
       "ships": [
         {
-          "name": "Carnival Horizon",
+          "name": "Carnival Sensation",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Royal Caribbean Symphony of the Seas",
+          "name": "Royal Caribbean Brilliance of the Seas",
           "line": "Royal Caribbean",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "08:00",
+          "departure": "18:00"
         }
       ]
     },
@@ -1076,22 +1765,22 @@
       "date": "2026-12-23",
       "ships": [
         {
-          "name": "MSC Seaside",
+          "name": "MSC Virtuosa",
           "line": "MSC Cruises",
-          "passengers": 0,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
-          "departure": "17:00"
-        },
-        {
-          "name": "Norwegian Joy",
-          "line": "Norwegian Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
+        },
+        {
+          "name": "Disney Fantasy",
+          "line": "Disney Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "09:00",
+          "departure": "19:00"
         }
       ]
     },
@@ -1099,22 +1788,22 @@
       "date": "2026-12-24",
       "ships": [
         {
-          "name": "Carnival Celebration",
+          "name": "Carnival Paradise",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Royal Caribbean Wonder of the Seas",
+          "name": "Royal Caribbean Jewel of the Seas",
           "line": "Royal Caribbean",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "08:00",
+          "departure": "18:00"
         }
       ]
     },
@@ -1122,22 +1811,22 @@
       "date": "2026-12-25",
       "ships": [
         {
-          "name": "Celebrity Beyond",
+          "name": "Celebrity Infinity",
           "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co.",
+          "arrival": "07:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Norwegian Encore",
+          "line": "Norwegian Cruise Line",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
           "arrival": "08:00",
-          "departure": "17:00"
-        },
-        {
-          "name": "Norwegian Escape",
-          "line": "Norwegian Cruise Line",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "West Indian Co.",
-          "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
         }
       ]
     },
@@ -1145,12 +1834,58 @@
       "date": "2026-12-26",
       "ships": [
         {
-          "name": "Carnival Liberty",
+          "name": "Carnival Valor",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
+          "arrival": "07:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Royal Caribbean Oasis of the Seas",
+          "line": "Royal Caribbean",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
           "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-27",
+      "ships": [
+        {
+          "name": "MSC Seaside",
+          "line": "MSC Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co.",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Disney Magic",
+          "line": "Disney Cruise Line",
+          "passengers": 0,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "09:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-28",
+      "ships": [
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co.",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
@@ -1159,44 +1894,21 @@
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-29",
+      "ships": [
+        {
+          "name": "Celebrity Summit",
+          "line": "Celebrity Cruises",
+          "passengers": 0,
+          "dock": "Unknown",
+          "rawDock": "West Indian Co.",
           "arrival": "07:00",
-          "departure": "17:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-12-27",
-      "ships": [
-        {
-          "name": "Disney Fantasy",
-          "line": "Disney Cruise Line",
-          "passengers": 0,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
-          "departure": "17:00"
-        },
-        {
-          "name": "MSC Meraviglia",
-          "line": "MSC Cruises",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "West Indian Co.",
-          "arrival": "08:00",
-          "departure": "17:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-12-28",
-      "ships": [
-        {
-          "name": "Carnival Mardi Gras",
-          "line": "Carnival Cruise Line",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "West Indian Co.",
-          "arrival": "08:00",
           "departure": "17:00"
         },
         {
@@ -1206,30 +1918,7 @@
           "dock": "CB",
           "rawDock": "Crown Bay",
           "arrival": "08:00",
-          "departure": "17:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-12-29",
-      "ships": [
-        {
-          "name": "Celebrity Constellation",
-          "line": "Celebrity Cruises",
-          "passengers": 0,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
-          "departure": "17:00"
-        },
-        {
-          "name": "Royal Caribbean Icon of the Seas",
-          "line": "Royal Caribbean",
-          "passengers": 0,
-          "dock": "Unknown",
-          "rawDock": "West Indian Co.",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "departure": "18:00"
         }
       ]
     },
@@ -1237,22 +1926,22 @@
       "date": "2026-12-30",
       "ships": [
         {
-          "name": "Carnival Sunrise",
+          "name": "Carnival Horizon",
           "line": "Carnival Cruise Line",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
-          "arrival": "08:00",
+          "arrival": "07:00",
           "departure": "17:00"
         },
         {
-          "name": "Norwegian Escape",
-          "line": "Norwegian Cruise Line",
+          "name": "Royal Caribbean Symphony of the Seas",
+          "line": "Royal Caribbean",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
         }
       ]
     },
@@ -1260,22 +1949,22 @@
       "date": "2026-12-31",
       "ships": [
         {
-          "name": "Carnival Horizon",
-          "line": "Carnival Cruise Line",
+          "name": "MSC Meraviglia",
+          "line": "MSC Cruises",
           "passengers": 0,
           "dock": "Unknown",
           "rawDock": "West Indian Co.",
           "arrival": "08:00",
-          "departure": "17:00"
+          "departure": "18:00"
         },
         {
-          "name": "Royal Caribbean Harmony of the Seas",
-          "line": "Royal Caribbean",
+          "name": "Disney Fantasy",
+          "line": "Disney Cruise Line",
           "passengers": 0,
           "dock": "CB",
           "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "17:00"
+          "arrival": "09:00",
+          "departure": "19:00"
         }
       ]
     }
