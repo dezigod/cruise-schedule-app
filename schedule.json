@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.1.0",
-  "lastUpdated": "2026-09-20T18:08:00Z",
+  "lastUpdated": "2026-09-21T14:59:11Z",
   "sources": [
     "vinow"
   ],
   "counts": {
-    "totalDays": 40,
+    "totalDays": 39,
     "totalShipCalls": 70,
     "totalPassengers": 298332,
     "shipsWithUnknownDock": [
@@ -19,20 +19,6 @@
     ]
   },
   "days": [
-    {
-      "date": "2025-08-25",
-      "ships": [
-        {
-          "name": "Harmony of the Seas",
-          "line": "Royal Caribbean International",
-          "passengers": 6780,
-          "dock": "Unknown",
-          "rawDock": "CB",
-          "arrival": "07:00",
-          "departure": "14:30"
-        }
-      ]
-    },
     {
       "date": "2026-08-04",
       "ships": [
@@ -238,6 +224,15 @@
           "rawDock": "WICO",
           "arrival": "08:00",
           "departure": "18:00"
+        },
+        {
+          "name": "Harmony of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 6780,
+          "dock": "Unknown",
+          "rawDock": "CB",
+          "arrival": "07:00",
+          "departure": "14:30"
         },
         {
           "name": "Carnival Vista",
