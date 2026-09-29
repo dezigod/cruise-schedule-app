@@ -1,20 +1,35 @@
 {
   "schemaVersion": "1.1.0",
-  "lastUpdated": "2026-09-29T14:44:52Z",
+  "lastUpdated": "2026-09-29T16:48:33Z",
   "sources": [
     "vinow"
   ],
   "counts": {
-    "totalDays": 51,
-    "totalShipCalls": 88,
-    "totalPassengers": 341558,
+    "totalDays": 90,
+    "totalShipCalls": 266,
+    "totalPassengers": 779525,
     "shipsWithUnknownDock": [
       "Adventure of the Seas",
+      "Brilliant Lady",
       "Carnival Conquest",
-      "Carnival Dream",
+      "Emerald Sakara",
+      "Explora I",
+      "Explora II",
       "Explora III",
+      "Marella Discovery",
+      "Oceania Allura",
+      "Resilient Lady",
       "Rhapsody of the Seas",
-      "Valiant Lady"
+      "SeaDream 2",
+      "SeaDream I",
+      "Seven Seas Grandeur",
+      "Silver Nova",
+      "Silver Ray",
+      "Silver Shadow",
+      "Silver Spirit",
+      "Viking Sea",
+      "Vision of the Seas",
+      "Yacht Ilma"
     ]
   },
   "days": [
@@ -683,22 +698,17 @@
       ]
     },
     {
-      "date": "2026-10-01",
+      "date": "2026-11-01",
       "ships": [
         {
-          "name": "Rhapsody of the Seas",
-          "line": "Royal Caribbean International",
-          "passengers": 2040,
-          "dock": "Unknown",
-          "rawDock": "St. Croix",
-          "arrival": "08:00",
-          "departure": "18:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-04",
-      "ships": [
+          "name": "Oceania Vista",
+          "line": "Oceania Cruises",
+          "passengers": 1200,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "17:00"
+        },
         {
           "name": "Rhapsody of the Seas",
           "line": "Royal Caribbean International",
@@ -711,119 +721,17 @@
       ]
     },
     {
-      "date": "2026-10-05",
+      "date": "2026-11-02",
       "ships": [
         {
-          "name": "Rhapsody of the Seas",
-          "line": "Royal Caribbean International",
-          "passengers": 2040,
-          "dock": "Unknown",
-          "rawDock": "St. Croix",
-          "arrival": "08:00",
-          "departure": "18:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-06",
-      "ships": [
-        {
-          "name": "Norwegian Luna",
-          "line": "Norwegian Cruise Line",
-          "passengers": 3550,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "11:00",
-          "departure": "19:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-07",
-      "ships": [
-        {
-          "name": "Icon of the Seas",
-          "line": "Royal Caribbean International",
-          "passengers": 7600,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "14:30"
-        },
-        {
-          "name": "Norwegian Prima",
-          "line": "Norwegian Cruise Line",
-          "passengers": 3215,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "13:30",
-          "departure": "20:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-08",
-      "ships": [
-        {
-          "name": "Carnival Magic",
-          "line": "Carnival Cruise Line",
-          "passengers": 3690,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "07:00",
-          "departure": "16:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-13",
-      "ships": [
-        {
-          "name": "Icon of the Seas",
-          "line": "Royal Caribbean International",
-          "passengers": 7600,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "08:00",
-          "departure": "18:00"
-        },
-        {
-          "name": "Norwegian Luna",
-          "line": "Norwegian Cruise Line",
-          "passengers": 3550,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "11:00",
-          "departure": "19:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-14",
-      "ships": [
-        {
-          "name": "Disney Treasure",
-          "line": "Disney Cruise Line",
-          "passengers": 4000,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "06:30",
-          "departure": "16:00"
-        },
-        {
-          "name": "Regal Princess",
+          "name": "Royal Princess",
           "line": "Princess Cruises",
           "passengers": 3560,
           "dock": "WICO",
           "rawDock": "WICO",
           "arrival": "07:00",
           "departure": "17:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-15",
-      "ships": [
+        },
         {
           "name": "Rhapsody of the Seas",
           "line": "Royal Caribbean International",
@@ -832,14 +740,9 @@
           "rawDock": "St. Croix",
           "arrival": "08:00",
           "departure": "18:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-18",
-      "ships": [
+        },
         {
-          "name": "Rhapsody of the Seas",
+          "name": "Vision of the Seas",
           "line": "Royal Caribbean International",
           "passengers": 2040,
           "dock": "CB",
@@ -850,49 +753,8 @@
       ]
     },
     {
-      "date": "2026-10-19",
+      "date": "2026-11-03",
       "ships": [
-        {
-          "name": "Adventure of the Seas",
-          "line": "Royal Caribbean International",
-          "passengers": 3114,
-          "dock": "Unknown",
-          "rawDock": "St. Croix",
-          "arrival": "08:00",
-          "departure": "18:00"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-20",
-      "ships": [
-        {
-          "name": "Harmony of the Seas",
-          "line": "Royal Caribbean International",
-          "passengers": 6780,
-          "dock": "CB",
-          "rawDock": "Crown Bay",
-          "arrival": "07:00",
-          "departure": "14:30"
-        },
-        {
-          "name": "Adventure of the Seas",
-          "line": "Royal Caribbean International",
-          "passengers": 3114,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "08:00",
-          "departure": "18:00"
-        },
-        {
-          "name": "Carnival Vista",
-          "line": "Carnival Cruise Line",
-          "passengers": 3936,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "09:00",
-          "departure": "18:00"
-        },
         {
           "name": "Norwegian Luna",
           "line": "Norwegian Cruise Line",
@@ -905,26 +767,8 @@
       ]
     },
     {
-      "date": "2026-10-21",
+      "date": "2026-11-04",
       "ships": [
-        {
-          "name": "Carnival Celebration",
-          "line": "Carnival Cruise Line",
-          "passengers": 5282,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "07:00",
-          "departure": "16:00"
-        },
-        {
-          "name": "Carnival Venezia",
-          "line": "Carnival Cruise Line",
-          "passengers": 4090,
-          "dock": "WICO",
-          "rawDock": "WICO",
-          "arrival": "08:00",
-          "departure": "17:00"
-        },
         {
           "name": "Star of the Seas",
           "line": "Royal Caribbean International",
@@ -946,40 +790,282 @@
       ]
     },
     {
-      "date": "2026-10-23",
+      "date": "2026-11-05",
       "ships": [
         {
-          "name": "Carnival Dream",
+          "name": "Carnival Magic",
           "line": "Carnival Cruise Line",
-          "passengers": 3646,
+          "passengers": 3690,
           "dock": "WICO",
           "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Carnival Venezia",
+          "line": "Carnival Cruise Line",
+          "passengers": 4090,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Carnival Pride",
+          "line": "Carnival Cruise Line",
+          "passengers": 2102,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "09:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-07",
+      "ships": [
+        {
+          "name": "Viking Sea",
+          "line": "Viking Ocean Cruises",
+          "passengers": 930,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:30",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "ships": [
+        {
+          "name": "Crystal Symphony",
+          "line": "Crystal Cruises",
+          "passengers": 922,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Rhapsody of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Zuiderdam",
+          "line": "Holland America Line",
+          "passengers": 1916,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "16:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "ships": [
+        {
+          "name": "Rhapsody of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
           "arrival": "08:00",
           "departure": "17:00"
         }
       ]
     },
     {
-      "date": "2026-10-26",
+      "date": "2026-11-10",
       "ships": [
         {
-          "name": "Carnival Dream",
-          "line": "Carnival Cruise Line",
-          "passengers": 3646,
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
           "dock": "Unknown",
           "rawDock": "St. Croix",
-          "arrival": "07:00",
-          "departure": "16:00"
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Celebrity Apex",
+          "line": "Celebrity Cruises",
+          "passengers": 3405,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "11:30",
+          "departure": "19:00"
         }
       ]
     },
     {
-      "date": "2026-10-27",
+      "date": "2026-11-11",
       "ships": [
         {
-          "name": "Norwegian Luna",
+          "name": "Eurodam",
+          "line": "Holland America Line",
+          "passengers": 2104,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Icon of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 7600,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "14:30"
+        },
+        {
+          "name": "Silver Shadow",
+          "line": "Silversea Cruises",
+          "passengers": 382,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Carnival Celebration",
+          "line": "Carnival Cruise Line",
+          "passengers": 5282,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "09:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Aqua",
           "line": "Norwegian Cruise Line",
-          "passengers": 3550,
+          "passengers": 3571,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "10:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-12",
+      "ships": [
+        {
+          "name": "Celebrity Xcel",
+          "line": "Celebrity Cruises",
+          "passengers": 3260,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Norwegian Breakaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4028,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "14:00"
+        },
+        {
+          "name": "Allure of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 5408,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Epic",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4228,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "11:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-14",
+      "ships": [
+        {
+          "name": "Viking Sea",
+          "line": "Viking Ocean Cruises",
+          "passengers": 930,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "07:30",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-15",
+      "ships": [
+        {
+          "name": "Royal Princess",
+          "line": "Princess Cruises",
+          "passengers": 3560,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Poesia",
+          "line": "MSC Cruises",
+          "passengers": 2550,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "ships": [
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Escape",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4248,
           "dock": "WICO",
           "rawDock": "WICO",
           "arrival": "11:00",
@@ -988,7 +1074,226 @@
       ]
     },
     {
-      "date": "2026-10-28",
+      "date": "2026-11-17",
+      "ships": [
+        {
+          "name": "Harmony of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 6780,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "14:30"
+        },
+        {
+          "name": "Norwegian Bliss",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4990,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Viking Sea",
+          "line": "Viking Ocean Cruises",
+          "passengers": 930,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:30",
+          "departure": "18:00"
+        },
+        {
+          "name": "Carnival Vista",
+          "line": "Carnival Cruise Line",
+          "passengers": 3936,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "09:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-18",
+      "ships": [
+        {
+          "name": "Rotterdam",
+          "line": "Holland America Line",
+          "passengers": 2668,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "15:00"
+        },
+        {
+          "name": "Explora III",
+          "line": "Explora Journeys",
+          "passengers": 926,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Norwegian Aqua",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3571,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "10:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Star of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 5600,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "12:30",
+          "departure": "20:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-19",
+      "ships": [
+        {
+          "name": "Carnival Venezia",
+          "line": "Carnival Cruise Line",
+          "passengers": 4090,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Independence of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 3634,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Rhapsody of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4028,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "11:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "ships": [
+        {
+          "name": "Norwegian Prima",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3215,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Queen Mary 2",
+          "line": "Cunard Line",
+          "passengers": 2695,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Valiant Lady",
+          "line": "Virgin Voyages",
+          "passengers": 2770,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Royal Princess",
+          "line": "Princess Cruises",
+          "passengers": 3560,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "09:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "ships": [
+        {
+          "name": "Rhapsody of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Silver Shadow",
+          "line": "Silversea Cruises",
+          "passengers": 382,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-23",
+      "ships": [
+        {
+          "name": "Rhapsody of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Escape",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4248,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "11:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-24",
       "ships": [
         {
           "name": "Disney Treasure",
@@ -997,6 +1302,38 @@
           "dock": "WICO",
           "rawDock": "WICO",
           "arrival": "06:30",
+          "departure": "16:00"
+        },
+        {
+          "name": "Viking Sea",
+          "line": "Viking Ocean Cruises",
+          "passengers": 930,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "07:30",
+          "departure": "18:00"
+        },
+        {
+          "name": "Celebrity Apex",
+          "line": "Celebrity Cruises",
+          "passengers": 3405,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "11:30",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-25",
+      "ships": [
+        {
+          "name": "Carnival Celebration",
+          "line": "Carnival Cruise Line",
+          "passengers": 5282,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
           "departure": "16:00"
         },
         {
@@ -1018,27 +1355,915 @@
           "departure": "17:00"
         },
         {
-          "name": "Valiant Lady",
-          "line": "Virgin Voyages",
-          "passengers": 2770,
+          "name": "Norwegian Aqua",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3571,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "10:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Celebrity Beyond",
+          "line": "Celebrity Cruises",
+          "passengers": 3260,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "11:30",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-26",
+      "ships": [
+        {
+          "name": "Allure of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 5408,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "MSC Meraviglia",
+          "line": "MSC Cruises",
+          "passengers": 4500,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "15:00"
+        },
+        {
+          "name": "Nieuw Statendam",
+          "line": "Holland America Line",
+          "passengers": 2650,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
           "dock": "Unknown",
           "rawDock": "St. Croix",
-          "arrival": "09:00",
+          "arrival": "08:00",
           "departure": "18:00"
         }
       ]
     },
     {
-      "date": "2026-10-29",
+      "date": "2026-11-27",
       "ships": [
         {
-          "name": "Norwegian Sun",
+          "name": "Marella Discovery",
+          "line": "Marella Cruises",
+          "passengers": 1830,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "20:00"
+        },
+        {
+          "name": "Viking Sea",
+          "line": "Viking Ocean Cruises",
+          "passengers": 930,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:30",
+          "departure": "18:00"
+        },
+        {
+          "name": "Crystal Symphony",
+          "line": "Crystal Cruises",
+          "passengers": 922,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "09:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-28",
+      "ships": [
+        {
+          "name": "Norwegian Prima",
           "line": "Norwegian Cruise Line",
-          "passengers": 1936,
+          "passengers": 3215,
           "dock": "WICO",
           "rawDock": "WICO",
           "arrival": "07:00",
           "departure": "17:00"
+        },
+        {
+          "name": "Oceania Vista",
+          "line": "Oceania Cruises",
+          "passengers": 1200,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "SeaDream 2",
+          "line": "SeaDream Yacht Club",
+          "passengers": 110,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-29",
+      "ships": [
+        {
+          "name": "Marella Discovery",
+          "line": "Marella Cruises",
+          "passengers": 1830,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "15:00"
+        },
+        {
+          "name": "Valiant Lady",
+          "line": "Virgin Voyages",
+          "passengers": 2770,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-30",
+      "ships": [
+        {
+          "name": "Eclipse",
+          "line": "Celebrity Cruises",
+          "passengers": 2852,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Norwegian Escape",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4248,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "11:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-01",
+      "ships": [
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-02",
+      "ships": [
+        {
+          "name": "Carnival Venezia",
+          "line": "Carnival Cruise Line",
+          "passengers": 4090,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Eurodam",
+          "line": "Holland America Line",
+          "passengers": 2104,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Norwegian Aqua",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3571,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "10:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Celebrity Beyond",
+          "line": "Celebrity Cruises",
+          "passengers": 3260,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "11:30",
+          "departure": "19:00"
+        },
+        {
+          "name": "Star of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 5600,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "12:30",
+          "departure": "20:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-03",
+      "ships": [
+        {
+          "name": "Carnival Magic",
+          "line": "Carnival Cruise Line",
+          "passengers": 3690,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Independence of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 3634,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "15:00"
+        },
+        {
+          "name": "Norwegian Pearl",
+          "line": "Norwegian Cruise Line",
+          "passengers": 2394,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Rhapsody of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Carnival Conquest",
+          "line": "Carnival Cruise Line",
+          "passengers": 2984,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "09:00",
+          "departure": "16:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-04",
+      "ships": [
+        {
+          "name": "Viking Sea",
+          "line": "Viking Ocean Cruises",
+          "passengers": 930,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "07:30",
+          "departure": "18:00"
+        },
+        {
+          "name": "Silver Shadow",
+          "line": "Silversea Cruises",
+          "passengers": 382,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-05",
+      "ships": [
+        {
+          "name": "Norwegian Gem",
+          "line": "Norwegian Cruise Line",
+          "passengers": 2394,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "06:45",
+          "departure": "15:00"
+        },
+        {
+          "name": "Norwegian Prima",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3215,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Oceania Allura",
+          "line": "Oceania Cruises",
+          "passengers": 1200,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "19:00"
+        },
+        {
+          "name": "Seven Seas Grandeur",
+          "line": "Regent Seven Seas Cruises",
+          "passengers": 746,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Azamara Quest",
+          "line": "Azamara",
+          "passengers": 710,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "14:00"
+        },
+        {
+          "name": "Brilliant Lady",
+          "line": "Virgin Voyages",
+          "passengers": 2860,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "SeaDream 2",
+          "line": "SeaDream Yacht Club",
+          "passengers": 110,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-06",
+      "ships": [
+        {
+          "name": "Norwegian Bliss",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4990,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Constellation",
+          "line": "Celebrity Cruises",
+          "passengers": 2158,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Rhapsody of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Yacht Ilma",
+          "line": "Ritz-Carlton Yacht Collection",
+          "passengers": 448,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-07",
+      "ships": [
+        {
+          "name": "Viking Sea",
+          "line": "Viking Ocean Cruises",
+          "passengers": 930,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:30",
+          "departure": "18:00"
+        },
+        {
+          "name": "Rhapsody of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Escape",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4248,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "11:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-08",
+      "ships": [
+        {
+          "name": "Disney Treasure",
+          "line": "Disney Cruise Line",
+          "passengers": 4000,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Emerald Sakara",
+          "line": "Emerald Cruises",
+          "passengers": 100,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Oceania Allura",
+          "line": "Oceania Cruises",
+          "passengers": 1200,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Resilient Lady",
+          "line": "Virgin Voyages",
+          "passengers": 2770,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "SeaDream 2",
+          "line": "SeaDream Yacht Club",
+          "passengers": 110,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Celebrity Apex",
+          "line": "Celebrity Cruises",
+          "passengers": 3405,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "11:30",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-09",
+      "ships": [
+        {
+          "name": "Icon of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 7600,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "14:30"
+        },
+        {
+          "name": "Rotterdam",
+          "line": "Holland America Line",
+          "passengers": 2668,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "15:00"
+        },
+        {
+          "name": "Zuiderdam",
+          "line": "Holland America Line",
+          "passengers": 1916,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Explora III",
+          "line": "Explora Journeys",
+          "passengers": 926,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "09:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Aqua",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3571,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "10:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Celebrity Xcel",
+          "line": "Celebrity Cruises",
+          "passengers": 3260,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "12:30",
+          "departure": "20:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-10",
+      "ships": [
+        {
+          "name": "Allure of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 5408,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "MSC Meraviglia",
+          "line": "MSC Cruises",
+          "passengers": 4500,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "15:00"
+        },
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Yacht Ilma",
+          "line": "Ritz-Carlton Yacht Collection",
+          "passengers": 448,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-11",
+      "ships": [
+        {
+          "name": "Norwegian Prima",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3215,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "SeaDream 2",
+          "line": "SeaDream Yacht Club",
+          "passengers": 110,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-12",
+      "ships": [
+        {
+          "name": "Jewel of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2501,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Marella Discovery",
+          "line": "Marella Cruises",
+          "passengers": 1830,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "20:00"
+        },
+        {
+          "name": "Azamara Journey",
+          "line": "Azamara",
+          "passengers": 710,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "22:00"
+        },
+        {
+          "name": "SeaDream 2",
+          "line": "SeaDream Yacht Club",
+          "passengers": 110,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-13",
+      "ships": [
+        {
+          "name": "Norwegian Pearl",
+          "line": "Norwegian Cruise Line",
+          "passengers": 2394,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Oceania Marina",
+          "line": "Oceania Cruises",
+          "passengers": 1250,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "19:00"
+        },
+        {
+          "name": "Marella Discovery",
+          "line": "Marella Cruises",
+          "passengers": 1830,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Yacht Ilma",
+          "line": "Ritz-Carlton Yacht Collection",
+          "passengers": 448,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "19:00"
+        },
+        {
+          "name": "Silver Shadow",
+          "line": "Silversea Cruises",
+          "passengers": 382,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "13:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-14",
+      "ships": [
+        {
+          "name": "Viking Sea",
+          "line": "Viking Ocean Cruises",
+          "passengers": 930,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "07:30",
+          "departure": "18:00"
+        },
+        {
+          "name": "SeaDream I",
+          "line": "SeaDream Yacht Club",
+          "passengers": 112,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Emerald Sakara",
+          "line": "Emerald Cruises",
+          "passengers": 100,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:30",
+          "departure": "23:59"
+        },
+        {
+          "name": "Norwegian Escape",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4248,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "11:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-15",
+      "ships": [
+        {
+          "name": "Harmony of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 6780,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "14:30"
+        },
+        {
+          "name": "Oceania Allura",
+          "line": "Oceania Cruises",
+          "passengers": 1200,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "19:00"
+        },
+        {
+          "name": "Silver Ray",
+          "line": "Silversea Cruises",
+          "passengers": 728,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-16",
+      "ships": [
+        {
+          "name": "Explora I",
+          "line": "Explora Journeys",
+          "passengers": 922,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Carnival Celebration",
+          "line": "Carnival Cruise Line",
+          "passengers": 5282,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "09:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Aqua",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3571,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "10:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Celebrity Beyond",
+          "line": "Celebrity Cruises",
+          "passengers": 3260,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "11:30",
+          "departure": "19:00"
+        },
+        {
+          "name": "Star of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 5600,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "12:30",
+          "departure": "20:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-17",
+      "ships": [
+        {
+          "name": "Carnival Venezia",
+          "line": "Carnival Cruise Line",
+          "passengers": 4090,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Nieuw Statendam",
+          "line": "Holland America Line",
+          "passengers": 2650,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Crystal Symphony",
+          "line": "Crystal Cruises",
+          "passengers": 922,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Independence of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 3634,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
         },
         {
           "name": "Rhapsody of the Seas",
@@ -1052,16 +2277,603 @@
       ]
     },
     {
-      "date": "2026-10-31",
+      "date": "2026-12-18",
       "ships": [
         {
-          "name": "Mein Schiff I",
-          "line": "TUI Cruises",
-          "passengers": 2534,
+          "name": "Brilliant Lady",
+          "line": "Virgin Voyages",
+          "passengers": 2860,
           "dock": "WICO",
           "rawDock": "WICO",
-          "arrival": "07:30",
-          "departure": "22:00"
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-19",
+      "ships": [
+        {
+          "name": "Norwegian Bliss",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4990,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4028,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "14:00"
+        },
+        {
+          "name": "Azamara Journey",
+          "line": "Azamara",
+          "passengers": 710,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Prima",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3215,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "SeaDream I",
+          "line": "SeaDream Yacht Club",
+          "passengers": 112,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-20",
+      "ships": [
+        {
+          "name": "Enchanted Princess",
+          "line": "Princess Cruises",
+          "passengers": 3660,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Rhapsody of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "SeaDream I",
+          "line": "SeaDream Yacht Club",
+          "passengers": 112,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Yacht Ilma",
+          "line": "Ritz-Carlton Yacht Collection",
+          "passengers": 448,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "09:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-21",
+      "ships": [
+        {
+          "name": "Rhapsody of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Emerald Sakara",
+          "line": "Emerald Cruises",
+          "passengers": 100,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:30",
+          "departure": "23:59"
+        },
+        {
+          "name": "Carnival Vista",
+          "line": "Carnival Cruise Line",
+          "passengers": 3936,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "09:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-22",
+      "ships": [
+        {
+          "name": "Seven Seas Grandeur",
+          "line": "Regent Seven Seas Cruises",
+          "passengers": 746,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Disney Treasure",
+          "line": "Disney Cruise Line",
+          "passengers": 4000,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "10:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Celebrity Apex",
+          "line": "Celebrity Cruises",
+          "passengers": 3405,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "11:30",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-23",
+      "ships": [
+        {
+          "name": "Carnival Magic",
+          "line": "Carnival Cruise Line",
+          "passengers": 3690,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Eurodam",
+          "line": "Holland America Line",
+          "passengers": 2104,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Icon of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 7600,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "14:30"
+        },
+        {
+          "name": "Crystal Symphony",
+          "line": "Crystal Cruises",
+          "passengers": 922,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "09:00",
+          "departure": "19:00"
+        },
+        {
+          "name": "Norwegian Aqua",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3571,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "10:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-24",
+      "ships": [
+        {
+          "name": "Celebrity Xcel",
+          "line": "Celebrity Cruises",
+          "passengers": 3260,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "MSC Meraviglia",
+          "line": "MSC Cruises",
+          "passengers": 4500,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "15:00"
+        },
+        {
+          "name": "Allure of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 5408,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Silver Spirit",
+          "line": "Silversea Cruises",
+          "passengers": 540,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-25",
+      "ships": [
+        {
+          "name": "Norwegian Prima",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3215,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Oceania Vista",
+          "line": "Oceania Cruises",
+          "passengers": 1200,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "15:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-26",
+      "ships": [
+        {
+          "name": "Crown Princess",
+          "line": "Princess Cruises",
+          "passengers": 3076,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "09:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Escape",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4248,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "11:00",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-27",
+      "ships": [
+        {
+          "name": "Emerald Sakara",
+          "line": "Emerald Cruises",
+          "passengers": 100,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Getaway",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4028,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Constellation",
+          "line": "Celebrity Cruises",
+          "passengers": 2158,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Explora III",
+          "line": "Explora Journeys",
+          "passengers": 926,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "21:00"
+        },
+        {
+          "name": "SeaDream I",
+          "line": "SeaDream Yacht Club",
+          "passengers": 112,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Utopia of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 5668,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "12:30",
+          "departure": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-28",
+      "ships": [
+        {
+          "name": "Norwegian Pearl",
+          "line": "Norwegian Cruise Line",
+          "passengers": 2394,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Crown Princess",
+          "line": "Princess Cruises",
+          "passengers": 3076,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "SeaDream 2",
+          "line": "SeaDream Yacht Club",
+          "passengers": 110,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Silver Nova",
+          "line": "Silversea Cruises",
+          "passengers": 728,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Silver Shadow",
+          "line": "Silversea Cruises",
+          "passengers": 382,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Emerald Sakara",
+          "line": "Emerald Cruises",
+          "passengers": 100,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:30",
+          "departure": "23:59"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-29",
+      "ships": [
+        {
+          "name": "Norwegian Bliss",
+          "line": "Norwegian Cruise Line",
+          "passengers": 4990,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Vision of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 2040,
+          "dock": "Unknown",
+          "rawDock": "St. Croix",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Royal Princess",
+          "line": "Princess Cruises",
+          "passengers": 3560,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "09:00",
+          "departure": "18:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-30",
+      "ships": [
+        {
+          "name": "Zuiderdam",
+          "line": "Holland America Line",
+          "passengers": 1916,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Rotterdam",
+          "line": "Holland America Line",
+          "passengers": 2668,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "08:00",
+          "departure": "15:00"
+        },
+        {
+          "name": "Silver Nova",
+          "line": "Silversea Cruises",
+          "passengers": 728,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Norwegian Aqua",
+          "line": "Norwegian Cruise Line",
+          "passengers": 3571,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "10:00",
+          "departure": "18:00"
+        },
+        {
+          "name": "Celebrity Xcel",
+          "line": "Celebrity Cruises",
+          "passengers": 3260,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "12:30",
+          "departure": "20:00"
+        },
+        {
+          "name": "Star of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 5600,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "12:30",
+          "departure": "20:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-31",
+      "ships": [
+        {
+          "name": "Carnival Magic",
+          "line": "Carnival Cruise Line",
+          "passengers": 3690,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Carnival Venezia",
+          "line": "Carnival Cruise Line",
+          "passengers": 4090,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Oceania Allura",
+          "line": "Oceania Cruises",
+          "passengers": 1200,
+          "dock": "WICO",
+          "rawDock": "WICO",
+          "arrival": "07:00",
+          "departure": "19:00"
+        },
+        {
+          "name": "Explora II",
+          "line": "Explora Journeys",
+          "passengers": 922,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "08:00",
+          "departure": "17:00"
+        },
+        {
+          "name": "Explora I",
+          "line": "Explora Journeys",
+          "passengers": 922,
+          "dock": "Unknown",
+          "rawDock": "Cruz Bay",
+          "arrival": "09:00",
+          "departure": "16:00"
+        },
+        {
+          "name": "Reflection",
+          "line": "Celebrity Cruises",
+          "passengers": 3046,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "11:30",
+          "departure": "19:00"
+        },
+        {
+          "name": "Oasis of the Seas",
+          "line": "Royal Caribbean International",
+          "passengers": 5408,
+          "dock": "CB",
+          "rawDock": "Crown Bay",
+          "arrival": "12:30",
+          "departure": "19:00"
         }
       ]
     }
