@@ -2,7 +2,7 @@ import sys, unittest, copy
 from pathlib import Path
 from datetime import date
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
-from update_official_calendar import select_links, validate_document
+from update_official_calendar import select_links, validate_document, scoped_vipa_links
 from official_fetch import CollectionBlocked
 from export_app_calendar import export_calendar
 import test_official_collection as fixtures
@@ -35,3 +35,8 @@ class HostedCalendarTests(unittest.TestCase):
         doc["issues"]=[{"kind":"monthly_total_mismatch","month":"2026-10"}]
         out=export_calendar([doc],{"schemaVersion":1,"records":[]},date(2026,10,1),date(2026,10,31))
         self.assertEqual(len(out["heldDays"]),31)
+
+    def test_vipa_geography_comes_from_heading_not_ambiguous_link_label(self):
+        html='<section><h2>Crown Bay, St. Thomas and St. John</h2><div><a href="/stt.pdf">Fiscal Year 2027</a></div></section><section><h2>St. Croix</h2><a href="/stx.pdf">Fiscal Year 2027</a></section>'
+        self.assertEqual([x['url'] for x in scoped_vipa_links(html)],['https://www.viport.com/stt.pdf'])
+        self.assertEqual(scoped_vipa_links('<a href="/unknown.pdf">Fiscal Year 2027</a>'),[])

@@ -34,6 +34,23 @@ def select_links(provider, links, today):
     if not 1<=len(selected)<=4: raise CollectionBlocked("Missing or ambiguous VIPA fiscal listings")
     return [(x,"vipa_fiscal") for x in selected]
 
+def scoped_vipa_links(html):
+    from bs4 import BeautifulSoup
+    from urllib.parse import urljoin
+    from official_fetch import validate_url
+    soup=BeautifulSoup(html,"html.parser"); found={}
+    for anchor in soup.find_all("a",href=True):
+        url=urljoin(PROVIDERS["vipa"]["listing"],anchor["href"])
+        if not urlsplit(url).path.lower().endswith(".pdf"): continue
+        try: validate_url("vipa",url)
+        except (CollectionBlocked,ValueError): continue
+        for parent in anchor.parents:
+            text=parent.get_text(" ",strip=True)
+            if re.search(r"St\.?\s*Croix",text,re.I): break
+            if re.search(r"Crown\s+Bay",text,re.I) and re.search(r"St\.?\s*Thomas",text,re.I):
+                found[url]={"url":url,"label":anchor.get_text(" ",strip=True)};break
+    return list(found.values())
+
 def validate_document(document):
     tolerated={"weekday_date_mismatch","time_window_unresolved","dock_island_unresolved",
                "vessel_missing","explicit_flag_requires_review","possible_strikethrough_requires_review",
@@ -77,7 +94,8 @@ def collect(work, state_path, today=None):
     try:
         for provider in ("wico","vipa"):
             listing=fetch(provider,PROVIDERS[provider]["listing"],provider+"-listing",pdf=False)
-            links=discover_pdfs(provider,Path(listing["path"]).read_text())
+            html=Path(listing["path"]).read_text()
+            links=scoped_vipa_links(html) if provider=="vipa" else discover_pdfs(provider,html)
             for i,(link,profile) in enumerate(select_links(provider,links,today)):
                 record=fetch(provider,link["url"],provider+"-schedule-"+str(i))
                 if provider=="vipa":
