@@ -48,7 +48,10 @@ def scoped_vipa_links(html):
             text=parent.get_text(" ",strip=True)
             if re.search(r"St\.?\s*Croix",text,re.I): break
             if re.search(r"Crown\s+Bay",text,re.I) and re.search(r"St\.?\s*Thomas",text,re.I):
-                found[url]={"url":url,"label":anchor.get_text(" ",strip=True)};break
+                label=anchor.get_text(" ",strip=True)
+                if url not in found or ("fiscal year" in label.lower() and "fiscal year" not in found[url]["label"].lower()):
+                    found[url]={"url":url,"label":label}
+                break
     return list(found.values())
 
 def validate_document(document):

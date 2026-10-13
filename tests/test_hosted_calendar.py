@@ -54,3 +54,9 @@ class HostedCalendarTests(unittest.TestCase):
                 with self.assertRaises(CollectionBlocked):collect(work,state,date(2026,10,12))
                 fetch.assert_not_called()
             self.assertEqual(previous.read_text(),'previous valid feed placeholder')
+
+    def test_duplicate_decorative_new_link_does_not_erase_year_label(self):
+        html='<section><h2>Crown Bay, St. Thomas</h2><a href="/stt.pdf">Fiscal Year 2027</a><a href="/stt.pdf">-</a><a href="/stt.pdf">New!</a></section>'
+        selected=select_links('vipa',scoped_vipa_links(html),date(2026,10,12))
+        self.assertEqual(len(selected),1)
+        self.assertEqual(selected[0][0]['label'],'Fiscal Year 2027')
