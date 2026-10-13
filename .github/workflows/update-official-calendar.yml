@@ -1,0 +1,47 @@
+name: Update Official Cruise Calendar
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: official-cruise-calendar
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install parser
+        run: pip install -r requirements.txt -r requirements-official.txt
+      - name: Test feed validation and source selection
+        run: python -m unittest discover -s tests -v
+      - name: Restore provider backoff state
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/official-state
+          key: official-state-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: official-state-
+      - name: Fetch and validate official listings
+        run: python scripts/update_official_calendar.py --work "$RUNNER_TEMP/official-work" --state "$RUNNER_TEMP/official-state/state.json"
+      - name: Publish only the validated derived feed
+        run: |
+          cp "$RUNNER_TEMP/official-work/official-cruise-calendar-v1.json" official-cruise-calendar-v1.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add official-cruise-calendar-v1.json
+          if git diff --staged --quiet; then exit 0; fi
+          git commit -m "chore: refresh official cruise calendar"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Preserve backoff metadata only
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/official-state
+          key: official-state-${{ github.run_id }}-${{ github.run_attempt }}

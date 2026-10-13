@@ -1,0 +1,19 @@
+{
+  "note": "Synthetic coordinate fixtures, manually authored. No official source text or PDFs.",
+  "wico_monthly": {"width":612,"height":792,"columns":[0,103,145,263,374,489],"heading":"October 2026 Original IANCH OANCH WICO AMNS STJ","rows":[
+    ["TUE 13","WICO","Synthetic Liner","Synthetic Origin","Synthetic Destination","08 00 - 18 00"],
+    ["THU 15","ST J","Synthetic Sail","Synthetic Origin","Synthetic Destination","08 00 - 18 00"],
+    ["MON 19","STJ","Synthetic Sail","Synthetic Origin","Synthetic Destination","08 00 - 18 00"],
+    ["TUE 20","WICO","Adventure of the Seas","Synthetic Origin","Synthetic Destination","08 00 - 18 00"]]},
+  "wico_fiscal": {"width":612,"height":792,"columns":[28,79,131,171,307,409,521],"heading":"September 14, 2026 Rev 4 10/2/2026 - 9/30/2027 IANCH OANCH WICO AMNS STJ","rows":[
+    ["13-Oct-26","TUE","WICO","Synthetic Liner","Synthetic Origin","Synthetic Destination","08 00 - 18 00"],
+    ["15-Oct-26","THU","STJ","Synthetic Sail","Synthetic Origin","Synthetic Destination","08 00 - 18 00"],
+    ["19-Oct-26","MON","STJ","Synthetic Sail","Synthetic Origin","Synthetic Destination","08 00 - 18 00"],
+    ["20-Oct-26","TUE","WICO","Adventure of the Seas","Synthetic Origin","Synthetic Destination","08 00 - 18 00"],
+    ["08-Nov-26","SUN","WICO","Synthetic November Liner","Synthetic Origin","Synthetic Destination","08 00 - 18 00"]]},
+  "vipa_fiscal": {"width":1224,"height":792,"columns":[41,139,250,332,424,496,673,749,999],"heading":"FISCAL YEAR 2027 OCTOBER 1, 2026 THROUGH SEPTEMBER 30, 2027","rows":[
+    ["13-Oct-2026","TUESDAY","AMNS","8:00 AM","6:00 PM","Synthetic VIPA Liner (SV)","Synthetic","Synthetic Origin","Synthetic Destination"],
+    ["20-Oct-2026","TUESDAY","AMNS","8:00 AM","6:00 PM","Adventure of the Seas (AD)","Synthetic","Synthetic Origin","Synthetic Destination"],
+    ["08-Nov-2026","SUNDAY","AMNS","8:00 AM","6:00 PM","Synthetic November VIPA (SN)","Synthetic","Synthetic Origin","Synthetic Destination"]],
+    "footers":["TOTAL PORT CALLS/SHIP DAYS FOR OCTOBER (02/02)","TOTAL PORT CALLS/SHIP DAYS FOR NOVEMBER (01/01)"]}
+}

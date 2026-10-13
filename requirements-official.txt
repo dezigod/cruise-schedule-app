@@ -1,0 +1,2 @@
+# Optional Stage 1 local PDF parsing. Does not enable collection or publishing.
+pdfplumber==0.11.9

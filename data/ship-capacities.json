@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "ship": "Norwegian Luna",
+      "value": 3565,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.ncl.com/cruise-ships/norwegian-luna",
+      "checkedAt": "2026-10-13T00:50:08.688049Z",
+      "notes": "Published capacity, not actual sailing occupancy or people ashore."
+    },
+    {
+      "ship": "Icon of the Seas",
+      "value": 5610,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:50:08.688049Z",
+      "notes": "Published capacity, not actual sailing occupancy or people ashore."
+    },
+    {
+      "ship": "Rhapsody of the Seas",
+      "value": 2040,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:50:08.688049Z",
+      "notes": "Published capacity, not actual sailing occupancy or people ashore."
+    },
+    {
+      "ship": "Harmony of the Seas",
+      "value": 5479,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:50:08.688049Z",
+      "notes": "Published capacity, not actual sailing occupancy or people ashore."
+    },
+    {
+      "ship": "Adventure of the Seas",
+      "value": 3114,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:50:08.688049Z",
+      "notes": "Published capacity, not actual sailing occupancy or people ashore."
+    },
+    {
+      "ship": "Carnival Vista",
+      "value": null,
+      "basis": "unknown",
+      "status": "conflicting",
+      "sourceURL": "https://www.carnival.com/cruise-ships/carnival-vista",
+      "checkedAt": "2026-10-13T00:50:08.688049Z",
+      "notes": "Consumer ship page says 3934 guest capacity; current newsroom fact sheet labels 4977 double occupancy. Not resolved by choosing one.",
+      "otherSourceURL": "https://www.carnival-news.com/ship/carnival-vista-fact-sheet-6896232"
+    },
+    {
+      "ship": "Allure of the Seas",
+      "value": 5718,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:52:36.340614Z",
+      "notes": "Operator-published approximate capacity; not actual occupancy."
+    },
+    {
+      "ship": "Grandeur of the Seas",
+      "value": 1992,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:52:36.340614Z",
+      "notes": "Operator-published approximate capacity; not actual occupancy."
+    },
+    {
+      "ship": "Hero of the Seas",
+      "value": 5654,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:52:36.340614Z",
+      "notes": "Operator-published approximate capacity; not actual occupancy."
+    },
+    {
+      "ship": "Independence of the Seas",
+      "value": 3858,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:52:36.340614Z",
+      "notes": "Operator-published approximate capacity; not actual occupancy."
+    },
+    {
+      "ship": "Jewel of the Seas",
+      "value": 2191,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:52:36.340614Z",
+      "notes": "Operator-published approximate capacity; not actual occupancy."
+    },
+    {
+      "ship": "Oasis of the Seas",
+      "value": 5602,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:52:36.340614Z",
+      "notes": "Operator-published approximate capacity; not actual occupancy."
+    },
+    {
+      "ship": "Odyssey of the Seas",
+      "value": 4198,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:52:36.340614Z",
+      "notes": "Operator-published approximate capacity; not actual occupancy."
+    },
+    {
+      "ship": "Radiance of the Seas",
+      "value": 2143,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:52:36.340614Z",
+      "notes": "Operator-published approximate capacity; not actual occupancy."
+    },
+    {
+      "ship": "Star of the Seas",
+      "value": 5610,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:52:36.340614Z",
+      "notes": "Operator-published approximate capacity; not actual occupancy."
+    },
+    {
+      "ship": "Utopia of the Seas",
+      "value": 5668,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:52:36.340614Z",
+      "notes": "Operator-published approximate capacity; not actual occupancy."
+    },
+    {
+      "ship": "Vision of the Seas",
+      "value": 2050,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
+      "checkedAt": "2026-10-13T00:52:36.340614Z",
+      "notes": "Operator-published approximate capacity; not actual occupancy."
+    }
+  ]
+}
