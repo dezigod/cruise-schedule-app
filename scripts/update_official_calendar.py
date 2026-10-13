@@ -1,7 +1,7 @@
 """Collect public official listings and export a conservative derived app feed.
 PDFs and parsing details stay in the ephemeral working directory, never in Git.
 """
-import argparse, calendar, json, re
+import argparse, calendar, json, re, time
 from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -55,6 +55,7 @@ def collect(work, state_path, today=None):
         last=state.get("lastSuccess")
         if last and (datetime.now(timezone.utc)-datetime.fromisoformat(last)).total_seconds()<INTERVAL-600:
             raise CollectionBlocked("Successful collection is already recent")
+    last_request={}
     def fetch(provider,url,identifier,pdf=True):
         cached=fetcher.cache['documents'].get(url)
         if cached and (datetime.now(timezone.utc)-datetime.fromisoformat(cached['checkedAt'])).total_seconds()<INTERVAL:
@@ -62,6 +63,9 @@ def collect(work, state_path, today=None):
             original=Path(cached['path'])
             if original.is_file() and hashlib.sha256(original.read_bytes()).hexdigest()==cached['sha256']:
                 return cached
+        delay=5-(time.monotonic()-last_request.get(provider,0))
+        if delay>0: time.sleep(delay)
+        last_request[provider]=time.monotonic()
         return fetcher.fetch(provider,url,identifier,pdf=pdf)
     documents=[]
     try:
@@ -96,6 +100,7 @@ def collect(work, state_path, today=None):
     except Exception:
         old=json.loads(state_path.read_text()) if state_path.exists() else {}
         save_json(state_path,{"providers":fetcher.cache["providers"],"lastSuccess":old.get("lastSuccess")})
+        print(json.dumps({"providerStatus":fetcher.cache["providers"]}),flush=True)
         raise
 
 def main():
