@@ -52,6 +52,12 @@ def collect(work, state_path, today=None):
     if state_path.exists():
         state=json.loads(state_path.read_text())
         fetcher.cache["providers"]=state.get("providers",{})
+        print(json.dumps({"providerStatus":fetcher.cache["providers"]}),flush=True)
+        for status in fetcher.cache["providers"].values():
+            if status.get("accessRefused"):
+                raise CollectionBlocked("Provider access refused; no requests made")
+            if status.get("nextAllowedAt") and datetime.now(timezone.utc)<datetime.fromisoformat(status["nextAllowedAt"]):
+                raise CollectionBlocked("Provider backoff is active; no requests made")
         last=state.get("lastSuccess")
         if last and (datetime.now(timezone.utc)-datetime.fromisoformat(last)).total_seconds()<INTERVAL-600:
             raise CollectionBlocked("Successful collection is already recent")
