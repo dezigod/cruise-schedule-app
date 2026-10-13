@@ -40,3 +40,17 @@ class HostedCalendarTests(unittest.TestCase):
         html='<section><h2>Crown Bay, St. Thomas and St. John</h2><div><a href="/stt.pdf">Fiscal Year 2027</a></div></section><section><h2>St. Croix</h2><a href="/stx.pdf">Fiscal Year 2027</a></section>'
         self.assertEqual([x['url'] for x in scoped_vipa_links(html)],['https://www.viport.com/stt.pdf'])
         self.assertEqual(scoped_vipa_links('<a href="/unknown.pdf">Fiscal Year 2027</a>'),[])
+
+    def test_saved_backoff_stops_before_any_network_and_keeps_previous_file(self):
+        import tempfile,json
+        from datetime import datetime,timedelta,timezone
+        from unittest.mock import patch
+        from update_official_calendar import collect
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);work=root/'work';work.mkdir()
+            previous=work/'official-cruise-calendar-v1.json';previous.write_text('previous valid feed placeholder')
+            state=root/'state.json';state.write_text(json.dumps({'providers':{'vipa':{'nextAllowedAt':(datetime.now(timezone.utc)+timedelta(hours=1)).isoformat(),'lastHTTPStatus':429}}}))
+            with patch('update_official_calendar.OfficialFetcher.fetch') as fetch:
+                with self.assertRaises(CollectionBlocked):collect(work,state,date(2026,10,12))
+                fetch.assert_not_called()
+            self.assertEqual(previous.read_text(),'previous valid feed placeholder')
