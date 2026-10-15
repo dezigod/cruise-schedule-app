@@ -1,7 +1,8 @@
 name: Update Official Cruise Calendar
 on:
   schedule:
-    - cron: "17 */6 * * *"
+    # Retry a due check hourly; the collector enforces six hours between successes.
+    - cron: "17 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
@@ -18,7 +19,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install parser
-        run: pip install -r requirements.txt -r requirements-official.txt
+        run: pip install -r requirements-official.txt
       - name: Test feed validation and source selection
         run: python -m unittest discover -s tests -v
       - name: Restore provider backoff state
@@ -28,8 +29,10 @@ jobs:
           key: official-state-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: official-state-
       - name: Fetch and validate official listings
+        id: collect
         run: python scripts/update_official_calendar.py --work "$RUNNER_TEMP/official-work" --state "$RUNNER_TEMP/official-state/state.json"
       - name: Publish only the validated derived feed
+        if: steps.collect.outputs.collected == 'true'
         run: |
           cp "$RUNNER_TEMP/official-work/official-cruise-calendar-v1.json" official-cruise-calendar-v1.json
           git config user.name "github-actions[bot]"

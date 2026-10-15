@@ -1,7 +1,7 @@
 """Collect public official listings and export a conservative derived app feed.
 PDFs and parsing details stay in the ephemeral working directory, never in Git.
 """
-import argparse, calendar, json, re, time
+import argparse, calendar, json, os, re, time
 from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -14,6 +14,9 @@ INTERVAL = 6 * 3600
 AUTHORIZATION = {"status":"owner_attested_not_provider_inspected",
     "automaticCollection":True, "collectionEnabled":True,
     "cadenceAuthorized":True, "checkIntervalSeconds":INTERVAL}
+
+class CollectionDeferred(CollectionBlocked):
+    """A valid recent collection needs no new requests or publication."""
 
 def select_links(provider, links, today):
     fiscal = today.year + (today.month >= 10)
@@ -79,8 +82,8 @@ def collect(work, state_path, today=None):
             if status.get("nextAllowedAt") and datetime.now(timezone.utc)<datetime.fromisoformat(status["nextAllowedAt"]):
                 raise CollectionBlocked("Provider backoff is active; no requests made")
         last=state.get("lastSuccess")
-        if last and (datetime.now(timezone.utc)-datetime.fromisoformat(last)).total_seconds()<INTERVAL-600:
-            raise CollectionBlocked("Successful collection is already recent")
+        if last and (datetime.now(timezone.utc)-datetime.fromisoformat(last)).total_seconds()<INTERVAL:
+            raise CollectionDeferred("Successful collection is already recent")
     last_request={}
     def fetch(provider,url,identifier,pdf=True):
         cached=fetcher.cache['documents'].get(url)
@@ -130,10 +133,20 @@ def collect(work, state_path, today=None):
         print(json.dumps({"providerStatus":fetcher.cache["providers"]}),flush=True)
         raise
 
-def main():
+def main(argv=None):
     p=argparse.ArgumentParser(); p.add_argument("--work",required=True);p.add_argument("--state",required=True)
-    args=p.parse_args(); state=Path(args.state);state.parent.mkdir(parents=True,exist_ok=True)
-    result=collect(args.work,state)
+    args=p.parse_args(argv); state=Path(args.state);state.parent.mkdir(parents=True,exist_ok=True)
+    try:
+        result=collect(args.work,state)
+    except CollectionDeferred as error:
+        print(json.dumps({"status":"deferred","reason":str(error),"published":False}))
+        if os.environ.get("GITHUB_OUTPUT"):
+            with open(os.environ["GITHUB_OUTPUT"],"a") as output:
+                output.write("collected=false\n")
+        return
     print(json.dumps({"documents":len(result["documents"]),"heldDates":len(result["heldDays"]),
                       "conflictDates":len(result["conflictDays"]),"status":"validated"}))
+    if os.environ.get("GITHUB_OUTPUT"):
+        with open(os.environ["GITHUB_OUTPUT"],"a") as output:
+            output.write("collected=true\n")
 if __name__=="__main__": main()
