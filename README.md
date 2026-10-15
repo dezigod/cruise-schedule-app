@@ -6,7 +6,8 @@ CrowdCast's official WICO/VIPA calendar and preserved legacy `schedule.json`.
 
 CrowdCast uses `official-cruise-calendar-v1.json` for official listings. The
 GitHub-hosted updater checks whether collection is due hourly at minute 17 UTC,
-and makes official-source requests only after six hours since its last success.
+and makes official-source requests only after six hours since its last success
+or collection attempt. Failed attempts do not advance source freshness.
 GitHub may delay or drop scheduled runs. No Mac is required. All workflows use
 standard Ubuntu runners in this public repository, which do not consume the
 account's private Actions-minute allowance.
@@ -83,7 +84,7 @@ https://raw.githubusercontent.com/<your-gh-username>/cruise-schedule-app/main/sc
 
 The separate `official-cruise-calendar-v1.json` feed contains unreviewed WICO/VIPA listings with provenance, source-check timestamps, missing capacities, conflict dates and held dates. It does not establish complete coverage, actual arrivals, actual crowds, or human-approved zero-call dates. The existing `schedule.json` feed is unchanged.
 
-`Update Official Cruise Calendar` runs on GitHub-hosted Ubuntu hourly at minute 17 UTC and supports manual dispatch. Its collector enforces a minimum of six hours between successful source collections; earlier attempts report `deferred` and skip publication without changing source timestamps or the published feed. Provider refusals, backoff and real collection errors still fail visibly. Hourly scheduling provides another opportunity after a delayed run without increasing the authorized source-collection rate. GitHub scheduling may be delayed. The job discovers the current WICO fiscal and monthly schedules and the current VIPA St. Thomas fiscal schedule from their official pages. Ambiguous revisions and structural parsing failures stop publication; monthly total discrepancies hold the entire affected month. Provider backoff metadata is cached. Raw PDFs and detailed parsing records stay in ephemeral runner storage and are not committed or uploaded as artifacts.
+`Update Official Cruise Calendar` runs on GitHub-hosted Ubuntu hourly at minute 17 UTC and supports manual dispatch. Its collector enforces a minimum of six hours between collection attempts, including partial failures; earlier attempts report `deferred` and skip publication without changing source timestamps or the published feed. Provider refusals, backoff and real collection errors still fail visibly. Hourly scheduling provides another opportunity after a delayed run without increasing the authorized source-collection rate. GitHub scheduling may be delayed. The job discovers the current WICO fiscal and monthly schedules and the current VIPA St. Thomas fiscal schedule from their official pages. Ambiguous revisions and structural parsing failures stop publication; monthly total discrepancies hold the entire affected month. Provider backoff metadata is cached. Raw PDFs and detailed parsing records stay in ephemeral runner storage and are not committed or uploaded as artifacts.
 
 The job publishes only after offline tests, source validation and export succeed. A failed job leaves the existing feed untouched; the app retains its last valid copy and labels source data stale after 12 hours. Downloading a feed does not reset the original source-check time. Ship capacities expire after 365 days and require new source validation. The calendar window ends at the current fiscal year's September 30; next-year discovery happens at the fiscal rollover and fails conservatively if a supported source is unavailable.
 

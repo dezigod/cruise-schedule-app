@@ -84,6 +84,9 @@ def collect(work, state_path, today=None):
         last=state.get("lastSuccess")
         if last and (datetime.now(timezone.utc)-datetime.fromisoformat(last)).total_seconds()<INTERVAL:
             raise CollectionDeferred("Successful collection is already recent")
+        attempt=state.get("lastAttempt")
+        if attempt and (datetime.now(timezone.utc)-datetime.fromisoformat(attempt)).total_seconds()<INTERVAL:
+            raise CollectionDeferred("Previous collection attempt is still within the authorized interval")
     last_request={}
     def fetch(provider,url,identifier,pdf=True):
         cached=fetcher.cache['documents'].get(url)
@@ -97,6 +100,11 @@ def collect(work, state_path, today=None):
         last_request[provider]=time.monotonic()
         return fetcher.fetch(provider,url,identifier,pdf=pdf)
     documents=[]
+    # A partial failure must not let the hourly scheduler increase source traffic.
+    attempted_at=datetime.now(timezone.utc).isoformat()
+    old=json.loads(state_path.read_text()) if state_path.exists() else {}
+    save_json(state_path,{"providers":fetcher.cache["providers"],
+                         "lastSuccess":old.get("lastSuccess"),"lastAttempt":attempted_at})
     try:
         for provider in ("wico","vipa"):
             listing=fetch(provider,PROVIDERS[provider]["listing"],provider+"-listing",pdf=False)
@@ -124,12 +132,14 @@ def collect(work, state_path, today=None):
         save_json(work/"official-cruise-calendar-v1.json",value)
         # Detailed parsing records remain local/ephemeral.
         save_json(work/"parsed-documents.json",documents)
-        state={"providers":fetcher.cache["providers"],"lastSuccess":datetime.now(timezone.utc).isoformat()}
+        state={"providers":fetcher.cache["providers"],"lastSuccess":datetime.now(timezone.utc).isoformat(),
+               "lastAttempt":attempted_at}
         save_json(state_path,state)
         return value
     except Exception:
         old=json.loads(state_path.read_text()) if state_path.exists() else {}
-        save_json(state_path,{"providers":fetcher.cache["providers"],"lastSuccess":old.get("lastSuccess")})
+        save_json(state_path,{"providers":fetcher.cache["providers"],"lastSuccess":old.get("lastSuccess"),
+                             "lastAttempt":attempted_at})
         print(json.dumps({"providerStatus":fetcher.cache["providers"]}),flush=True)
         raise
 

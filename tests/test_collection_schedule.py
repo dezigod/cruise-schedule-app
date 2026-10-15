@@ -70,6 +70,34 @@ class CollectionScheduleTests(unittest.TestCase):
             self.assertNotIsInstance(caught.exception, CollectionDeferred)
             fetch.assert_not_called()
 
+    def test_recent_failed_attempt_defers_without_claiming_a_new_success(self):
+        self.saved_state(INTERVAL * 2)
+        state=json.loads(self.state.read_text())
+        state["lastAttempt"]=(self.now-timedelta(hours=1)).isoformat()
+        self.state.write_text(json.dumps(state))
+        before=self.state.read_bytes()
+        with patch("update_official_calendar.datetime", wraps=datetime) as clock, \
+             patch("update_official_calendar.OfficialFetcher.fetch") as fetch:
+            clock.now.return_value=self.now
+            with self.assertRaisesRegex(CollectionDeferred,"Previous collection attempt"):
+                collect(self.work,self.state,date(2026,10,15))
+            fetch.assert_not_called()
+        self.assertEqual(self.state.read_bytes(),before)
+
+    def test_real_failure_records_attempt_without_advancing_success(self):
+        self.saved_state(INTERVAL * 2)
+        last_success=json.loads(self.state.read_text())["lastSuccess"]
+        with patch("update_official_calendar.datetime", wraps=datetime) as clock, \
+             patch("update_official_calendar.OfficialFetcher.fetch",
+                   side_effect=CollectionBlocked("Offline network failure")):
+            clock.now.return_value=self.now
+            with self.assertRaisesRegex(CollectionBlocked,"Offline network failure"):
+                collect(self.work,self.state,date(2026,10,15))
+        state=json.loads(self.state.read_text())
+        self.assertEqual(state["lastSuccess"],last_success)
+        self.assertEqual(state["lastAttempt"],self.now.isoformat())
+        self.assertEqual(self.previous.read_text(),"previous validated feed")
+
     def test_provider_backoff_still_fails_without_network(self):
         self.saved_state(INTERVAL + 1, {"vipa": {
             "nextAllowedAt": (self.now + timedelta(hours=1)).isoformat(),
