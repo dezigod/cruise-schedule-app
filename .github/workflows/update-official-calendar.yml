@@ -1,8 +1,9 @@
 name: Update Official Cruise Calendar
 on:
-  schedule:
-    # Retry a due check hourly; the collector enforces six hours between successes.
-    - cron: "17 * * * *"
+  # Automatic updates paused at user request, 2026-10-21.
+  # schedule:
+#     # Retry a due check hourly; the collector enforces six hours between successes.
+#     - cron: "17 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
