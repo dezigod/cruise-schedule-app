@@ -78,7 +78,9 @@ def main():
     if args.repository != expected:
         parser.error("Unexpected repository")
     try:
-        request = urllib.request.Request(CONFIG[args.kind][0], headers={"User-Agent": "CrowdCast-feed-health", "Cache-Control": "no-cache"})
+        # Bound intermediary caching without contacting provider sites.
+        url = CONFIG[args.kind][0] + "?health_check=" + str(int(datetime.now(timezone.utc).timestamp()) // 300)
+        request = urllib.request.Request(url, headers={"User-Agent": "CrowdCast-feed-health", "Cache-Control": "no-cache"})
         with urllib.request.urlopen(request, timeout=30) as response:
             body = response.read(3_000_001)
         if len(body) > 3_000_000:
