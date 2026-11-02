@@ -114,7 +114,7 @@ def export_calendar(documents, catalog, start, end, now=None):
                 'conflictingVisits':sum(v['visitStatus']=='conflicting' for v in visits),
                 'statusCounts':{status:sum(v['visitStatus']==status for v in visits)
                                 for status in sorted({v['visitStatus'] for v in visits})}}}
-    if len(json.dumps(result).encode()) > 3_000_000:
+    if len(notes) > 100 or len((json.dumps(result, indent=2) + '\n').encode()) > 3_000_000:
         raise ValueError('Export exceeds existing app transport limit')
     return result
 
