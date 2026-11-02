@@ -1,0 +1,26 @@
+name: Monitor delivered feed
+on:
+  schedule:
+    - cron: '9,24,39,54 * * * *'
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Update Official Cruise Calendar"]
+    types: [completed]
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: feed-freshness-monitor
+  cancel-in-progress: false
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check published source timestamps and report incident
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/check_feed_health.py cruise --repository "${{ github.repository }}"

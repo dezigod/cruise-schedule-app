@@ -68,7 +68,11 @@ def validate_document(document):
     if not any(c["island"]=="stThomas" for c in document["calls"]):
         raise CollectionBlocked("No St. Thomas calls")
 
-def collect(work, state_path, today=None):
+def collect(work, state_path, today=None, persist=None):
+    def save_state(value):
+        if persist is not None:
+            persist(value)  # Remote reservation must succeed before source access.
+        save_json(state_path, value)
     today=today or datetime.now(timezone.utc).astimezone(__import__("zoneinfo").ZoneInfo("America/St_Thomas")).date()
     work=private_directory(work)
     fetcher=OfficialFetcher(work/"acquisition",AUTHORIZATION)
@@ -103,7 +107,7 @@ def collect(work, state_path, today=None):
     # A partial failure must not let the hourly scheduler increase source traffic.
     attempted_at=datetime.now(timezone.utc).isoformat()
     old=json.loads(state_path.read_text()) if state_path.exists() else {}
-    save_json(state_path,{"providers":fetcher.cache["providers"],
+    save_state({"providers":fetcher.cache["providers"],
                          "lastSuccess":old.get("lastSuccess"),"lastAttempt":attempted_at})
     try:
         for provider in ("wico","vipa"):
@@ -134,20 +138,26 @@ def collect(work, state_path, today=None):
         save_json(work/"parsed-documents.json",documents)
         state={"providers":fetcher.cache["providers"],"lastSuccess":datetime.now(timezone.utc).isoformat(),
                "lastAttempt":attempted_at}
-        save_json(state_path,state)
+        save_state(state)
         return value
     except Exception:
         old=json.loads(state_path.read_text()) if state_path.exists() else {}
-        save_json(state_path,{"providers":fetcher.cache["providers"],"lastSuccess":old.get("lastSuccess"),
+        save_state({"providers":fetcher.cache["providers"],"lastSuccess":old.get("lastSuccess"),
                              "lastAttempt":attempted_at})
         print(json.dumps({"providerStatus":fetcher.cache["providers"]}),flush=True)
         raise
 
 def main(argv=None):
     p=argparse.ArgumentParser(); p.add_argument("--work",required=True);p.add_argument("--state",required=True)
+    p.add_argument("--github-state", action="store_true")
     args=p.parse_args(argv); state=Path(args.state);state.parent.mkdir(parents=True,exist_ok=True)
+    remote = None
+    if args.github_state:
+        from github_state import GitHubState
+        remote = GitHubState()
+        save_json(state, remote.load())
     try:
-        result=collect(args.work,state)
+        result=collect(args.work,state,persist=remote.save if remote else None)
     except CollectionDeferred as error:
         print(json.dumps({"status":"deferred","reason":str(error),"published":False}))
         if os.environ.get("GITHUB_OUTPUT"):

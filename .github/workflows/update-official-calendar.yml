@@ -1,9 +1,7 @@
 name: Update Official Cruise Calendar
 on:
-  # Automatic updates paused at user request, 2026-10-21.
-  # schedule:
-#     # Retry a due check hourly; the collector enforces six hours between successes.
-#     - cron: "17 * * * *"
+  schedule:
+    - cron: "17 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
@@ -23,15 +21,11 @@ jobs:
         run: pip install -r requirements-official.txt
       - name: Test feed validation and source selection
         run: python -m unittest discover -s tests -v
-      - name: Restore provider backoff state
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ runner.temp }}/official-state
-          key: official-state-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: official-state-
       - name: Fetch and validate official listings
         id: collect
-        run: python scripts/update_official_calendar.py --work "$RUNNER_TEMP/official-work" --state "$RUNNER_TEMP/official-state/state.json"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/update_official_calendar.py --work "$RUNNER_TEMP/official-work" --state "$RUNNER_TEMP/official-state/state.json" --github-state
       - name: Publish only the validated derived feed
         if: steps.collect.outputs.collected == 'true'
         run: |
@@ -43,9 +37,3 @@ jobs:
           git commit -m "chore: refresh official cruise calendar"
           git pull --rebase origin main
           git push origin HEAD:main
-      - name: Preserve backoff metadata only
-        if: always()
-        uses: actions/cache/save@v4
-        with:
-          path: ${{ runner.temp }}/official-state
-          key: official-state-${{ github.run_id }}-${{ github.run_attempt }}
