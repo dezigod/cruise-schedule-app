@@ -9,6 +9,7 @@ import pdfplumber
 from official_fetch import OfficialFetcher, CollectionBlocked, PROVIDERS, discover_pdfs, private_directory, save_json
 from official_parse import parse_pdf
 from export_app_calendar import export_calendar
+from check_feed_health import document_roles
 
 INTERVAL = 6 * 3600
 AUTHORIZATION = {"status":"owner_attested_not_provider_inspected",
@@ -17,6 +18,10 @@ AUTHORIZATION = {"status":"owner_attested_not_provider_inspected",
 
 class CollectionDeferred(CollectionBlocked):
     """A valid recent collection needs no new requests or publication."""
+
+
+class MonthlyScheduleMissing(CollectionBlocked):
+    """An already-delivered monthly schedule has dropped out of its listing."""
 
 def select_links(provider, links, today):
     fiscal = today.year + (today.month >= 10)
@@ -68,7 +73,14 @@ def validate_document(document):
     if not any(c["island"]=="stThomas" for c in document["calls"]):
         raise CollectionBlocked("No St. Thomas calls")
 
-def collect(work, state_path, today=None, persist=None):
+def guard_monthly_document(previous, candidate, today):
+    monthly = "WICO current monthly schedule"
+    if (monthly in document_roles(previous["documents"], today)
+            and monthly not in document_roles(candidate["documents"], today)):
+        raise MonthlyScheduleMissing("WICO current monthly schedule disappeared; previous calendar retained")
+
+
+def collect(work, state_path, today=None, persist=None, stage=None):
     def save_state(value):
         if persist is not None:
             persist(value)  # Remote reservation must succeed before source access.
@@ -78,6 +90,8 @@ def collect(work, state_path, today=None, persist=None):
     fetcher=OfficialFetcher(work/"acquisition",AUTHORIZATION)
     if state_path.exists():
         state=json.loads(state_path.read_text())
+        if state.get("pendingDelivery"):
+            raise CollectionBlocked("Deliver the validated calendar before collecting again")
         fetcher.cache["providers"]=state.get("providers",{})
         print(json.dumps({"providerStatus":fetcher.cache["providers"]}),flush=True)
         for status in fetcher.cache["providers"].values():
@@ -107,8 +121,11 @@ def collect(work, state_path, today=None, persist=None):
     # A partial failure must not let the hourly scheduler increase source traffic.
     attempted_at=datetime.now(timezone.utc).isoformat()
     old=json.loads(state_path.read_text()) if state_path.exists() else {}
-    save_state({"providers":fetcher.cache["providers"],
-                         "lastSuccess":old.get("lastSuccess"),"lastAttempt":attempted_at})
+    reservation = {"providers":fetcher.cache["providers"], "lastSuccess":old.get("lastSuccess"),
+                   "lastAttempt":attempted_at}
+    if "lastFailure" in old:
+        reservation["lastFailure"] = old["lastFailure"]
+    save_state(reservation)
     try:
         for provider in ("wico","vipa"):
             listing=fetch(provider,PROVIDERS[provider]["listing"],provider+"-listing",pdf=False)
@@ -131,21 +148,30 @@ def collect(work, state_path, today=None, persist=None):
         catalog=json.loads((Path(__file__).resolve().parents[1]/"data/ship-capacities.json").read_text())
         value=export_calendar(documents,catalog,today,end)
         value["delivery"]="hosted"
+        if stage:
+            from github_state import FEED
+            previous = (Path(__file__).resolve().parents[1] / FEED).read_bytes()
+            guard_monthly_document(json.loads(previous), value, today)
         if not json.loads(__import__("base64").b64decode(value["payload"]))["days"]:
             raise CollectionBlocked("Empty output")
         save_json(work/"official-cruise-calendar-v1.json",value)
         # Detailed parsing records remain local/ephemeral.
         save_json(work/"parsed-documents.json",documents)
-        state={"providers":fetcher.cache["providers"],"lastSuccess":datetime.now(timezone.utc).isoformat(),
-               "lastAttempt":attempted_at}
-        save_state(state)
-        return value
-    except Exception:
-        old=json.loads(state_path.read_text()) if state_path.exists() else {}
-        save_state({"providers":fetcher.cache["providers"],"lastSuccess":old.get("lastSuccess"),
-                             "lastAttempt":attempted_at})
+    except Exception as error:
+        failure = "monthly_missing" if isinstance(error, MonthlyScheduleMissing) else "collection_failed"
+        save_state(dict(reservation, providers=fetcher.cache["providers"], lastFailure=failure))
         print(json.dumps({"providerStatus":fetcher.cache["providers"]}),flush=True)
         raise
+    state={"providers":fetcher.cache["providers"],"lastSuccess":datetime.now(timezone.utc).isoformat(),
+           "lastAttempt":attempted_at}
+    if stage:
+        # A delivery error cannot undo a source reservation or masquerade as a
+        # failed source download. State and the validated output travel together.
+        from github_state import blob_id
+        save_json(state_path, stage(state, value, blob_id(previous)))
+    else:
+        save_state(state)
+    return value
 
 def main(argv=None):
     p=argparse.ArgumentParser(); p.add_argument("--work",required=True);p.add_argument("--state",required=True)
@@ -155,9 +181,17 @@ def main(argv=None):
     if args.github_state:
         from github_state import GitHubState
         remote = GitHubState()
-        save_json(state, remote.load())
+        previous = remote.load()
+        save_json(state, previous)
+        if previous.get("pendingDelivery"):
+            print(json.dumps({"status":"delivery_recovery", "delivery":remote.deliver(previous),
+                              "newSourceRequests":False}))
+            if os.environ.get("GITHUB_OUTPUT"):
+                with open(os.environ["GITHUB_OUTPUT"],"a") as output:
+                    output.write("collected=false\n")
+            return
     try:
-        result=collect(args.work,state,persist=remote.save if remote else None)
+        result=collect(args.work,state,persist=remote.save if remote else None,stage=remote.stage if remote else None)
     except CollectionDeferred as error:
         print(json.dumps({"status":"deferred","reason":str(error),"published":False}))
         if os.environ.get("GITHUB_OUTPUT"):

@@ -16,6 +16,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -30,12 +32,6 @@ jobs:
         run: python scripts/update_official_calendar.py --work "$RUNNER_TEMP/official-work" --state "$RUNNER_TEMP/official-state/state.json" --github-state
       - name: Publish only the validated derived feed
         if: steps.collect.outputs.collected == 'true'
-        run: |
-          cp "$RUNNER_TEMP/official-work/official-cruise-calendar-v1.json" official-cruise-calendar-v1.json
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add official-cruise-calendar-v1.json
-          if git diff --staged --quiet; then exit 0; fi
-          git commit -m "chore: refresh official cruise calendar"
-          git pull --rebase origin main
-          git push origin HEAD:main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/github_state.py

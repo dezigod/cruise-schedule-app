@@ -216,8 +216,17 @@ class FetchTests(unittest.TestCase):
         with self.assertRaises(CollectionBlocked):self.fetch(pdf=False)
         self.assertTrue(self.fetcher.cache['providers']['wico']['accessRefused'])
     def test_contact_form_captcha_library_is_not_an_access_refusal(self):
+        self.response(body=b'%PDF-mentions cf-chl as document text')
+        self.assertEqual(self.fetch()['status'], 200)
         self.response(body=b'<html><title>Published schedules</title><script src="captcha-contact-form.js"></script><a href="source.pdf">Schedule</a></html>',headers={'Content-Type':'text/html'})
         self.assertEqual(self.fetch(pdf=False)['status'],200); self.assertFalse(self.fetcher.cache['providers']['wico'].get('accessRefused',False))
+    def test_html_challenge_instead_of_pdf_stays_refused_on_later_checks(self):
+        self.response(body=b'<html><title>Access denied</title></html>', headers={'Content-Type':'text/html'})
+        with self.assertRaises(CollectionBlocked): self.fetch()
+        self.clock += timedelta(days=2)
+        with self.assertRaises(CollectionBlocked): self.fetch()
+        self.opener.open.assert_called_once()
+        self.assertTrue(self.fetcher.cache['providers']['wico']['accessRefused'])
     def test_server_http_date_backoff_is_not_shortened(self):
         self.assertEqual(retry_deadline('Tue, 13 Oct 2026 20:00:00 GMT',NOW,1),NOW+timedelta(days=1))
     def test_raw_outputs_cannot_be_inside_git_checkout(self):

@@ -96,6 +96,7 @@ class CollectionScheduleTests(unittest.TestCase):
         state=json.loads(self.state.read_text())
         self.assertEqual(state["lastSuccess"],last_success)
         self.assertEqual(state["lastAttempt"],self.now.isoformat())
+        self.assertEqual(state["lastFailure"], "collection_failed")
         self.assertEqual(self.previous.read_text(),"previous validated feed")
 
     def test_provider_backoff_still_fails_without_network(self):

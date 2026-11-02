@@ -137,7 +137,7 @@ class OfficialFetcher:
                 body = response.read(MAX_BYTES + 1)
                 # Ordinary published sites may load captcha libraries for contact forms.
                 # Only explicit access/interstitial markers stop collection.
-                if not pdf and re.search(rb'(cf[-_]chl|/cdn-cgi/challenge-platform|id=[\"\x27]challenge-form|<title[^>]*>[^<]*(?:access denied|just a moment|captcha|verify.*human))', body, re.I):
+                if (not pdf or not body.startswith(b"%PDF-")) and re.search(rb'(cf[-_]chl|/cdn-cgi/challenge-platform|id=[\"\x27]challenge-form|<title[^>]*>[^<]*(?:access denied|just a moment|captcha|verify.*human))', body, re.I):
                     self.cache['providers'][provider] = {'accessRefused':True, 'lastHTTPStatus':200}
                     save_json(self.cache_path, self.cache)
                     raise CollectionBlocked('Access challenge detected; human resolution required')
