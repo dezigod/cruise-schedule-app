@@ -5,7 +5,7 @@ CrowdCast's official WICO/VIPA calendar and preserved legacy `schedule.json`.
 ## Active automatic delivery
 
 CrowdCast uses `official-cruise-calendar-v1.json` for official listings. The
-GitHub-hosted updater checks whether collection is due hourly at minute 17 UTC,
+GitHub-hosted updater checks whether collection is due every 15 minutes at minutes 7, 22, 37 and 52 UTC,
 and makes official-source requests only after six hours since its last success
 or collection attempt. Failed attempts do not advance source freshness.
 GitHub may delay or drop scheduled runs. No Mac is required. All workflows use
@@ -84,7 +84,7 @@ https://raw.githubusercontent.com/<your-gh-username>/cruise-schedule-app/main/sc
 
 The separate `official-cruise-calendar-v1.json` feed contains unreviewed WICO/VIPA listings with provenance, source-check timestamps, missing capacities, conflict dates and held dates. It does not establish complete coverage, actual arrivals, actual crowds, or human-approved zero-call dates. The existing `schedule.json` feed is unchanged.
 
-`Update Official Cruise Calendar` runs on GitHub-hosted Ubuntu hourly at minute 17 UTC and supports manual dispatch. Its collector enforces a minimum of six hours between collection attempts, including partial failures; earlier attempts report `deferred` and skip publication without changing source timestamps or the published feed. Provider refusals, backoff and real collection errors still fail visibly. Hourly scheduling provides another opportunity after a delayed run without increasing the authorized source-collection rate. GitHub scheduling may be delayed. The job discovers the current WICO fiscal and monthly schedules and the current VIPA St. Thomas fiscal schedule from their official pages. Ambiguous revisions and structural parsing failures stop publication; monthly total discrepancies hold the entire affected month. Provider backoff metadata is cached. Raw PDFs and detailed parsing records stay in ephemeral runner storage and are not committed or uploaded as artifacts.
+`Update Official Cruise Calendar` runs on GitHub-hosted Ubuntu every 15 minutes at minutes 7, 22, 37 and 52 UTC and supports manual dispatch. Its collector enforces a minimum of six hours between collection attempts, including partial failures; earlier attempts report `deferred` and skip publication without changing source timestamps or the published feed. Provider refusals, backoff and real collection errors still fail visibly. Hourly scheduling provides another opportunity after a delayed run without increasing the authorized source-collection rate. GitHub scheduling may be delayed. The job discovers the current WICO fiscal and monthly schedules and the current VIPA St. Thomas fiscal schedule from their official pages. Ambiguous revisions and structural parsing failures stop publication; monthly total discrepancies hold the entire affected month. Provider backoff metadata is cached. Raw PDFs and detailed parsing records stay in ephemeral runner storage and are not committed or uploaded as artifacts.
 
 The job publishes only after offline tests, source validation and export succeed. A failed job leaves the existing feed untouched; the app retains its last valid copy and labels source data stale after 12 hours. Downloading a feed does not reset the original source-check time. Ship capacities expire after 365 days and require new source validation. The calendar window ends at the current fiscal year's September 30; next-year discovery happens at the fiscal rollover and fails conservatively if a supported source is unavailable.
 
@@ -119,3 +119,14 @@ state fails closed, and no disposable Actions cache is used for this state.
 The initial state was migrated from the latest verified published source
 checks and reviewed successful-run provider status. Never delete this branch
 to bypass a refusal. Raw PDFs remain temporary and private.
+
+## Native schedule investigation — November 2, 2026
+
+The workflow was active on main, Actions enabled, and its associated account
+active, but no native scheduled events appeared after resumption. Manual
+collection and publication succeeded. GitHub reported Actions operational.
+These observations isolate the missing event to scheduler delivery; they do
+not establish GitHub's internal cause. The cron was changed to four off-hour
+checks per hour (7, 22, 37, 52) by the active repository owner. The durable
+six-hour collection interval and provider backoff remain authoritative.
+A native event=schedule run is required before claiming recurrence verified.

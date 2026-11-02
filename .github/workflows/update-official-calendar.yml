@@ -1,7 +1,9 @@
 name: Update Official Cruise Calendar
 on:
   schedule:
-    - cron: "17 * * * *"
+    # Retry scheduling away from the top of the hour. Source traffic stays
+    # limited by the durable six-hour collection reservation.
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
