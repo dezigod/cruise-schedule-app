@@ -47,6 +47,9 @@ def canonical_vessel(value, provider):
     if provider == "vipa":
         suffix = re.search(r"\s*\(([A-Z0-9]{1,3})\)$", text)
         if suffix: code = suffix.group(1); text = text[:suffix.start()].strip()
+    # Explicit trailing schedule status is not part of the vessel identity.
+    # Keep the untouched original name in the parsed source record.
+    text = re.sub(r"\s+\(?(?:CANCELLED|CANCELED|TENTATIVE|RESCHEDULED)\)?$", "", text, flags=re.I)
     key = " ".join(text.casefold().split())
     # Exact spelling/number variants only. Raw PDF names remain in provenance.
     # Operator names: ncl.com/cruise-ships/norwegian-getaway,
@@ -55,6 +58,18 @@ def canonical_vessel(value, provider):
                "sea dream i": "seadream i", "sea dream 1": "seadream i",
                "sea dream ii": "seadream ii", "sea dream 2": "seadream ii", "seadream 2": "seadream ii"}
     return aliases.get(key, key), code
+
+def source_visit_status(raw):
+    text = raw.upper()
+    if re.search(r"\b(?:NOT|NO)\s+(?:CANCELLED|CANCELED|CANCELLATION|TENTATIVE|RESCHEDULED)\b", text):
+        return "needsReview"
+    matches = [status for status, pattern in [
+        ("sourceCancelled", r"\b(?:CANCELLED|CANCELED|CANCELLATION)\b"),
+        ("sourceRescheduled", r"\bRESCHEDULED\b"),
+        ("sourceTentative", r"\b(?:TENTATIVE|TBD|TBA)\b")]
+        if re.search(pattern, text)]
+    return matches[0] if len(matches) == 1 else "needsReview" if matches else "listed"
+
 
 def grouped_rows(words):
     rows = []
@@ -182,6 +197,7 @@ def parse_pdf(path, acquisition, profile):
                              "rawText":raw,"rawColumns":cols,"dateInheritedFrom":None if supplied_day else inherited_origin}
                 call = {"localDate":local_day.isoformat() if local_day else None,"island":island,"dock":dock,"rawDock":berth,"dockCode":dock_code,"portScope":scope,
                         "originalVesselName":vessel,"canonicalVessel":identity,"sourceVesselCode":vessel_code,"arrival":arrival,"departure":departure,
+                        "visitStatus":source_visit_status(raw),
                         "guestCapacity":None,"capacityMeaning":"not supplied by these schedule columns; not attendance","flags":flags,
                         "trafficKind":"boat_or_charter_requires_review" if re.search(r'\b(BOAT|CHARTER|YACHT)\b',raw,re.I) else "cruise_schedule_row_not_independently_classified",
                         "sourceAuthority":provider,"sourceURL":acquisition["url"],"provenance":reference,"reviewState":"candidate"}

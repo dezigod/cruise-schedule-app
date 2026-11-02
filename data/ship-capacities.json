@@ -154,6 +154,78 @@
       "sourceURL": "https://www.royalcaribbean.com/guides/ships-by-age",
       "checkedAt": "2026-10-13T00:52:36.340614Z",
       "notes": "Operator-published approximate capacity; not actual occupancy."
+    },
+    {
+      "ship": "Norwegian Aqua",
+      "value": 3565,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.ncl.com/cruise-ships/norwegian-aqua",
+      "checkedAt": "2026-11-02T20:02:45.731707+00:00",
+      "notes": "Operator explicitly identifies double occupancy. Published capacity, not actual occupancy or people ashore."
+    },
+    {
+      "ship": "Norwegian Prima",
+      "value": 3195,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.ncl.com/cruise-ships/norwegian-prima",
+      "checkedAt": "2026-11-02T20:02:45.731707+00:00",
+      "notes": "Operator explicitly identifies double occupancy. Published capacity, not actual occupancy or people ashore."
+    },
+    {
+      "ship": "Norwegian Escape",
+      "value": 4218,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.ncl.com/es/es/cruise-ships/norwegian-escape",
+      "checkedAt": "2026-11-02T20:02:45.731707+00:00",
+      "notes": "Operator explicitly identifies double occupancy. Published capacity, not actual occupancy or people ashore."
+    },
+    {
+      "ship": "Norwegian Pearl",
+      "value": 2344,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.ncl.com/cruise-ships/norwegian-pearl",
+      "checkedAt": "2026-11-02T20:02:45.731707+00:00",
+      "notes": "Operator explicitly identifies double occupancy. Published capacity, not actual occupancy or people ashore."
+    },
+    {
+      "ship": "Norwegian Getaway",
+      "value": 3903,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.ncl.com/cruise-ships/norwegian-getaway",
+      "checkedAt": "2026-11-02T20:02:45.731707+00:00",
+      "notes": "Operator explicitly identifies double occupancy. Published capacity, not actual occupancy or people ashore."
+    },
+    {
+      "ship": "Celebrity Beyond",
+      "value": 3260,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.celebritycruises.com/cruise-ships/celebrity-beyond",
+      "checkedAt": "2026-11-02T20:02:45.731707+00:00",
+      "notes": "Operator explicitly identifies double occupancy. Published capacity, not actual occupancy or people ashore."
+    },
+    {
+      "ship": "Celebrity Apex",
+      "value": 2910,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.celebritycruises.com/cruise-ships/celebrity-apex",
+      "checkedAt": "2026-11-02T20:02:45.731707+00:00",
+      "notes": "Operator explicitly identifies double occupancy. Published capacity, not actual occupancy or people ashore."
+    },
+    {
+      "ship": "Norwegian Aura",
+      "value": 3840,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.nclhltd.com/news-media/press-releases/detail/758/norwegian-cruise-line-opens-for-sale-its-largest-and-most",
+      "checkedAt": "2026-11-02T20:02:45.731707+00:00",
+      "notes": "Operator explicitly identifies double occupancy. Published capacity, not actual occupancy or people ashore."
     }
   ]
 }

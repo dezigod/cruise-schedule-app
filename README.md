@@ -130,3 +130,35 @@ not establish GitHub's internal cause. The cron was changed to four off-hour
 checks per hour (7, 22, 37, 52) by the active repository owner. The durable
 six-hour collection interval and provider backoff remain authoritative.
 A native event=schedule run is required before claiming recurrence verified.
+
+## Visit quality and capacity enrichment — November 2, 2026
+
+The feed now merges identical vessel/date/berth/time/status rows, retaining every
+source candidate in top-level `visits`. Different Crown Bay berths, different
+ports, and planned-time discrepancies remain explicit conflicts; source majority
+is not approval. `visits[].conflictReasons` distinguishes these cases, and
+`reviewFlags` includes monthly-total discrepancies. No source discrepancy is
+silently corrected and no complete-day coverage is generated.
+
+Visits carry a source-derived status: listed, sourceCancelled, sourceTentative,
+sourceRescheduled, needsReview or conflicting. Source status does not verify
+actual arrival. Cancellation/tentative/rescheduled rows stay in `visits` and
+heldDays but are withheld from legacy active `ships` arrays; disagreements
+between a listed and status-bearing variant remain blocked in older clients.
+
+`guestCapacity` and `capacityMeaning` explicitly describe double-occupancy
+capacity. Legacy `passengers` is retained with the same value for compatibility.
+Only sourced, unexpired double-occupancy values are usable. Operator evidence
+is linked in each row's existing `listingDetails` (basis/source/check time);
+source document checks and revision metadata are also supplied when known.
+
+The current review adds eight explicitly sourced operator records. Celebrity
+Constellation/Eclipse pages with an unspecified occupancy basis, missing Xcel
+basis evidence and the pre-existing disputed Carnival Vista capacity remain
+unresolved. No capacity is inferred from sister ships or nominal cabin counts.
+
+The enriched publication reuses the last verified source rows and matching
+local originals. It preserves the original source-check timestamps and does not
+contact providers or advance collection state. Subsequent authorized collection
+uses the same enriched exporter. Raw source PDFs remain outside the repo.
+The final serialized feed is bounded to the existing iPhone 3 MB transport cap.
