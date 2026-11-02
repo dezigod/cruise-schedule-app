@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: '9,24,39,54 * * * *'
   workflow_dispatch:
+    inputs:
+      verify_alerts:
+        description: 'Send and close a clearly labeled test alert for the owner'
+        type: boolean
+        default: false
   workflow_run:
     workflows: ["Update Official Cruise Calendar"]
     types: [completed]
@@ -24,3 +29,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/check_feed_health.py cruise --repository "${{ github.repository }}"
+      - name: Verify owner alert and recovery permissions
+        if: always() && github.event_name == 'workflow_dispatch' && inputs.verify_alerts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          issue_url=$(gh issue create --repo "${{ github.repository }}" --title '[TEST] CrowdCast alert delivery verification' --body '@dezigod This is an authorized notification test. The feed has not been interrupted or changed. This test issue will close automatically after creation succeeds.')
+          gh issue view "$issue_url" --json number,state,url
+          gh issue close "$issue_url" --comment '@dezigod Alert creation and recovery permissions verified. This was a test; no production feed failure was introduced.'
