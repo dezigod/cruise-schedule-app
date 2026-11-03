@@ -8,9 +8,5 @@
     }
   },
   "lastSuccess": "2026-11-03T06:45:49.307452+00:00",
-  "lastAttempt": "2026-11-03T06:45:31.605486+00:00",
-  "pendingDelivery": {
-    "baseBlob": "1a69ae4eee7c5578f79c3595cb8e3f43643dcccd",
-    "feedBlob": "c9585d543625fe367171b17bd5acb24c77488be7"
-  }
+  "lastAttempt": "2026-11-03T06:45:31.605486+00:00"
 }
