@@ -7,6 +7,10 @@
       "failures": 0
     }
   },
-  "lastSuccess": "2026-11-07T17:00:50.113700+00:00",
-  "lastAttempt": "2026-11-07T23:15:30.578522+00:00"
+  "lastSuccess": "2026-11-07T23:15:47.940924+00:00",
+  "lastAttempt": "2026-11-07T23:15:30.578522+00:00",
+  "pendingDelivery": {
+    "baseBlob": "73992be2e5db5a08c74661553f2aa899ca54027e",
+    "feedBlob": "be798097952e6f4acb25e09f018d427dc978a53b"
+  }
 }
