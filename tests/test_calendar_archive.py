@@ -76,3 +76,24 @@ class ArchiveTests(unittest.TestCase):
         self.assertTrue(all((c['documentID'],c['sourceURL'],c['documentHash']) in refs for v in a['visits'] for c in v['candidates']))
         rows=json.loads(base64.b64decode(a['payload']))['days']
         self.assertTrue(all((c['documentID'],c['sourceURL'],c['documentHash']) in refs for d in rows for s in d['ships'] for c in s.get('listingDetails',{}).get('candidates',[])))
+    def test_optional_year_discovery_is_bounded_and_skips_known_sources(self):
+        from update_official_calendar import optional_year_links
+        from datetime import date
+        links=[{'url':f'https://wico-ltd.com/FY-{y}-SHIP-SCHEDULE-REV-1.pdf','label':str(y)} for y in range(2024,2030)]
+        selected=optional_year_links('wico',links,date(2026,11,8),[links[2]['url']])
+        self.assertEqual([x[0]['label'] for x in selected],['2025','2028'])
+        duplicate=dict(links[4],url=links[4]['url'].replace('SHIP','OTHER'))
+        selected=optional_year_links('wico',links+[duplicate],date(2026,11,8))
+        self.assertNotIn('2028',[x[0]['label'] for x in selected])
+    def test_optional_old_source_never_overrides_existing_day(self):
+        from calendar_archive import archives_for_checkout
+        import tempfile
+        old=self.sample();new=copy.deepcopy(old)
+        np=json.loads(base64.b64decode(new['payload']));np['days'][0]['ships'][0]['arrival']='23:00'
+        new['payload']=base64.b64encode(json.dumps(np).encode()).decode()
+        with tempfile.TemporaryDirectory() as root:
+            Path(root,'official-cruise-calendar-v1.json').write_text(json.dumps(new))
+            a=archives_for_checkout(root,new,supplements=[old])
+        year=np['days'][0]['date'][:4]
+        first=json.loads(base64.b64decode(a['cruise-archive-'+year+'.json']['payload']))['days'][0]['ships'][0]
+        self.assertEqual(first['arrival'],'23:00')

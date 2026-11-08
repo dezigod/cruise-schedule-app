@@ -75,6 +75,7 @@ def export_calendar(documents, catalog, start, end, now=None):
                  'visitStatus':review['visitStatus'],'conflictReasons':review['conflictReasons'],
                  'visitID':review['id'],'sourceDocumentIDs':sorted({c['documentID'] for c in review['candidates']}),
                  'listingDetails':{'originalVesselName':call['originalVesselName'],
+                    'previousPort':call.get('previousPort'),'nextPort':call.get('nextPort'),
                     'sourceCheckedAt':stamp,'sourceObtainedAt':doc.get('obtainedAt'),
                     'sourceIssueDate':doc.get('issueDate'),'sourceRevision':doc.get('revisionIdentifier'),
                     'documentID':doc['id'],'documentHash':doc['sha256'],

@@ -137,11 +137,11 @@ class GitHubState:
         # reconciled from the stored blob IDs on the next run.
         self.request("PATCH", "/git/refs/heads/" + branch, {"sha": commit["sha"], "force": False})
 
-    def stage(self, state, calendar, base_blob):
+    def stage(self, state, calendar, base_blob, supplements=None):
         archives = {}
         if calendar.get("schemaVersion") == 1 and "payload" in calendar:
             from calendar_archive import archives_for_checkout
-            archives = archives_for_checkout(Path(__file__).resolve().parents[1], calendar)
+            archives = archives_for_checkout(Path(__file__).resolve().parents[1], calendar, supplements=supplements)
             calendar = dict(calendar, archiveYears=sorted(v["archiveYear"] for v in archives.values()))
         content = json_text(calendar)
         state = validate(dict(state, pendingDelivery={"baseBlob": base_blob, "feedBlob": blob_id(content.encode())}))

@@ -92,7 +92,7 @@ def metadata_from_text(text, provider, profile):
         if issued and issued.group(1).lower() in MONTHS:
             issue_date = date(int(issued.group(3)), MONTHS[issued.group(1).lower()], int(issued.group(2))).isoformat()
             revision = "Revision " + issued.group(4)
-        interval = re.search(r"(\d{1,2}/\d{1,2}/20\d{2})\s*[-–]\s*(\d{1,2}/\d{1,2}/20\d{2})", text)
+        interval = re.search(r"(\d{1,2}/\d{1,2}/20\d{2})\s*(?:[-–]|to)\s*(\d{1,2}/\d{1,2}/20\d{2})", text)
         if interval:
             periods = [datetime.strptime(value, "%m/%d/%Y").date().isoformat() for value in interval.groups()]
     if profile == "wico_monthly":
@@ -124,8 +124,9 @@ def parse_pdf(path, acquisition, profile):
         monthly_start = date.fromisoformat(metadata["declaredPeriod"][0]) if profile == "wico_monthly" and metadata["declaredPeriod"] else None
         for number, page in enumerate(pdf.pages, 1):
             rows = grouped_rows(page.extract_words()); parsed = 0; date_markers = 0; potential = 0
-            expected_width = 1224 if profile == "vipa_fiscal" else 612
-            if abs(page.width - expected_width) > 2 or abs(page.height - 792) > 2:
+            expected_width = 1224 if profile == "vipa_fiscal" else (792 if profile == "wico_fiscal_landscape_2025" else 612)
+            expected_height = 612 if profile == "wico_fiscal_landscape_2025" else 792
+            if abs(page.width - expected_width) > 2 or abs(page.height - expected_height) > 2:
                 issues.append({"kind":"unsupported_layout", "page":number}); pages.append({"page":number,"status":"unknown_layout"}); continue
             if not rows: issues.append({"kind":"image_or_empty_page", "page":number})
             for row_number, row in enumerate(rows, 1):
@@ -147,6 +148,13 @@ def parse_pdf(path, acquisition, profile):
                     if monthly_start and re.fullmatch(r"(?:[A-Za-z]{3}\s+)?\d{1,2}", day_cell):
                         try: supplied_day = date(monthly_start.year, monthly_start.month, int(day_cell.split()[-1]))
                         except ValueError: issues.append({"kind":"invalid_date", "page":number,"row":row_number})
+                elif profile == "wico_fiscal_landscape_2025":
+                    cols = cells(row, [0,100,150,198,325,370,510,670,793])
+                    day_cell, weekday, berth, vessel, nationality, origin, dest, times = cols
+                    day_cell = "-".join(day_cell.split())
+                    arrival, departure = parse_wico_times(times)
+                    try: supplied_day = parse_day(day_cell)
+                    except (ValueError, KeyError): supplied_day = None; issues.append({"kind":"invalid_date","page":number,"row":row_number})
                 elif profile == "wico_fiscal":
                     cols = cells(row, [0,76,123,169,306,408,520,612]); day_cell, weekday, berth, vessel, origin, dest, times = cols
                     arrival, departure = parse_wico_times(times)
@@ -201,6 +209,15 @@ def parse_pdf(path, acquisition, profile):
                         "guestCapacity":None,"capacityMeaning":"not supplied by these schedule columns; not attendance","flags":flags,
                         "trafficKind":"boat_or_charter_requires_review" if re.search(r'\b(BOAT|CHARTER|YACHT)\b',raw,re.I) else "cruise_schedule_row_not_independently_classified",
                         "sourceAuthority":provider,"sourceURL":acquisition["url"],"provenance":reference,"reviewState":"candidate"}
+                if profile == "wico_fiscal_landscape_2025":
+                    call['previousPort'] = origin if origin and origin.upper() not in {'TBA','TBD'} else None
+                    call['nextPort'] = dest if dest and dest.upper() not in {'TBA','TBD'} else None
+                    # TBA in the route columns does not cancel or make the call tentative.
+                    call['visitStatus'] = source_visit_status(vessel)
+                    if arrival and departure:
+                        start_minutes=int(arrival[:2])*60+int(arrival[3:])
+                        end_minutes=int(departure[:2])*60+int(departure[3:])
+                        if 0 < end_minutes-start_minutes < 30: flags.append('time_window_unresolved')
                 calls.append(call); parsed += 1
                 for flag in flags: issues.append({"kind":flag,"page":number,"row":row_number,"localDate":call['localDate']})
             pages.append({"page":number,"wordRows":len(rows),"explicitDateRows":date_markers,"possibleCallRows":potential,"parsedCallRows":parsed})

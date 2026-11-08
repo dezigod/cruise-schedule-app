@@ -244,3 +244,23 @@ class FetchTests(unittest.TestCase):
         self.assertEqual(result['sha256'],record['sha256']); self.assertEqual(result['obtainedAt'],record['obtainedAt'])
 
 if __name__=='__main__':unittest.main()
+
+class HistoricalLandscapeTests(unittest.TestCase):
+    setUp = ParserTests.setUp
+    parse = ParserTests.parse
+    def test_legacy_wico_landscape_date_nat_route_and_times(self):
+        spec={'width':792.13,'height':612.12,'heading':'For the period of: 10/1/2024 to 9/30/2025',
+              'columns':[34,103,157,202,328,379,514,678],
+              'rows':[['01 Jan 25','Wed','WICO','Sun Princess','BD','San Juan, P.R.','Fort Lauderdale, Florida','08 00 - 18 00'],
+                      ['','','STJ','Test Yacht','BA','Port A','Port B','09 00 - 16 00'],
+                      ['29 Jan 25','Wed','AMNS','Rotterdam','DU','','','11 29 - 11 30']]}
+        doc=self.parse('wico_fiscal_landscape_2025',spec=spec)
+        self.assertEqual(doc['declaredPeriod'],['2024-10-01','2025-09-30'])
+        self.assertEqual(doc['calls'][0]['localDate'],'2025-01-01')
+        self.assertEqual(doc['calls'][0]['arrival'],'08:00')
+        self.assertEqual(doc['calls'][0]['previousPort'],'San Juan, P.R.')
+        self.assertEqual(doc['calls'][0]['nextPort'],'Fort Lauderdale, Florida')
+        self.assertEqual(doc['calls'][1]['island'],'stJohn')
+        self.assertIsNone(doc['calls'][2]['previousPort'])
+        self.assertIn('time_window_unresolved',doc['calls'][2]['flags'])
+        self.assertEqual(doc['calls'][2]['arrival'],'11:29')

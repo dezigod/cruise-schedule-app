@@ -68,9 +68,9 @@ def build_archives(calendars):
         result[f'cruise-archive-{year}.json']=archive
     return result
 
-def archives_for_checkout(root, calendar):
+def archives_for_checkout(root, calendar, supplements=None):
     root=Path(root)
     old=[json.loads(p.read_text()) for p in sorted(root.glob('cruise-archive-*.json'))]
     previous=root/'official-cruise-calendar-v1.json'
     if previous.exists(): old.append(json.loads(previous.read_text()))
-    return build_archives(old+[calendar])
+    return build_archives((supplements or [])+old+[calendar])

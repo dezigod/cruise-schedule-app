@@ -42,6 +42,27 @@ def select_links(provider, links, today):
     if not 1<=len(selected)<=4: raise CollectionBlocked("Missing or ambiguous VIPA fiscal listings")
     return [(x,"vipa_fiscal") for x in selected]
 
+def optional_year_links(provider, links, today, existing_urls=()):
+    """Only discovered annual links for last/current/next calendar years.
+    Existing source URLs are already archived; avoid needless extra requests.
+    Optional ambiguity is skipped, never substituted for required current data.
+    """
+    current=today.year+(today.month>=10); result=[]
+    for fiscal in range(today.year-1,today.year+3):
+        if fiscal==current: continue
+        candidates=[]
+        for link in links:
+            text=unquote(urlsplit(link['url']).path) if provider=='wico' else link['label']
+            pattern=(r'FY[-_ ]*' if provider=='wico' else r'Fiscal Year\s+')+str(fiscal)+r'\b'
+            if re.search(pattern,text,re.I):
+                rev=re.search(r'REV[-_ ]*(\d+)',text,re.I)
+                candidates.append((int(rev.group(1)) if rev else 0,link))
+        if not candidates: continue
+        highest=max(x[0] for x in candidates); selected=[x[1] for x in candidates if x[0]==highest]
+        if len(selected)==1 and selected[0]['url'] not in existing_urls:
+            result.append((selected[0],provider+'_fiscal'))
+    return result
+
 def scoped_vipa_links(html):
     from bs4 import BeautifulSoup
     from urllib.parse import urljoin
@@ -117,7 +138,9 @@ def collect(work, state_path, today=None, persist=None, stage=None):
         if delay>0: time.sleep(delay)
         last_request[provider]=time.monotonic()
         return fetcher.fetch(provider,url,identifier,pdf=pdf)
-    documents=[]
+    documents=[]; optional_documents=[]
+    root=Path(__file__).resolve().parents[1]
+    existing_urls={d['url'] for p in root.glob('cruise-archive-*.json') for d in json.loads(p.read_text())['documents']}
     # A partial failure must not let the hourly scheduler increase source traffic.
     attempted_at=datetime.now(timezone.utc).isoformat()
     old=json.loads(state_path.read_text()) if state_path.exists() else {}
@@ -141,6 +164,22 @@ def collect(work, state_path, today=None, persist=None, stage=None):
                         continue
                 doc=parse_pdf(Path(record["path"]),record,profile)
                 validate_document(doc); documents.append(doc)
+            for i,(link,profile) in enumerate(optional_year_links(provider,links,today,existing_urls)):
+                # Same fetcher, pacing, durable reservation and refusal semantics.
+                try:
+                    record=fetch(provider,link['url'],provider+'-optional-year-'+str(i))
+                    if provider=='vipa':
+                        with pdfplumber.open(record['path']) as pdf:
+                            heading=(pdf.pages[0].extract_text() or '').split('Arrival Date')[0]
+                        if not re.search(r'Crown Bay[-\s–]*St\.?\s*Thomas',heading,re.I): continue
+                    extra=parse_pdf(Path(record['path']),record,profile)
+                    try: validate_document(extra)
+                    except CollectionBlocked: continue
+                    optional_documents.append(extra)
+                except (CollectionBlocked,OSError,ValueError):
+                    if fetcher.cache['providers'].get(provider,{}).get('accessRefused'): raise
+                    # An unavailable optional year cannot remove today's feed.
+                    continue
         if sum(d["provider"]=="vipa" for d in documents)!=1:
             raise CollectionBlocked("Ambiguous St. Thomas VIPA revision")
         fiscal=today.year+(today.month>=10)
@@ -148,6 +187,13 @@ def collect(work, state_path, today=None, persist=None, stage=None):
         catalog=json.loads((Path(__file__).resolve().parents[1]/"data/ship-capacities.json").read_text())
         value=export_calendar(documents,catalog,today,end)
         value["delivery"]="hosted"
+        supplements=[]
+        for doc in optional_documents:
+            for year in range(today.year-1,today.year+2):
+                supplement=export_calendar([doc],catalog,date(year,1,1),date(year,12,31))
+                if not supplement.get('visits'): continue
+                supplement['delivery']='hosted'
+                supplements.append(supplement)
         if stage:
             from github_state import FEED
             previous = (Path(__file__).resolve().parents[1] / FEED).read_bytes()
@@ -168,7 +214,7 @@ def collect(work, state_path, today=None, persist=None, stage=None):
         # A delivery error cannot undo a source reservation or masquerade as a
         # failed source download. State and the validated output travel together.
         from github_state import blob_id
-        save_json(state_path, stage(state, value, blob_id(previous)))
+        save_json(state_path, stage(state, value, blob_id(previous), supplements=supplements) if supplements else stage(state, value, blob_id(previous)))
     else:
         save_state(state)
     return value
