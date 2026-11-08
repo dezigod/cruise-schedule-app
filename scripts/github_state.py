@@ -5,6 +5,7 @@ import json
 import os
 import re
 import time
+from pathlib import Path
 import urllib.error
 import urllib.request
 from datetime import datetime
@@ -30,9 +31,15 @@ def validate(value):
         raise ValueError("Unexpected collection failure")
     if "pendingDelivery" in value:
         pending = value["pendingDelivery"]
-        if (not isinstance(pending, dict) or set(pending) != {"baseBlob", "feedBlob"}
-                or not all(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{40}", sha) for sha in pending.values())):
+        if (not isinstance(pending, dict) or set(pending) - {"baseBlob", "feedBlob", "archives", "archiveBases"} or not {"baseBlob", "feedBlob"}.issubset(pending)
+                or not all(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{40}", sha) for sha in [pending.get("baseBlob"), pending.get("feedBlob")])):
             raise ValueError("Invalid pending delivery")
+        if not isinstance(pending.get("archives", {}), dict) or not isinstance(pending.get("archiveBases", {}), dict):
+            raise ValueError("Invalid archive maps")
+        if any(not re.fullmatch(r"cruise-archive-[0-9]{4}\.json", name) or not re.fullmatch(r"[0-9a-f]{40}", sha) for name, sha in pending.get("archives", {}).items()):
+            raise ValueError("Invalid archive delivery")
+        if any(not re.fullmatch(r"cruise-archive-[0-9]{4}\.json", name) or not isinstance(sha,str) or not re.fullmatch(r"[0-9a-f]{40}",sha) for name,sha in pending.get("archiveBases",{}).items()):
+            raise ValueError("Invalid archive base")
     for key in ("lastSuccess", "lastAttempt"):
         if value.get(key) is not None:
             if datetime.fromisoformat(value[key]).tzinfo is None:
@@ -131,15 +138,24 @@ class GitHubState:
         self.request("PATCH", "/git/refs/heads/" + branch, {"sha": commit["sha"], "force": False})
 
     def stage(self, state, calendar, base_blob):
+        archives = {}
+        if calendar.get("schemaVersion") == 1 and "payload" in calendar:
+            from calendar_archive import archives_for_checkout
+            archives = archives_for_checkout(Path(__file__).resolve().parents[1], calendar)
+            calendar = dict(calendar, archiveYears=sorted(v["archiveYear"] for v in archives.values()))
         content = json_text(calendar)
         state = validate(dict(state, pendingDelivery={"baseBlob": base_blob, "feedBlob": blob_id(content.encode())}))
+        if archives:
+            state["pendingDelivery"]["archives"] = {name: blob_id(json_text(value).encode()) for name, value in archives.items()}
+            root=Path(__file__).resolve().parents[1]
+            state["pendingDelivery"]["archiveBases"] = {name: blob_id((root/name).read_bytes()) for name in archives if (root/name).exists()}
         tip, tree, files = self.snapshot(BRANCH)
         if not self.sha or files.get(PATH) != self.sha:
             raise ValueError("Collection state changed while validating; previous state retained")
         saved = json_text(state)
         # Only the derived feed goes into Git. Its bytes and the collection
         # success become durable in the same commit.
-        self.commit_files(BRANCH, tip, tree, {STAGED: {"content": content}, PATH: {"content": saved}},
+        self.commit_files(BRANCH, tip, tree, {STAGED: {"content": content}, PATH: {"content": saved}, **{name: {"content": json_text(value)} for name, value in archives.items()}},
                           "Stage validated public cruise calendar and collection result")
         self.sha = blob_id(saved.encode())
         return state
@@ -154,14 +170,16 @@ class GitHubState:
         _, _, staged = self.snapshot(BRANCH)
         if staged.get(PATH) != self.sha or staged.get(STAGED) != pending["feedBlob"]:
             raise ValueError("Staged calendar or collection state changed; inspect before publishing")
+        if any(staged.get(name) != sha for name, sha in pending.get("archives", {}).items()):
+            raise ValueError("Staged archive changed; inspect before publishing")
         tip, tree, files = self.snapshot("main")
         current = files.get(FEED)
         if current is None:
             raise ValueError("Published calendar missing; inspect main before restoring")
-        if current == pending["feedBlob"]:
+        if current == pending["feedBlob"] and all(files.get(name) == sha for name, sha in pending.get("archives", {}).items()):
             outcome = "already published"
-        elif current == pending["baseBlob"]:
-            self.commit_files("main", tip, tree, {FEED: {"sha": pending["feedBlob"]}},
+        elif current == pending["baseBlob"] and all(files.get(name) == pending.get("archiveBases",{}).get(name) for name in pending.get("archives",{})):
+            self.commit_files("main", tip, tree, {FEED: {"sha": pending["feedBlob"]}, **{name: {"sha": sha} for name, sha in pending.get("archives", {}).items()}},
                               "chore: refresh official cruise calendar")
             outcome = "published"
         else:
