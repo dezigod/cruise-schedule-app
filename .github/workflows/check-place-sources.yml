@@ -1,0 +1,36 @@
+name: Check place visitor sources
+on:
+  schedule:
+    - cron: '43 10 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['places/**', '.github/workflows/check-place-sources.yml']
+permissions:
+  contents: write
+concurrency:
+  group: place-source-checks
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Offline regression tests
+        run: python -m unittest discover -s places -p 'test_*.py' -v
+      - name: Check official visitor sources without changing facts
+        run: python places/check_sources.py
+      - name: Publish review queue and source-check metadata
+        run: |
+          cat places/REVIEW_QUEUE.md >> "$GITHUB_STEP_SUMMARY"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add places/check-state.json places/REVIEW_QUEUE.md
+          if git diff --staged --quiet; then exit 0; fi
+          git commit -m "chore: check place sources for review"
+          git pull --rebase origin main
+          git push origin HEAD:main

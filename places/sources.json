@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Review-only official source checks; no automatic fact publication",
+  "sources": [
+    {
+      "id": "magens-fees",
+      "label": "Magens Bay admission and parking",
+      "url": "https://magensbayauthority.org/passes/"
+    },
+    {
+      "id": "smith-bay",
+      "label": "Lindquist / Smith Bay facilities",
+      "url": "https://magensbayauthority.org/smith-bay-park/"
+    },
+    {
+      "id": "magens-faq",
+      "label": "Magens Bay visitor essentials",
+      "url": "https://magensbayauthority.org/faqs/"
+    },
+    {
+      "id": "coral-world",
+      "label": "Coral World hours and facilities",
+      "url": "https://coralworldvi.com/faqs/"
+    },
+    {
+      "id": "paradise-schedule",
+      "label": "Paradise Point operating schedule",
+      "url": "https://www.paradisepointvi.com/schedule"
+    },
+    {
+      "id": "paradise-faq",
+      "label": "Paradise Point visitor essentials",
+      "url": "https://www.paradisepointvi.com/faq"
+    },
+    {
+      "id": "synagogue",
+      "label": "St Thomas Synagogue visiting",
+      "url": "https://synagogue.vi/visit-us/"
+    },
+    {
+      "id": "ecotours",
+      "label": "VI Ecotours visitor essentials",
+      "url": "https://www.viecotours.com/faq"
+    },
+    {
+      "id": "botanical",
+      "label": "Phantasea opening and closure notices",
+      "url": "https://www.stthomasbotanicalgarden.com/"
+    },
+    {
+      "id": "lindbergh",
+      "label": "VIPA Lindbergh Bay Park",
+      "url": "https://www.viport.com/park"
+    }
+  ]
+}
