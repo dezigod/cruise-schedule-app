@@ -164,3 +164,20 @@ local originals. It preserves the original source-check timestamps and does not
 contact providers or advance collection state. Subsequent authorized collection
 uses the same enriched exporter. Raw source PDFs remain outside the repo.
 The final serialized feed is bounded to the existing iPhone 3 MB transport cap.
+
+## Capacity review, November 8, 2026
+
+Current NCL Facts & Figures explicitly confirms double-occupancy capacities for
+Norwegian Breakaway (3,903), Epic (4,070), Bliss (4,010), Jewel (2,368), and
+Gem (2,388). Each catalog record links the operator page and its check time.
+These current configurations are applied only from November 8 forward, not
+retroactively to older schedules. Older PDFs can describe different pre-refit
+configurations. No capacity is an actual passenger or shore-visitor count.
+
+The shared capacity validator expires evidence after exactly 365 days, rejects
+naive/future timestamps, and honors an optional `effectiveFrom` date. The local
+`enrich_capacity_payload.enrich` helper can update reviewed capacities without
+changing schedule rows, source validation times, conflict flags, or archive
+history. Six-hour source collection and 15-minute freshness monitoring remain
+unchanged. Unresolved capacities and official-source disagreements stay unknown
+or flagged; they are not filled using guesses or sister ships.

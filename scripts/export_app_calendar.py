@@ -9,6 +9,23 @@ from official_fetch import private_directory, save_private, validate_url
 from official_parse import reconcile
 from visit_review import review_visits
 
+def capacity_for_date(record, local, now):
+    """Return only explicitly sourced, current double-occupancy evidence."""
+    if not record or record['status'] != 'sourced' or record['basis'] != 'doubleOccupancy':
+        return None
+    value=record['value']; parsed=urlsplit(record['sourceURL'])
+    checked=datetime.fromisoformat(record['checkedAt'].replace('Z','+00:00'))
+    if type(value) is not int or not 0<value<20000 or parsed.scheme!='https' or parsed.hostname not in ['www.ncl.com','www.nclhltd.com','www.royalcaribbean.com','www.carnival.com','www.celebritycruises.com'] or parsed.username or parsed.password:
+        raise ValueError('Invalid capacity evidence')
+    if checked.tzinfo is None or checked > now:
+        raise ValueError('Invalid capacity check time')
+    effective = record.get('effectiveFrom')
+    if effective is not None:
+        date.fromisoformat(effective)
+    if now-checked <= timedelta(days=365) and (effective is None or local >= effective):
+        return value
+    return None
+
 def export_calendar(documents, catalog, start, end, now=None):
     now = now or datetime.now(timezone.utc)
     if end < start or (end-start).days > 730: raise ValueError('Invalid window')
@@ -57,13 +74,7 @@ def export_calendar(documents, catalog, start, end, now=None):
                 held.add(local)
                 continue
             record=capacities.get(call['canonicalVessel'].casefold().strip())
-            capacity=None
-            if record and record['status']=='sourced' and record['basis']=='doubleOccupancy':
-                value=record['value']; parsed=urlsplit(record['sourceURL'])
-                checked=datetime.fromisoformat(record['checkedAt'].replace('Z','+00:00'))
-                if type(value) is not int or not 0<value<20000 or parsed.scheme!='https' or parsed.hostname not in ['www.ncl.com','www.nclhltd.com','www.royalcaribbean.com','www.carnival.com','www.celebritycruises.com'] or parsed.username or parsed.password: raise ValueError('Invalid capacity evidence')
-                if checked > now: raise ValueError('Future capacity check')
-                if (now-checked).days<=365: capacity=value
+            capacity = capacity_for_date(record, local, now)
             display = record['ship'] if record else {
                 'norwegian getaway':'Norwegian Getaway', 'queen mary 2':'Queen Mary 2',
                 'seadream i':'SeaDream I', 'seadream ii':'SeaDream II'

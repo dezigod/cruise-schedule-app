@@ -226,6 +226,56 @@
       "sourceURL": "https://www.nclhltd.com/news-media/press-releases/detail/758/norwegian-cruise-line-opens-for-sale-its-largest-and-most",
       "checkedAt": "2026-11-02T20:02:45.731707+00:00",
       "notes": "Operator explicitly identifies double occupancy. Published capacity, not actual occupancy or people ashore."
+    },
+    {
+      "ship": "Norwegian Breakaway",
+      "value": 3903,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.ncl.com/cruise-ships/norwegian-breakaway",
+      "checkedAt": "2026-11-08T21:24:32Z",
+      "effectiveFrom": "2026-11-08",
+      "notes": "Current operator Facts & Figures explicitly labels double occupancy. Used prospectively from review date; not evidence of historical configuration, sailing occupancy, or people ashore."
+    },
+    {
+      "ship": "Norwegian Epic",
+      "value": 4070,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.ncl.com/cruise-ships/norwegian-epic",
+      "checkedAt": "2026-11-08T21:24:32Z",
+      "effectiveFrom": "2026-11-08",
+      "notes": "Current operator Facts & Figures explicitly labels double occupancy. Used prospectively from review date; not evidence of historical configuration, sailing occupancy, or people ashore."
+    },
+    {
+      "ship": "Norwegian Bliss",
+      "value": 4010,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.ncl.com/cruise-ships/norwegian-bliss",
+      "checkedAt": "2026-11-08T21:24:32Z",
+      "effectiveFrom": "2026-11-08",
+      "notes": "Current operator Facts & Figures explicitly labels double occupancy. Used prospectively from review date; not evidence of historical configuration, sailing occupancy, or people ashore."
+    },
+    {
+      "ship": "Norwegian Jewel",
+      "value": 2368,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.ncl.com/cruise-ships/norwegian-jewel",
+      "checkedAt": "2026-11-08T21:24:32Z",
+      "effectiveFrom": "2026-11-08",
+      "notes": "Current operator Facts & Figures explicitly labels double occupancy. Used prospectively from review date; not evidence of historical configuration, sailing occupancy, or people ashore."
+    },
+    {
+      "ship": "Norwegian Gem",
+      "value": 2388,
+      "basis": "doubleOccupancy",
+      "status": "sourced",
+      "sourceURL": "https://www.ncl.com/cruise-ships/norwegian-gem",
+      "checkedAt": "2026-11-08T21:24:32Z",
+      "effectiveFrom": "2026-11-08",
+      "notes": "Current operator Facts & Figures explicitly labels double occupancy. Used prospectively from review date; not evidence of historical configuration, sailing occupancy, or people ashore."
     }
   ]
 }

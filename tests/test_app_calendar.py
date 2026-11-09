@@ -47,3 +47,13 @@ class AppCalendarTests(unittest.TestCase):
         self.assertEqual(canonical_vessel('Queen Mary II','wico')[0],canonical_vessel('Queen Mary 2','vipa')[0])
         self.assertEqual(canonical_vessel('Sea Dream 2','wico')[0],canonical_vessel('SeaDream II','vipa')[0])
         self.assertNotEqual(canonical_vessel('SeaDream I','wico')[0],canonical_vessel('SeaDream II','vipa')[0])
+
+    def test_capacity_effective_date_does_not_rewrite_earlier_calls(self):
+        self.catalog['records'][0]['effectiveFrom']='2026-11-01'
+        value=self.rows(self.export())
+        self.assertTrue(all(s['passengers'] is None for d in value['days'] if d['date']<'2026-11-01' for s in d['ships']))
+
+    def test_capacity_expires_after_exact_365_days(self):
+        from datetime import timedelta
+        self.catalog['records'][0]['checkedAt']=(self.now-timedelta(days=365,seconds=1)).isoformat()
+        self.assertTrue(all(s['passengers'] is None for d in self.rows(self.export())['days'] for s in d['ships']))
