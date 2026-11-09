@@ -19,8 +19,18 @@
     },
     {
       "id": "coral-world",
-      "label": "Coral World hours and facilities",
+      "label": "Coral World visitor FAQ",
       "url": "https://coralworldvi.com/faqs/"
+    },
+    {
+      "id": "coral-world-admission",
+      "label": "Coral World admission prices and age/residency conditions",
+      "url": "https://coralworldvi.com/general-admission/"
+    },
+    {
+      "id": "coral-world-hours",
+      "label": "Coral World seasonal hours and operating days",
+      "url": "https://coralworldvi.com/what-to-expect/"
     },
     {
       "id": "paradise-schedule",
