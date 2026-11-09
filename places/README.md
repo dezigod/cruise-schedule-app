@@ -2,7 +2,7 @@
 
 Runs daily at 10:43 UTC (06:43 AST) via GitHub Actions, plus manual dispatch. Public standard runners, Python standard library, no AI calls or new paid service. GitHub scheduling can be delayed; the queue records actual attempts and successful checks. Inspect the latest run before relying on coverage.
 
-This is a **review queue, not a fact publisher**. It never writes Firebase or app resources. Ten priority official/operator pages cover admission, hours, facilities and possible closure notices. Initial captures require review. Page or image-URL changes stay pending until reviewed; unchanged pages also require another review after 30 days. No automatic hash acceptance. Failures retain prior successful-check timestamps and flag review. A successful page fetch does not mean its stated prices/hours are current.
+This is a **review queue, not a fact publisher**. It never writes Firebase or app resources. Twelve priority official/operator pages cover admission, hours, facilities and possible closure notices. Initial captures require review. Page or image-URL changes stay pending until reviewed; unchanged pages also require another review after 30 days. No automatic hash acceptance. Failures retain prior successful-check timestamps and flag review. A successful page fetch does not mean its stated prices/hours are current.
 
 ## Review procedure
 1. Open each source from REVIEW_QUEUE.md and compare current relevant facts to the app's reviewed visitor data. Read dates, exceptions, and the actual schedule images. Resolve conflicting official pages before publishing.
@@ -19,3 +19,5 @@ Robots restrictions, access denials, unknown robots failures, challenges, cross-
 `python3 places/check_sources.py`
 
 Outputs: `places/check-state.json` and `places/REVIEW_QUEUE.md`; each workflow also adds the queue to its job summary. No emails or issues are sent automatically.
+
+Coral World admission and operating-day pages are checked separately from its FAQ. Preserve age/residency conditions and seasonal exceptions; do not apply undated closure notices as current closures.
