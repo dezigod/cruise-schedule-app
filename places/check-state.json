@@ -1,100 +1,100 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-11-11T18:02:30.712858+00:00",
+  "checkedAt": "2026-11-12T18:35:34.810041+00:00",
   "sources": {
     "magens-fees": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
       "lastChangeDetectedAt": "2026-11-08T21:25:10.729588+00:00",
       "observedHash": "b27dc4c6ad5562082c0f219b8bd3eef736ecfe29b0df13fbf934f544d428c8a7",
       "reviewRequired": true,
       "status": "review_required"
     },
     "smith-bay": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
       "lastChangeDetectedAt": "2026-11-08T21:25:10.729588+00:00",
       "observedHash": "ccaf046ec57bc0d529ba1795ff934a2087b0ac2d580d2cab3f1141fecea69459",
       "reviewRequired": true,
       "status": "review_required"
     },
     "magens-faq": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
       "lastChangeDetectedAt": "2026-11-08T21:25:10.729588+00:00",
       "observedHash": "b2614d8091bd7fe5685e87e4de0333bf57cabbf6ca01d73e94471e52fe3ff1d1",
       "reviewRequired": true,
       "status": "review_required"
     },
     "coral-world": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
       "lastChangeDetectedAt": "2026-11-10T18:15:01.474707+00:00",
       "observedHash": "8030224f364eeff11abf9fe300d564b5bc9dae6537506efd52751e34c819c630",
       "reviewRequired": true,
       "status": "review_required"
     },
     "coral-world-admission": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
       "lastChangeDetectedAt": "2026-11-10T18:15:01.474707+00:00",
       "observedHash": "69febaa0459b6809817c243e30d8644d56516fae0d7be64941743f8a54304b3e",
       "reviewRequired": true,
       "status": "review_required"
     },
     "coral-world-hours": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
       "lastChangeDetectedAt": "2026-11-10T18:15:01.474707+00:00",
       "observedHash": "8d7c506ab02446ad197a4de1b1fa8bff784bf70e7ebc70ae0d2187c0abae9176",
       "reviewRequired": true,
       "status": "review_required"
     },
     "paradise-schedule": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
       "lastChangeDetectedAt": "2026-11-08T21:25:10.729588+00:00",
       "observedHash": "872338929572b1b8fec78e486af6b5b04022cb32c89890f566a1c96c00a99adc",
       "reviewRequired": true,
       "status": "review_required"
     },
     "paradise-faq": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
       "lastChangeDetectedAt": "2026-11-08T21:25:10.729588+00:00",
       "observedHash": "050718f74b47af13f702db8dcbaa14718c0636b591c1ab21f5554db79ae83e92",
       "reviewRequired": true,
       "status": "review_required"
     },
     "synagogue": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
       "lastChangeDetectedAt": "2026-11-08T21:25:10.729588+00:00",
       "observedHash": "2318fab98eb80560c3ed6c814df1bda1303a93c2abb8a3d7632de3eb31a37a22",
       "reviewRequired": true,
       "status": "review_required"
     },
     "ecotours": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
       "lastChangeDetectedAt": "2026-11-11T18:02:30.712858+00:00",
       "observedHash": "fcd21e13387840a12a51777926aaf9820773e85945f6f1a030efb952f98c560c",
       "reviewRequired": true,
       "status": "review_required"
     },
     "botanical": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
       "lastChangeDetectedAt": "2026-11-08T21:25:10.729588+00:00",
       "observedHash": "6116c20ec9a5c40d444368796bc8dbffe08f80ffac3f5a35a2ce355705cc2e89",
       "reviewRequired": true,
       "status": "review_required"
     },
     "lindbergh": {
-      "lastAttemptAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastSuccessfulCheckAt": "2026-11-11T18:02:30.712858+00:00",
-      "lastChangeDetectedAt": "2026-11-08T21:25:10.729588+00:00",
-      "observedHash": "44fcabb4c809f4d7ed6bf227717a7170ca60d6d2041561dc921c4fb46ff04bbb",
+      "lastAttemptAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastSuccessfulCheckAt": "2026-11-12T18:35:34.810041+00:00",
+      "lastChangeDetectedAt": "2026-11-12T18:35:34.810041+00:00",
+      "observedHash": "f885bc6d074290203f401172e14f86f308cf6f0876a3caf5d028806dfd860f10",
       "reviewRequired": true,
       "status": "review_required"
     }
