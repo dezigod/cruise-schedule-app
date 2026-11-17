@@ -7,6 +7,20 @@
       "failures": 0
     }
   },
-  "lastSuccess": "2026-11-17T07:45:54.221561+00:00",
-  "lastAttempt": "2026-11-17T14:00:33.379704+00:00"
+  "lastSuccess": "2026-11-17T14:00:51.148407+00:00",
+  "lastAttempt": "2026-11-17T14:00:33.379704+00:00",
+  "pendingDelivery": {
+    "baseBlob": "80899d61e88c7f05a885df222423fe80aa564035",
+    "feedBlob": "cc6a22c81edc196e46218732d67c22bf81407959",
+    "archives": {
+      "cruise-archive-2025.json": "589fb191db81cd6bebff30da7cfe8c12cb497a72",
+      "cruise-archive-2026.json": "49e70c1425d6271cce77745cac374d9bfaf791d4",
+      "cruise-archive-2027.json": "13c2f4e39746563b5fff5c4da9613775a78715d5"
+    },
+    "archiveBases": {
+      "cruise-archive-2025.json": "589fb191db81cd6bebff30da7cfe8c12cb497a72",
+      "cruise-archive-2026.json": "73eebffe4111478710d16434873f61bf93723e69",
+      "cruise-archive-2027.json": "84e979e6102fb2dc12bff4db2e725b450dc6198c"
+    }
+  }
 }
