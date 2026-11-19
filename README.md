@@ -181,3 +181,21 @@ changing schedule rows, source validation times, conflict flags, or archive
 history. Six-hour source collection and 15-minute freshness monitoring remain
 unchanged. Unresolved capacities and official-source disagreements stay unknown
 or flagged; they are not filled using guesses or sister ships.
+
+
+### Delivery monitoring recovery (November 19, 2026)
+
+The native cruise monitor and the independent both-feed monitor retry transient
+public GitHub read failures at most three times with 10-second request timeouts,
+one- and three-second waits, and the same five-minute cache bucket. Denials,
+rate limits, redirects, oversized responses and Retry-After are not retried.
+The monitor never contacts WICO or VIPA, and retries never alter source clocks.
+
+A `Cruise feed delivery unavailable` issue tracks unreadable delivery separately
+from `Feed freshness alert`. A failed feed/state read cannot erase or close an
+existing provider, stale-data or pending-publication incident. Read recovery
+closes only the delivery issue, then checks source health independently. Known
+unchanged transport incidents stay explicitly UNHEALTHY with a warning and open
+issue without producing repeated job-failure notifications. Source-health and
+issue-API failures still fail the check. Collector timing, access restrictions,
+publication rules and the app feed are unchanged.
