@@ -17,8 +17,7 @@ from typing import Any
 
 import requests
 from bs4 import BeautifulSoup, NavigableString
-from google import genai
-from google.genai import types
+from openai import OpenAI
 
 # ---------------------------------------------------------------------------
 # Config
@@ -30,8 +29,10 @@ MONTHS_FUTURE = int(os.environ.get("MONTHS_FUTURE", "12"))
 REQUEST_RETRIES = int(os.environ.get("REQUEST_RETRIES", "4"))
 REQUEST_BACKOFF_BASE_SECONDS = float(os.environ.get("REQUEST_BACKOFF_BASE_SECONDS", "1.5"))
 REQUEST_TIMEOUT_SECONDS = int(os.environ.get("REQUEST_TIMEOUT_SECONDS", "60"))
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash-lite")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-5-mini")
+# Caps what one fallback call sends, to keep cost per month page bounded.
+AI_FALLBACK_MAX_CHARS = int(os.environ.get("AI_FALLBACK_MAX_CHARS", "200000"))
 
 OUTPUT_PATH = Path(__file__).parent.parent / "schedule.json"
 SCHEMA_VERSION = "1.1.0"
@@ -180,44 +181,71 @@ def build_session() -> requests.Session:
     return session
 
 
-GEMINI_FALLBACK_PROMPT = """\
-You are extracting a cruise ship schedule from raw HTML for the U.S. Virgin Islands cruise schedule page.
+AI_FALLBACK_INSTRUCTIONS = """\
+You are extracting a cruise ship schedule from the text of a U.S. Virgin Islands cruise schedule page.
 
-Return ONLY a raw JSON array. No explanation. No markdown. No code fences.
-
-Each array element must be an object with exactly these keys:
-  "date"       - "YYYY-MM-DD" format
-  "name"       - ship name as a string
-  "line"       - cruise line name, or "" if not found
-  "passengers" - integer passenger count, or 0 if not found
-  "rawDock"    - dock name exactly as listed, or ""
-  "arrival"    - arrival time as "HH:MM" 24-hour, or ""
-  "departure"  - departure time as "HH:MM" 24-hour, or ""
+For each ship call give:
+  date       - "YYYY-MM-DD"
+  name       - ship name
+  line       - cruise line name, or "" if not listed
+  passengers - integer passenger count, or 0 if not listed
+  rawDock    - dock name exactly as listed, or ""
+  arrival    - arrival time as "HH:MM" 24-hour, or ""
+  departure  - departure time as "HH:MM" 24-hour, or ""
 
 Target month: {month_label}
 Only include ships for that target month.
-Do not invent data. If no valid schedule can be extracted, return [].
-
-Raw HTML follows:
-{html}
+Copy only what the page states. Do not invent or infer data. If no schedule is present, return an empty list.
 """
 
+AI_FALLBACK_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "properties": {
+        "ships": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "date": {"type": "string"},
+                    "name": {"type": "string"},
+                    "line": {"type": "string"},
+                    "passengers": {"type": "integer"},
+                    "rawDock": {"type": "string"},
+                    "arrival": {"type": "string"},
+                    "departure": {"type": "string"},
+                },
+                "required": ["date", "name", "line", "passengers", "rawDock", "arrival", "departure"],
+                "additionalProperties": False,
+            },
+        }
+    },
+    "required": ["ships"],
+    "additionalProperties": False,
+}
 
-def parse_gemini_json_array(raw: str) -> list[dict[str, Any]]:
+
+def parse_ai_json_array(raw: str) -> list[dict[str, Any]]:
     cleaned = raw.strip()
     cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned, flags=re.MULTILINE)
     cleaned = re.sub(r"\s*```$", "", cleaned, flags=re.MULTILINE)
-    match = re.search(r"\[.*\]", cleaned, re.DOTALL)
+    match = None if cleaned.startswith("{") else re.search(r"\[.*\]", cleaned, re.DOTALL)
     if match:
         cleaned = match.group(0)
     parsed = json.loads(cleaned)
+    if isinstance(parsed, dict) and isinstance(parsed.get("ships"), list):
+        return parsed["ships"]
     if not isinstance(parsed, list):
         raise ValueError(f"Expected JSON array, got {type(parsed).__name__}")
     return parsed
 
 
 def sanitize_html_for_prompt(html: str) -> str:
-    return html[:1_500_000]
+    """Page text without scripts, styles or markup, capped at AI_FALLBACK_MAX_CHARS."""
+    soup = BeautifulSoup(html, "html.parser")
+    for tag in soup(["script", "style", "noscript", "svg", "head"]):
+        tag.decompose()
+    text = re.sub(r"\n\s*\n+", "\n", soup.get_text("\n", strip=True))
+    return text[:AI_FALLBACK_MAX_CHARS]
 
 
 # ---------------------------------------------------------------------------
@@ -270,43 +298,53 @@ def fetch_html(session: requests.Session, url: str) -> tuple[str, bool]:
     return last_html, False
 
 
-def extract_with_gemini_fallback(
-    client: genai.Client | None,
+def extract_with_ai_fallback(
+    client: OpenAI | None,
     month_label: str,
     html: str,
 ) -> list[dict]:
     if not client:
-        log.warning("Gemini fallback unavailable: GEMINI_API_KEY is not set")
+        log.warning("AI fallback unavailable: OPENAI_API_KEY is not set")
         return []
     if not html.strip():
-        log.warning("Gemini fallback skipped for %s: no HTML captured", month_label)
+        log.warning("AI fallback skipped for %s: no HTML captured", month_label)
+        return []
+    if is_cloudflare_page(html):
+        log.warning("AI fallback skipped for %s: page is a Cloudflare challenge, not a schedule", month_label)
         return []
 
-    prompt = GEMINI_FALLBACK_PROMPT.format(
-        month_label=month_label,
-        html=sanitize_html_for_prompt(html),
-    )
+    page_text = sanitize_html_for_prompt(html)
+    if not page_text.strip():
+        log.warning("AI fallback skipped for %s: page has no text", month_label)
+        return []
 
     for attempt in range(1, 4):
         try:
-            response = client.models.generate_content(
-                model=GEMINI_MODEL,
-                contents=prompt,
-                config=types.GenerateContentConfig(temperature=0.1),
+            response = client.responses.create(
+                model=OPENAI_MODEL,
+                instructions=AI_FALLBACK_INSTRUCTIONS.format(month_label=month_label),
+                input=page_text,
+                text={
+                    "format": {
+                        "type": "json_schema",
+                        "name": "cruise_schedule",
+                        "schema": AI_FALLBACK_SCHEMA,
+                        "strict": True,
+                    }
+                },
             )
-            raw = response.text or "[]"
-            items = parse_gemini_json_array(raw)
-            log.info("Gemini fallback extracted %d ships for %s", len(items), month_label)
+            items = parse_ai_json_array(response.output_text or "[]")
+            log.info("AI fallback (%s) extracted %d ships for %s", OPENAI_MODEL, len(items), month_label)
             return items
         except Exception as exc:
-            log.warning("Gemini fallback failed for %s on attempt %d: %s", month_label, attempt, exc)
+            log.warning("AI fallback failed for %s on attempt %d: %s", month_label, attempt, exc)
             if attempt < 3:
                 time.sleep(2 * attempt)
 
     return []
 
 
-def scrape_month(session: requests.Session, month_dt: datetime, client: genai.Client | None) -> list[dict]:
+def scrape_month(session: requests.Session, month_dt: datetime, client: OpenAI | None) -> list[dict]:
     year = month_dt.year
     month = month_dt.month
     month_label = month_dt.strftime("%Y-%m")
@@ -315,7 +353,7 @@ def scrape_month(session: requests.Session, month_dt: datetime, client: genai.Cl
     log.info("Fetching %s from %s", month_label, url)
     html, fetch_ok = fetch_html(session, url)
     if not fetch_ok:
-        return extract_with_gemini_fallback(client, month_label, html)
+        return extract_with_ai_fallback(client, month_label, html)
 
     soup = BeautifulSoup(html, "html.parser")
     items: list[dict] = []
@@ -380,8 +418,8 @@ def scrape_month(session: requests.Session, month_dt: datetime, client: genai.Cl
             i = j + 1 if found_time else i + 1
 
     if len(items) == 0:
-        log.warning("Parsed zero ships for %s, invoking Gemini fallback", month_label)
-        return extract_with_gemini_fallback(client, month_label, fallback_html)
+        log.warning("Parsed zero ships for %s, invoking AI fallback", month_label)
+        return extract_with_ai_fallback(client, month_label, fallback_html)
 
     log.info("Found %d ships for %s", len(items), month_label)
     return items
@@ -440,7 +478,7 @@ def main() -> None:
     )
 
     session = build_session()
-    client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None
+    client = OpenAI(api_key=OPENAI_API_KEY, timeout=120, max_retries=2) if OPENAI_API_KEY else None
     all_ships: list[dict] = []
 
     for month_dt in months:
@@ -484,7 +522,7 @@ def main() -> None:
     }
 
     if len(sorted_days) == 0:
-        log.warning("No data returned by scraper or Gemini fallback. Writing empty schedule.json.")
+        log.warning("No data returned by scraper or AI fallback. Writing empty schedule.json.")
 
     OUTPUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n")
 

@@ -18,6 +18,9 @@ and its source-use questions remain unresolved. Its feed, source, credentials an
 history are preserved; it must not be re-enabled without a separate review. The
 sections below about that legacy parser describe its code, not active automation.
 
+Its AI fallback now uses the OpenAI API (`OPENAI_API_KEY` secret) instead of
+Gemini. Switching providers does not settle the source-use review above.
+
 ## Data pipeline
 
 - **Primary source:** ViNow ship schedule (`https://www.vinow.com/cruise/ship-schedule/`).
@@ -41,6 +44,13 @@ python scripts/update_schedule.py
 - `REQUEST_RETRIES` (default `3`)
 - `REQUEST_RETRY_DELAY_SECONDS` (default `1.5`)
 - `USE_ENV_PROXY` (default `false`; set to `true` only if your proxy permits ViNow)
+- `OPENAI_API_KEY` (no default; without it the AI fallback is skipped and only the HTML parser runs)
+- `OPENAI_MODEL` (default `gpt-5-mini`)
+- `AI_FALLBACK_MAX_CHARS` (default `200000`; page text sent per fallback call)
+
+The AI fallback runs only when a month page can't be fetched cleanly or the HTML parser finds no ships. It receives the page text (no scripts or markup),
+never runs on a Cloudflare challenge page, and must return JSON matching a fixed schema. Its output then goes
+through `validate_schedule_update.py`, which restores the previous `schedule.json` if the result is rejected.
 
 ## JSON schema
 
