@@ -13,6 +13,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   check:
+    # Temporary owner-requested collection pause. Restore by reverting this commit.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
