@@ -35,7 +35,7 @@ jobs:
           SOURCE_URL: https://www.vinow.com/cruise/ship-schedule
           MONTHS_PAST: "1"
           MONTHS_FUTURE: "3"
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           set +e
           python scripts/update_schedule.py
